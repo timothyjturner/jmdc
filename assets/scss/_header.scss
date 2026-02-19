@@ -1,5 +1,5 @@
 .jmdc-site-header {
-    padding: 24px 0;
+    padding: 50px;
   }
   
   .jmdc-site-header__inner {
@@ -18,7 +18,7 @@
   
   .jmdc-site-header__logo img {
     display: block;
-    height: 28px;
+    height: 53px;
     width: auto;
   }
   
@@ -32,9 +32,11 @@
   }
   
   .jmdc-site-header__nav .jmdc-header-menu a {
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 500;
-    font-size: 14px;
+    color: #2C2E35;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   
