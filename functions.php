@@ -35,3 +35,10 @@ add_action('after_setup_theme', function () {
     ]);
   });
   
+//custom logo support
+  add_theme_support('custom-logo', [
+    'height'      => 100,
+    'width'       => 300,
+    'flex-height' => true,
+    'flex-width'  => true,
+  ]);
