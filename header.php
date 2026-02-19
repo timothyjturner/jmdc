@@ -29,7 +29,6 @@
       aria-controls="jmdc-mobile-nav"
       aria-expanded="false"
     >
-      <span class="jmdc-nav-toggle__label">Menu</span>
       <span class="jmdc-nav-toggle__icon" aria-hidden="true"></span>
     </button>
 

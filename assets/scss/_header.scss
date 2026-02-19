@@ -1,46 +1,11 @@
 .jmdc-site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
     padding: 50px;
-  }
-  
-  .jmdc-site-header__inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  /* Center logo */
-  .jmdc-site-header__logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .jmdc-site-header__logo img {
-    display: block;
-    height: 53px;
-    width: auto;
-  }
-  
-  /* Nav */
-  .jmdc-site-header__nav .jmdc-header-menu {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .jmdc-site-header__nav .jmdc-header-menu a {
-    color: #2C2E35;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .jmdc-site-header {
-    padding: 24px 0;
+    background: #fff;
   }
   
   .jmdc-site-header__inner {
@@ -59,7 +24,7 @@
   
   .jmdc-site-header__logo img {
     display: block;
-    height: 28px;
+    height: 53px;
     width: auto;
   }
   
