@@ -1,0 +1,40 @@
+.jmdc-site-header {
+    padding: 24px 0;
+  }
+  
+  .jmdc-site-header__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Center logo */
+  .jmdc-site-header__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .jmdc-site-header__logo img {
+    display: block;
+    height: 28px;
+    width: auto;
+  }
+  
+  /* Nav */
+  .jmdc-site-header__nav .jmdc-header-menu {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .jmdc-site-header__nav .jmdc-header-menu a {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  

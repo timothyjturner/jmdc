@@ -28,3 +28,10 @@ function jmdc_fonts() {
   }
   add_action('wp_enqueue_scripts', 'jmdc_fonts');
   
+// Register menu location for header nav
+add_action('after_setup_theme', function () {
+    register_nav_menus([
+      'header_menu' => __('Header Menu', 'jmdc'),
+    ]);
+  });
+  
