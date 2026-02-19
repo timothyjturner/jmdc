@@ -26,6 +26,9 @@
     display: block;
     height: 53px;
     width: auto;
+    @media(max-width: 575px) {
+      height: 32px;
+    }
   }
   
   /* Desktop nav */
@@ -65,7 +68,11 @@
     height: 2px;
     position: relative;
     display: block;
+  
     background: currentColor;
+    border-radius: 2px;
+  
+    transition: background 180ms ease;
   }
   
   .jmdc-nav-toggle__icon::before,
@@ -76,15 +83,44 @@
     width: 22px;
     height: 2px;
     background: currentColor;
+    border-radius: 2px;
+  
+    transition: transform 220ms ease, top 220ms ease, opacity 180ms ease;
   }
   
-  .jmdc-nav-toggle__icon::before {
-    top: -7px;
+  .jmdc-nav-toggle__icon::before { top: -7px; }
+  .jmdc-nav-toggle__icon::after  { top:  7px; }
+
+  /* Open state -> X */
+.jmdc-nav-toggle.is-open .jmdc-nav-toggle__icon {
+    background: transparent; /* hides the middle bar */
   }
   
-  .jmdc-nav-toggle__icon::after {
-    top: 7px;
+  .jmdc-nav-toggle.is-open .jmdc-nav-toggle__icon::before {
+    top: 0;
+    transform: rotate(45deg);
   }
+  
+  .jmdc-nav-toggle.is-open .jmdc-nav-toggle__icon::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: 1024px) {
+    .jmdc-site-header__nav {
+      transform: translateY(-6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      display: block; /* keep it in flow for animation */
+    }
+  
+    .jmdc-site-header__nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }  
   
   /* Tablet/mobile layout */
   @media (max-width: 1024px) {

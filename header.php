@@ -55,25 +55,54 @@
   </div>
 
   <script>
-    (function () {
-      var btn = document.querySelector('.jmdc-nav-toggle');
-      var nav = document.getElementById('jmdc-mobile-nav');
-      if (!btn || !nav) return;
+  (function () {
+    var btn = document.querySelector('.jmdc-nav-toggle');
+    var nav = document.getElementById('jmdc-mobile-nav');
+    if (!btn || !nav) return;
 
-      btn.addEventListener('click', function () {
-        var isOpen = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!isOpen));
-        nav.classList.toggle('is-open', !isOpen);
-        document.body.classList.toggle('jmdc-nav-open', !isOpen);
-      });
+    function closeMenu() {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.classList.remove('is-open');
+      nav.classList.remove('is-open');
+      document.body.classList.remove('jmdc-nav-open');
+    }
 
-      // Close on Escape
-      document.addEventListener('keydown', function (e) {
-        if (e.key !== 'Escape') return;
-        btn.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-        document.body.classList.remove('jmdc-nav-open');
-      });
-    })();
-  </script>
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation(); // prevent immediate close
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.classList.toggle('is-open', !isOpen);
+      nav.classList.toggle('is-open', !isOpen);
+      document.body.classList.toggle('jmdc-nav-open', !isOpen);
+    });
+
+    // 🔥 Close when clicking outside
+    document.addEventListener('click', function (e) {
+      var isClickInsideNav = nav.contains(e.target);
+      var isClickOnButton = btn.contains(e.target);
+
+      if (!isClickInsideNav && !isClickOnButton) {
+        closeMenu();
+      }
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    });
+
+    nav.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+        closeMenu();
+    }
+    });
+
+  })();
+
+
+</script>
+
 </header>
