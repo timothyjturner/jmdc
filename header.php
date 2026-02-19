@@ -7,7 +7,7 @@
 <body <?php body_class('jmdc-body'); ?>>
 <?php wp_body_open(); ?>
 <header class="jmdc-site-header">
-<div class="jmdc-site-header__inner">
+  <div class="jmdc-site-header__inner">
 
     <!-- Center Logo -->
     <div class="jmdc-site-header__logo">
@@ -22,8 +22,19 @@
       </a>
     </div>
 
-    <!-- Right Nav -->
-    <nav class="jmdc-site-header__nav" aria-label="<?php esc_attr_e('Primary navigation', 'your-theme-textdomain'); ?>">
+    <!-- Hamburger (shows on tablet/mobile) -->
+    <button
+      class="jmdc-nav-toggle"
+      type="button"
+      aria-controls="jmdc-mobile-nav"
+      aria-expanded="false"
+    >
+      <span class="jmdc-nav-toggle__label">Menu</span>
+      <span class="jmdc-nav-toggle__icon" aria-hidden="true"></span>
+    </button>
+
+    <!-- Nav -->
+    <nav class="jmdc-site-header__nav" id="jmdc-mobile-nav" aria-label="<?php esc_attr_e('Primary navigation', 'your-theme-textdomain'); ?>">
       <?php
       if (has_nav_menu('header_menu')) {
         wp_nav_menu([
@@ -43,4 +54,27 @@
     </nav>
 
   </div>
+
+  <script>
+    (function () {
+      var btn = document.querySelector('.jmdc-nav-toggle');
+      var nav = document.getElementById('jmdc-mobile-nav');
+      if (!btn || !nav) return;
+
+      btn.addEventListener('click', function () {
+        var isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        nav.classList.toggle('is-open', !isOpen);
+        document.body.classList.toggle('jmdc-nav-open', !isOpen);
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        btn.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.classList.remove('jmdc-nav-open');
+      });
+    })();
+  </script>
 </header>
