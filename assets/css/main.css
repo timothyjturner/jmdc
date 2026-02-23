@@ -106,6 +106,9 @@ h1, h2, h3, h4, h5, h6 {
 strong, b {
   font-weight: 700; }
 
+.jmdc-main-page-content {
+  margin-top: 130px; }
+
 .jmdc-site-header {
   position: fixed;
   top: 0;
@@ -265,7 +268,8 @@ body.jmdc-nav-open {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 48px;
-  align-items: start; }
+  align-items: start;
+  font-weight: 500; }
 
 .jmdc-footer__contact-lines {
   margin: 0 0 22px;
@@ -275,12 +279,7 @@ body.jmdc-nav-open {
 
 .jmdc-footer__link {
   color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
-
-.jmdc-footer__link:hover,
-.jmdc-footer__link:focus-visible {
-  border-bottom-color: rgba(255, 255, 255, 0.85); }
+  text-decoration: none; }
 
 .jmdc-footer__social {
   text-align: right; }
@@ -322,13 +321,13 @@ body.jmdc-nav-open {
 
 .jmdc-footer__brand-lockup-img {
   display: block;
-  height: 34px;
+  height: 80px;
   width: auto;
   max-width: 100%; }
 
 @media (max-width: 720px) {
   .jmdc-footer__brand-lockup-img {
-    height: 30px; } }
+    height: 60px; } }
 /* Responsive */
 @media (max-width: 720px) {
   .jmdc-footer__inner {

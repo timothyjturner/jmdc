@@ -22,6 +22,7 @@
     grid-template-columns: 1fr auto;
     gap: 48px;
     align-items: start;
+    font-weight: 500;
   }
   
   .jmdc-footer__contact-lines {
@@ -29,17 +30,14 @@
     font-size: 16px;
     line-height: 1.45;
     opacity: 0.95;
+    a {
+
+    }
   }
   
   .jmdc-footer__link {
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.35);
-  }
-  
-  .jmdc-footer__link:hover,
-  .jmdc-footer__link:focus-visible {
-    border-bottom-color: rgba(255,255,255,0.85);
   }
   
   .jmdc-footer__social {
@@ -90,14 +88,14 @@
   
   .jmdc-footer__brand-lockup-img {
     display: block;
-    height: 34px; // adjust to match your comp
+    height: 80px;
     width: auto;
     max-width: 100%;
   }
   
   @media (max-width: 720px) {
     .jmdc-footer__brand-lockup-img {
-      height: 30px;
+      height: 60px;
     }
   }
   

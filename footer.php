@@ -31,8 +31,8 @@
           <?php
           // Fallback defaults if menu is empty/unassigned for any reason
           $fallback_items = [
-            ['title' => 'Instagram', 'url' => 'https://instagram.com/'],
-            ['title' => 'LinkedIn',  'url' => 'https://www.linkedin.com/'],
+            ['title' => 'Instagram', 'url' => 'https://www.instagram.com/jonmichaeldesign/'],
+            ['title' => 'LinkedIn',  'url' => 'https://www.linkedin.com/company/jon-michael-design/'],
           ];
 
           $has_menu = has_nav_menu('jmdc-footer-social');
