@@ -42,3 +42,56 @@ add_action('after_setup_theme', function () {
     'flex-height' => true,
     'flex-width'  => true,
   ]);
+
+// Register menu locations
+add_action('after_setup_theme', function () {
+  register_nav_menus([
+    'jmdc-footer-social' => __('Footer Social Links', 'jmdc'),
+  ]);
+});
+
+/**
+ * Create a default footer social menu and assign it to the location
+ * if nothing is assigned yet. Runs once.
+ */
+add_action('after_switch_theme', function () {
+  $location_key = 'jmdc-footer-social';
+  $locations    = get_theme_mod('nav_menu_locations', []);
+
+  // If already assigned, stop.
+  if (!empty($locations[$location_key])) {
+    return;
+  }
+
+  // Create menu
+  $menu_name = 'Footer Social';
+  $menu_id   = wp_create_nav_menu($menu_name);
+
+  if (is_wp_error($menu_id)) {
+    return;
+  }
+
+  // Default items
+  $defaults = [
+    [
+      'title' => 'Instagram',
+      'url'   => 'https://www.instagram.com/jonmichaeldesign/',
+    ],
+    [
+      'title' => 'LinkedIn',
+      'url'   => 'https://www.linkedin.com/company/jon-michael-design',
+    ],
+  ];
+
+  foreach ($defaults as $item) {
+    wp_update_nav_menu_item($menu_id, 0, [
+      'menu-item-title'  => $item['title'],
+      'menu-item-url'    => $item['url'],
+      'menu-item-status' => 'publish',
+    ]);
+  }
+
+  // Assign it to the theme location
+  $locations[$location_key] = (int) $menu_id;
+  set_theme_mod('nav_menu_locations', $locations);
+});

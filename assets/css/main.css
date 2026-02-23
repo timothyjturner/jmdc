@@ -245,4 +245,126 @@ strong, b {
 body.jmdc-nav-open {
   overflow: hidden; }
 
+.jmdc-footer {
+  background: #000;
+  color: #fff; }
+
+.jmdc-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px 48px; }
+
+.jmdc-footer__title {
+  margin: 0 0 44px;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase; }
+
+.jmdc-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: start; }
+
+.jmdc-footer__contact-lines {
+  margin: 0 0 22px;
+  font-size: 16px;
+  line-height: 1.45;
+  opacity: 0.95; }
+
+.jmdc-footer__link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
+
+.jmdc-footer__link:hover,
+.jmdc-footer__link:focus-visible {
+  border-bottom-color: rgba(255, 255, 255, 0.85); }
+
+.jmdc-footer__social {
+  text-align: right; }
+
+.jmdc-footer__social-nav {
+  display: block; }
+
+.jmdc-footer__social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px; }
+
+.jmdc-footer__social-item {
+  margin: 0; }
+
+.jmdc-footer__social-link,
+.jmdc-footer__social-nav a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9; }
+
+.jmdc-footer__social-link:hover,
+.jmdc-footer__social-nav a:hover,
+.jmdc-footer__social-link:focus-visible,
+.jmdc-footer__social-nav a:focus-visible {
+  opacity: 1; }
+
+.jmdc-footer__bottom {
+  margin-top: 64px; }
+
+.jmdc-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 18px; }
+
+.jmdc-footer__logo img {
+  display: block;
+  height: 34px;
+  width: auto; }
+
+.jmdc-footer__site-name {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase; }
+
+.jmdc-footer__divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.35); }
+
+.jmdc-footer__subbrand {
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  opacity: 0.9; }
+
+.jmdc-footer__subbrand-accent {
+  color: #fff;
+  opacity: 1; }
+
+.jmdc-footer .custom-logo {
+  filter: invert(1); }
+
+/* Responsive */
+@media (max-width: 720px) {
+  .jmdc-footer__inner {
+    padding: 56px 18px 36px; }
+
+  .jmdc-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 28px; }
+
+  .jmdc-footer__social {
+    text-align: left; }
+
+  .jmdc-footer__brand {
+    flex-wrap: wrap;
+    gap: 12px; } }
+
 /*# sourceMappingURL=main.css.map */
