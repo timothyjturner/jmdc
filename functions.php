@@ -95,3 +95,53 @@ add_action('after_switch_theme', function () {
   $locations[$location_key] = (int) $menu_id;
   set_theme_mod('nav_menu_locations', $locations);
 });
+
+/**
+ * Footer Customizer settings
+ */
+add_action('customize_register', function ($wp_customize) {
+
+    // Section
+    $wp_customize->add_section('jmdc_footer_section', [
+      'title'       => __('Footer', 'jmdc'),
+      'priority'    => 160,
+      'description' => __('Footer contact + branding options.', 'jmdc'),
+    ]);
+  
+    /**
+     * Footer Email
+     */
+    $wp_customize->add_setting('jmdc_footer_email', [
+      'default'           => 'contact@jmdcreative.com',
+      'sanitize_callback' => 'sanitize_email',
+      'transport'         => 'refresh',
+    ]);
+  
+    $wp_customize->add_control('jmdc_footer_email', [
+      'label'       => __('Footer contact email', 'jmdc'),
+      'section'     => 'jmdc_footer_section',
+      'type'        => 'email',
+      'description' => __('Shown in the “Get in touch” area.', 'jmdc'),
+    ]);
+  
+    /**
+     * Footer Brand Lockup Image (JMD | A TAYLOR COMPANY)
+     */
+    $wp_customize->add_setting('jmdc_footer_brand_lockup_image', [
+      'default'           => '',
+      'sanitize_callback' => 'absint', // attachment ID
+      'transport'         => 'refresh',
+    ]);
+  
+    $wp_customize->add_control(new WP_Customize_Media_Control(
+      $wp_customize,
+      'jmdc_footer_brand_lockup_image',
+      [
+        'label'       => __('Footer brand lockup image', 'jmdc'),
+        'section'     => 'jmdc_footer_section',
+        'mime_type'   => 'image',
+        'description' => __('Upload/select the combined “JMD | A TAYLOR COMPANY” image used in the footer.', 'jmdc'),
+      ]
+    ));
+  
+  });

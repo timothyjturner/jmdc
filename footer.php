@@ -15,7 +15,15 @@
           </p>
 
           <p class="jmdc-footer__contact-lines">
-            <a class="jmdc-footer__link" href="mailto:contact@jmdcreative.com">contact@jmdcreative.com</a>
+            <?php
+                $footer_email = get_theme_mod('jmdc_footer_email', 'contact@jmdcreative.com');
+                $footer_email = sanitize_email($footer_email);
+                ?>
+                <?php if (!empty($footer_email)) : ?>
+                <a class="jmdc-footer__link" href="<?php echo esc_url('mailto:' . $footer_email); ?>">
+                    <?php echo esc_html($footer_email); ?>
+                </a>
+            <?php endif; ?>
           </p>
         </div>
 
@@ -57,28 +65,29 @@
       </div>
     </div>
 
+    <?php
+        $lockup_id  = (int) get_theme_mod('jmdc_footer_brand_lockup_image', 0);
+        $lockup_src = $lockup_id ? wp_get_attachment_image_src($lockup_id, 'full') : false;
+        $lockup_alt = $lockup_id ? get_post_meta($lockup_id, '_wp_attachment_image_alt', true) : '';
+        $lockup_alt = $lockup_alt ? $lockup_alt : get_bloginfo('name');
+        ?>
+
     <div class="jmdc-footer__bottom">
-      <div class="jmdc-footer__brand">
-        <div class="jmdc-footer__logo">
-          <?php
-          // Use Custom Logo if set, else site name
-          if (function_exists('the_custom_logo') && has_custom_logo()) {
-            the_custom_logo();
-          } else {
-            printf('<a class="jmdc-footer__site-name" href="%s">%s</a>',
-              esc_url(home_url('/')),
-              esc_html(get_bloginfo('name'))
-            );
-          }
-          ?>
+        <div class="jmdc-footer__brand-lockup">
+            <?php if (!empty($lockup_src[0])) : ?>
+            <img
+                class="jmdc-footer__brand-lockup-img"
+                src="<?php echo esc_url($lockup_src[0]); ?>"
+                alt="<?php echo esc_attr($lockup_alt); ?>"
+                loading="lazy"
+            />
+            <?php else : ?>
+            <!-- Fallback if the lockup image hasn’t been set yet -->
+            <a class="jmdc-footer__site-name" href="<?php echo esc_url(home_url('/')); ?>">
+                <?php echo esc_html(get_bloginfo('name')); ?>
+            </a>
+            <?php endif; ?>
         </div>
-
-        <span class="jmdc-footer__divider" aria-hidden="true"></span>
-
-        <div class="jmdc-footer__subbrand">
-          A <span class="jmdc-footer__subbrand-accent">TAYLOR</span> COMPANY
-        </div>
-      </div>
     </div>
 
   </div>
