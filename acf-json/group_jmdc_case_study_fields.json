@@ -1,0 +1,95 @@
+{
+    "key": "group_jmdc_case_study_fields",
+    "title": "Case Study Fields",
+    "fields": [
+      {
+        "key": "field_jmdc_case_study_title",
+        "label": "Title",
+        "name": "jmdc_case_study_title",
+        "type": "text",
+        "instructions": "Optional display title override. Leave blank to use the WordPress title.",
+        "required": 0
+      },
+      {
+        "key": "field_jmdc_case_study_subtitle",
+        "label": "Subtitle",
+        "name": "jmdc_case_study_subtitle",
+        "type": "text",
+        "required": 0
+      },
+      {
+        "key": "field_jmdc_case_study_type",
+        "label": "Type",
+        "name": "jmdc_case_study_type",
+        "type": "select",
+        "required": 1,
+        "choices": {
+          "internal": "Internal Page",
+          "external": "External Link",
+          "gallery": "Hover Gallery"
+        },
+        "default_value": "internal",
+        "return_format": "value",
+        "ui": 1,
+        "allow_null": 0,
+        "multiple": 0
+      },
+      {
+        "key": "field_jmdc_case_study_hover_gallery",
+        "label": "Hover Gallery",
+        "name": "jmdc_case_study_hover_gallery",
+        "type": "gallery",
+        "instructions": "Upload multiple images for the hover gallery.",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_jmdc_case_study_type",
+              "operator": "==",
+              "value": "gallery"
+            }
+          ]
+        ],
+        "return_format": "array",
+        "preview_size": "medium",
+        "insert": "append",
+        "library": "all"
+      },
+      {
+        "key": "field_jmdc_case_study_external_link",
+        "label": "External Link",
+        "name": "jmdc_case_study_external_link",
+        "type": "url",
+        "instructions": "Where should this case study go if Type is External Link?",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_jmdc_case_study_type",
+              "operator": "==",
+              "value": "external"
+            }
+          ]
+        ],
+        "default_value": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "case_study"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 0
+  }

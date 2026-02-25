@@ -145,3 +145,15 @@ add_action('customize_register', function ($wp_customize) {
     ));
   
   });
+
+
+add_action('after_setup_theme', function () {
+  add_theme_support('title-tag');
+  add_theme_support('post-thumbnails'); // enables featured images globally
+  add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
+});
+
+
+require_once get_template_directory() . '/inc/case-studies.php';
+require_once get_template_directory() . '/inc/acf-case-studies.php';
+require_once get_template_directory() . '/inc/admin-tweaks.php';
