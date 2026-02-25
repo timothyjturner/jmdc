@@ -1,0 +1,104 @@
+/* WORK archive layout */
+.jmdc-work__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 24px 140px; /* big whitespace like your SVG */
+  }
+  
+  .jmdc-work__title {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(56px, 6vw, 86px);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  
+  .jmdc-work__grid {
+    margin-top: 140px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 120px;
+    row-gap: 170px; /* large vertical spacing */
+  }
+  
+  /* Card */
+  .jmdc-work-card__hit {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Thumbnail region */
+  .jmdc-work-card__thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3; /* adjust if needed */
+    overflow: hidden;
+    background: #f3f3f3; /* only visible if no image */
+  }
+  
+  /* If you want the image area to feel more invisible like the SVG, set bg to transparent:
+  .jmdc-work-card__thumb { background: transparent; }
+  */
+  
+  .jmdc-work-card__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Hover Gallery: stack images and crossfade */
+  .jmdc-hover-gallery__img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+  }
+  
+  .jmdc-hover-gallery__img.is-active {
+    opacity: 1;
+  }
+  
+  .jmdc-work-card__meta {
+    margin-top: 16px;
+  }
+  
+  .jmdc-work-card__title {
+    margin: 0 0 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  
+  .jmdc-work-card__subtitle {
+    margin: 0;
+    font-size: 10px;
+    line-height: 1.35;
+    opacity: 0.75;
+  }
+  
+  /* Gallery cards shouldn't show pointer cursor */
+  .jmdc-work-card--gallery .jmdc-work-card__hit {
+    cursor: default;
+  }
+  
+  /* Responsive */
+  @media (max-width: 900px) {
+    .jmdc-work__grid {
+      grid-template-columns: 1fr;
+      row-gap: 90px;
+      column-gap: 0;
+    }
+  
+    .jmdc-work__inner {
+      padding: 90px 18px 110px;
+    }
+  
+    .jmdc-work__grid {
+      margin-top: 80px;
+    }
+  }

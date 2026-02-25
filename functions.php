@@ -157,3 +157,16 @@ add_action('after_setup_theme', function () {
 require_once get_template_directory() . '/inc/case-studies.php';
 require_once get_template_directory() . '/inc/acf-case-studies.php';
 require_once get_template_directory() . '/inc/admin-tweaks.php';
+
+
+add_action('wp_enqueue_scripts', function () {
+  if (is_post_type_archive('case_study')) {
+    wp_enqueue_script(
+      'jmdc-work-hover-gallery',
+      get_template_directory_uri() . '/assets/js/jmdc-work-hover-gallery.js',
+      [],
+      '1.0.0',
+      true
+    );
+  }
+});
