@@ -170,3 +170,17 @@ add_action('wp_enqueue_scripts', function () {
     );
   }
 });
+
+add_action('pre_get_posts', function ($query) {
+
+  // Only affect front-end main query
+  if (is_admin() || !$query->is_main_query()) {
+    return;
+  }
+
+  // Only affect the Case Study archive
+  if ($query->is_post_type_archive('case_study')) {
+    $query->set('order', 'ASC');
+    $query->set('orderby', 'date');
+  }
+});
