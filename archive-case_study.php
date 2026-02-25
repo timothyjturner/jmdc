@@ -4,7 +4,7 @@
   <div class="jmdc-work__inner">
 
     <header class="jmdc-work__header">
-      <h1 class="jmdc-work__title"><?php post_type_archive_title(); ?></h1>
+      <h1 class="jmdc-work__title">WORK</h1>
     </header>
 
     <?php if (have_posts()) : ?>
