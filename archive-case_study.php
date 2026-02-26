@@ -84,7 +84,7 @@
                   class="jmdc-work-card__thumb <?php echo $is_gallery ? 'jmdc-hover-gallery' : ''; ?>"
                   <?php if ($is_gallery && $has_slides) : ?>
                     data-hover-gallery="1"
-                    data-interval="900"
+                    data-interval="1800"
                   <?php endif; ?>
                 >
                   <?php if ($has_slides) : ?>

@@ -5,7 +5,7 @@
   
       let idx = 0;
       let timer = null;
-      const interval = parseInt(el.getAttribute("data-interval") || "900", 10);
+      const interval = parseInt(el.getAttribute("data-interval") || "1800", 10);
   
       function show(i) {
         imgs.forEach((img, n) => {
