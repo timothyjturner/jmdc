@@ -172,15 +172,27 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 add_action('pre_get_posts', function ($query) {
+  if (is_admin() || !$query->is_main_query()) return;
 
-  // Only affect front-end main query
-  if (is_admin() || !$query->is_main_query()) {
-    return;
-  }
-
-  // Only affect the Case Study archive
   if ($query->is_post_type_archive('case_study')) {
+    // Oldest first
     $query->set('order', 'ASC');
     $query->set('orderby', 'date');
+
+    // No pagination: load all
+    $query->set('posts_per_page', -1);
+    $query->set('nopaging', true);
+  }
+});
+
+add_action('wp_enqueue_scripts', function () {
+  if (is_post_type_archive('case_study')) {
+    wp_enqueue_script(
+      'jmdc-reveal-on-scroll',
+      get_template_directory_uri() . '/assets/js/jmdc-reveal-on-scroll.js',
+      [],
+      '1.0.0',
+      true
+    );
   }
 });

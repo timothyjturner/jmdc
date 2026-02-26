@@ -73,7 +73,7 @@
           $has_slides = !empty($slide_images);
           ?>
 
-          <article class="jmdc-work-card <?php echo $is_gallery ? 'jmdc-work-card--gallery' : ''; ?>">
+          <article class="jmdc-work-card jmdc-reveal <?php echo $is_gallery ? 'jmdc-work-card--gallery' : ''; ?>">
             <?php if (!$is_gallery) : ?>
               <a class="jmdc-work-card__hit" href="<?php echo $href; ?>"<?php echo $target_attr; ?>>
             <?php else : ?>
@@ -128,10 +128,6 @@
           </article>
 
         <?php endwhile; ?>
-      </div>
-
-      <div class="jmdc-work__pagination">
-        <?php the_posts_pagination(); ?>
       </div>
 
     <?php else : ?>
