@@ -2,24 +2,26 @@
 .jmdc-work__inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 120px 24px 140px; /* big whitespace like your SVG */
+    padding: 200px 24px 140px; /* big whitespace like your SVG */
   }
   
   .jmdc-work__title {
     margin: 0;
     text-align: center;
-    font-size: clamp(56px, 6vw, 86px);
-    font-weight: 400;
-    letter-spacing: 0.02em;
     text-transform: uppercase;
+    color: #06060C;
+    font-size: 100px;
+    font-weight: 400;
+    line-height: 106px;
+    letter-spacing: 4px;
   }
   
   .jmdc-work__grid {
     margin-top: 140px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 120px;
-    row-gap: 170px; /* large vertical spacing */
+    column-gap: 70px;
+    row-gap: 70px;
   }
   
   /* Card */
@@ -33,7 +35,7 @@
   .jmdc-work-card__thumb {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3; /* adjust if needed */
+    aspect-ratio: 600 / 650;
     overflow: hidden;
     background: #f3f3f3; /* only visible if no image */
   }
@@ -95,10 +97,14 @@
     }
   
     .jmdc-work__inner {
-      padding: 90px 18px 110px;
+      padding: 135px 18px 110px;
     }
   
     .jmdc-work__grid {
       margin-top: 80px;
+    }
+
+    .jmdc-work__title {
+      font-size: 64px;
     }
   }
