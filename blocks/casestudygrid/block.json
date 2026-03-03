@@ -1,0 +1,14 @@
+{
+    "name": "acf/casestudygrid",
+    "title": "Case Study Grid",
+    "description": "A custom case study grid select case study for the grid.",
+    "style": "file:./casestudygrid.css",
+    "editorStyle": "file:./casestudygrid.css",
+    "category": "formatting",
+    "icon": "feedback",
+    "keywords": ["casestudy", "grid"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "casestudygrid.php"
+    }
+}

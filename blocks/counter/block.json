@@ -1,0 +1,14 @@
+{
+    "name": "acf/counter",
+    "title": "Counter",
+    "description": "A custom counter block.",
+    "style": "file:./counter.css",
+    "editorStyle": "file:./counter.css",
+    "category": "editor-insertmore",
+    "icon": "feedback",
+    "keywords": ["counter"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "counter.php"
+    }
+}

@@ -196,3 +196,38 @@ add_action('wp_enqueue_scripts', function () {
     );
   }
 });
+
+function custom_register_acf_blocks() {
+  $block_json_files = glob(__DIR__ . '/blocks/*/block.json');
+
+  if (empty($block_json_files)) {
+    return;
+  }
+
+  foreach ($block_json_files as $block_json_file) {
+    register_block_type(dirname($block_json_file));
+  }
+}
+add_action('init', 'custom_register_acf_blocks');
+add_action('wp_enqueue_scripts', function() {
+    if (is_admin()) return;
+    global $post;
+    if (empty($post) || empty($post->post_content)) return;
+
+    $blocks_dir = get_template_directory() . '/blocks/';
+    $blocks_url = get_template_directory_uri() . '/blocks/';
+
+    foreach (glob($blocks_dir . '*/*.css') as $css_file) {
+        $block_name = basename(dirname($css_file));
+        // Check if block is present in post content
+        if (has_block('acf/' . $block_name, $post)) {
+            $handle = 'block-' . $block_name . '-style';
+            wp_enqueue_style(
+                $handle,
+                $blocks_url . $block_name . '/' . basename($css_file),
+                [],
+                filemtime($css_file)
+            );
+        }
+    }
+});

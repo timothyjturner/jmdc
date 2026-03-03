@@ -2,94 +2,172 @@
     "key": "group_jmdc_case_study_fields",
     "title": "Case Study Fields",
     "fields": [
-      {
-        "key": "field_jmdc_case_study_title",
-        "label": "Title",
-        "name": "jmdc_case_study_title",
-        "type": "text",
-        "instructions": "Optional display title override. Leave blank to use the WordPress title.",
-        "required": 0
-      },
-      {
-        "key": "field_jmdc_case_study_subtitle",
-        "label": "Subtitle",
-        "name": "jmdc_case_study_subtitle",
-        "type": "text",
-        "required": 0
-      },
-      {
-        "key": "field_jmdc_case_study_type",
-        "label": "Type",
-        "name": "jmdc_case_study_type",
-        "type": "select",
-        "required": 1,
-        "choices": {
-          "internal": "Internal Page",
-          "external": "External Link",
-          "gallery": "Hover Gallery"
+        {
+            "key": "field_jmdc_case_study_title",
+            "label": "Title",
+            "name": "jmdc_case_study_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional display title override. Leave blank to use the WordPress title.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
-        "default_value": "internal",
-        "return_format": "value",
-        "ui": 1,
-        "allow_null": 0,
-        "multiple": 0
-      },
-      {
-        "key": "field_jmdc_case_study_hover_gallery",
-        "label": "Hover Gallery",
-        "name": "jmdc_case_study_hover_gallery",
-        "type": "gallery",
-        "instructions": "Upload multiple images for the hover gallery.",
-        "required": 0,
-        "conditional_logic": [
-          [
-            {
-              "field": "field_jmdc_case_study_type",
-              "operator": "==",
-              "value": "gallery"
-            }
-          ]
-        ],
-        "return_format": "array",
-        "preview_size": "medium",
-        "insert": "append",
-        "library": "all"
-      },
-      {
-        "key": "field_jmdc_case_study_external_link",
-        "label": "External Link",
-        "name": "jmdc_case_study_external_link",
-        "type": "url",
-        "instructions": "Where should this case study go if Type is External Link?",
-        "required": 0,
-        "conditional_logic": [
-          [
-            {
-              "field": "field_jmdc_case_study_type",
-              "operator": "==",
-              "value": "external"
-            }
-          ]
-        ],
-        "default_value": ""
-      }
+        {
+            "key": "field_jmdc_case_study_subtitle",
+            "label": "Subtitle",
+            "name": "jmdc_case_study_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_jmdc_case_study_type",
+            "label": "Type",
+            "name": "jmdc_case_study_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "internal": "Internal Page",
+                "external": "External Link",
+                "gallery": "Hover Gallery"
+            },
+            "default_value": "internal",
+            "return_format": "value",
+            "ui": 1,
+            "allow_null": 0,
+            "multiple": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_jmdc_case_study_hover_gallery",
+            "label": "Hover Gallery",
+            "name": "jmdc_case_study_hover_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "Upload multiple images for the hover gallery.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_jmdc_case_study_type",
+                        "operator": "==",
+                        "value": "gallery"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "insert": "append",
+            "library": "all",
+            "min": 0,
+            "max": 0,
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_jmdc_case_study_external_link",
+            "label": "External Link",
+            "name": "jmdc_case_study_external_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Where should this case study go if Type is External Link?",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_jmdc_case_study_type",
+                        "operator": "==",
+                        "value": "external"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_69a6c7987c795",
+            "label": "Video",
+            "name": "jmdc_case_study_video",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ""
+        }
     ],
     "location": [
-      [
-        {
-          "param": "post_type",
-          "operator": "==",
-          "value": "case_study"
-        }
-      ]
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "case_study"
+            }
+        ]
     ],
     "menu_order": 0,
     "position": "acf_after_title",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": [],
+    "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_rest": 0
-  }
+    "show_in_rest": 0,
+    "modified": 1772537794
+}

@@ -1,0 +1,14 @@
+{
+    "name": "acf/herotext",
+    "title": "Hero Text",
+    "description": "A custom hero text block that uses ACF fields.",
+    "style": "file:./herotext.css",
+    "editorStyle": "file:./herotext.css",
+    "category": "formatting",
+    "icon": "admin-comments",
+    "keywords": ["hero", "text"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "herotext.php"
+    }
+}
