@@ -26,7 +26,7 @@ if (!empty($counter)) :
         ?>
             <div class="jmdc-counter__item">
                 <?php if (!empty($number)) : ?>
-                    <span class="jmdc-counter__number"><?php echo esc_html($number); ?> +</span>
+                    <span class="jmdc-counter__number"><?php echo esc_html($number); ?>+</span>
                 <?php endif; ?>
                 <?php if (!empty($label)) : ?>
                     <span class="jmdc-counter__label"><?php echo esc_html($label); ?></span>

@@ -22,3 +22,7 @@
     background: #06060C;
     color: #fff;
 }
+
+.jmdc-case-study-grid  .jmdc-case-study-row.three-items .jmdc-case-study-image {
+    aspect-ratio: 600 / 710;
+}
