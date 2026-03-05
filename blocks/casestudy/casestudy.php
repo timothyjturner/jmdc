@@ -18,7 +18,7 @@ if ($case_studies) :
 if ($jmdc_select_style === 'style1') :
 ?>
 
-<section class="jmdc-case-study<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-case-study-grid<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-work__inner">
         <div class="jmdc-case-study-row two-items">
 
@@ -35,7 +35,7 @@ if ($jmdc_select_style === 'style1') :
                 $video     = get_field('jmdc_case_study_video', $post->ID);
             ?>
 
-            <div class="jmdc-case-study-item">
+            <div class="jmdc-case-study-item jmdc-reveal">
                 <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
 
                     <div class="jmdc-case-study-image">
@@ -69,7 +69,7 @@ if ($jmdc_select_style === 'style1') :
 <?php endif; 
 if ($jmdc_select_style === 'style2') :
 ?> 
-<section class="jmdc-case-study<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-case-study-grid<?php echo esc_attr($class_name); ?>">
 <div class="jmdc-work__inner">
 <?php
 $total = count($case_studies);
@@ -97,7 +97,7 @@ if ($three_row) : ?>
             $video = get_field('jmdc_case_study_video', $post->ID);
         ?>
 
-        <div class="jmdc-case-study-item">
+        <div class="jmdc-case-study-item jmdc-reveal">
             <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
                 
                 <div class="jmdc-case-study-image">
@@ -142,7 +142,7 @@ if ($three_row) : ?>
 
     <div class="jmdc-case-study-row single-item">
 
-        <div class="jmdc-case-study-item">
+        <div class="jmdc-case-study-item jmdc-reveal">
             <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
 
                 <div class="jmdc-case-study-image">
@@ -171,7 +171,7 @@ if ($three_row) : ?>
 
 <?php endif;
 
-$three_row = !$three_row; // toggle layout
+$three_row = !$three_row;
 
 endwhile;
 

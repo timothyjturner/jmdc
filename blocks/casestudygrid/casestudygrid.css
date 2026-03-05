@@ -2,7 +2,12 @@
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     row-gap: 70px;
-    padding-top: 50px;
+    padding: 50px 20px;
+    @media (max-width: 767.98px) {
+        padding: 50px 20px;
+        row-gap: 90px;
+        column-gap: 0;
+    }
 }
 .jmdc-case-study-grid .jmdc-case-study-image {
     position: relative;
@@ -10,6 +15,9 @@
     aspect-ratio: 600 / 650;
     overflow: hidden;
     background: #f3f3f3;
+    @media (max-width: 767.98px) {
+        aspect-ratio: 600 / 650;
+    }
 }
 .jmdc-case-study-grid .jmdc-case-study-image img,
 .jmdc-case-study-grid .jmdc-case-study-image video {
@@ -23,11 +31,19 @@
 }
 .jmdc-case-study-grid .jmdc-case-study-row.single-item .jmdc-case-study-image {
     aspect-ratio: 600 / 300;
+    @media (max-width: 767.98px) {
+        aspect-ratio: 600 / 650;
+    }
 }
 .jmdc-case-study-grid  .jmdc-case-study-row.two-items {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 70px;
+    @media (max-width: 767.98px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        row-gap: 90px;
+        column-gap: 0;
+    }
 }
 .jmdc-case-study-grid .jmdc-case-study-content {
     margin: 16px 0 0 0;
