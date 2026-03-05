@@ -15,10 +15,10 @@
 .jmdc-case-study-button a {
     text-transform: uppercase;
     padding: 15px 30px;
-    border: 2px solid #000;
+    border: 2px solid #06060C;
     transition: all 0.3s ease;
 }
 .jmdc-case-study-button a:hover {
-    background: #000;
+    background: #06060C;
     color: #fff;
 }

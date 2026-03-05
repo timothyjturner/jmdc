@@ -16,7 +16,7 @@
     overflow: hidden;
     background: #f3f3f3;
     @media (max-width: 767.98px) {
-        aspect-ratio: 600 / 650;
+        aspect-ratio: 600 / 400;
     }
 }
 .jmdc-case-study-grid .jmdc-case-study-image img,
@@ -49,8 +49,12 @@
     margin: 16px 0 0 0;
 }
 .jmdc-case-study-grid .jmdc-case-study-content h3 {
+    color: #06060C;
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 5px;;
     text-transform: uppercase;
+}
+.jmdc-case-study-grid .jmdc-case-study-content p {
+    color: #06060C;
 }

@@ -1,5 +1,5 @@
 .jmdc-counter {
-    background: #000;
+    background: #06060C;    
     margin: 50px 0;
     @media (max-width: 767.98px) {
         margin: 25px 0px;
@@ -10,7 +10,7 @@
 }
 .jmdc-counter .jmdc-counter__heading {
     color: #fff;
-    font-size: 70px;
+    font-size: 40px;
     font-weight: 400;
     @media (max-width: 767.98px) {
         font-size: 40px;
@@ -37,11 +37,11 @@
 }
 .jmdc-counter .jmdc-counter__item .jmdc-counter__number {
     font-weight: bold;
-    font-size: 70px;
-    line-height: 80px;
+    font-size: 100px;
+    line-height: 100px;
     @media (max-width: 767.98px) {
-        font-size: 40px;
-        line-height: 40px;
+        font-size: 60px;
+        line-height: 60px;
     }
 }
 .jmdc-counter .jmdc-counter__item .jmdc-counter__label {
