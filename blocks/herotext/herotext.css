@@ -34,19 +34,7 @@
         font-size: 16px;
     }
 }
-.jmdc-herotext--animate-on-load .jmdc-work__title,
-.jmdc-herotext--animate-on-load .jmdc-herotext__description {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 550ms ease, transform 550ms ease;
-    will-change: opacity, transform;
-}
 
-.jmdc-herotext--animate-on-load.is-visible .jmdc-work__title,
-.jmdc-herotext--animate-on-load.is-visible .jmdc-herotext__description {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 @media (prefers-reduced-motion: reduce) {
     .jmdc-herotext--animate-on-load .jmdc-work__title,
