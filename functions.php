@@ -209,25 +209,67 @@ function custom_register_acf_blocks() {
   }
 }
 add_action('init', 'custom_register_acf_blocks');
-add_action('wp_enqueue_scripts', function() {
-    if (is_admin()) return;
+add_action('wp_enqueue_scripts', function () {
+
+    if (is_admin()) {
+        return;
+    }
+
     global $post;
-    if (empty($post) || empty($post->post_content)) return;
+
+    if (empty($post) || empty($post->post_content)) {
+        return;
+    }
 
     $blocks_dir = get_template_directory() . '/blocks/';
     $blocks_url = get_template_directory_uri() . '/blocks/';
 
-    foreach (glob($blocks_dir . '*/*.css') as $css_file) {
-        $block_name = basename(dirname($css_file));
-        // Check if block is present in post content
-        if (has_block('acf/' . $block_name, $post)) {
-            $handle = 'block-' . $block_name . '-style';
-            wp_enqueue_style(
-                $handle,
-                $blocks_url . $block_name . '/' . basename($css_file),
-                [],
-                filemtime($css_file)
-            );
+    $block_folders = glob($blocks_dir . '*', GLOB_ONLYDIR);
+
+    if (!$block_folders) {
+        return;
+    }
+
+    foreach ($block_folders as $block_path) {
+
+        $block_name = basename($block_path);
+
+        // Check if the ACF block exists in the post
+        if (!has_block('acf/' . $block_name, $post)) {
+            continue;
+        }
+
+        /* ---------- CSS ---------- */
+        $css_files = glob($block_path . '/*.css');
+        if (!empty($css_files)) {
+            foreach ($css_files as $css_file) {
+
+                $handle = 'block-' . $block_name . '-style-' . basename($css_file, '.css');
+
+                wp_enqueue_style(
+                    $handle,
+                    $blocks_url . $block_name . '/' . basename($css_file),
+                    [],
+                    filemtime($css_file)
+                );
+            }
+        }
+
+        /* ---------- JS ---------- */
+        $js_files = glob($block_path . '/*.js');
+        if (!empty($js_files)) {
+            foreach ($js_files as $js_file) {
+
+                $handle = 'block-' . $block_name . '-script-' . basename($js_file, '.js');
+
+                wp_enqueue_script(
+                    $handle,
+                    $blocks_url . $block_name . '/' . basename($js_file),
+                    [],
+                    filemtime($js_file),
+                    true // Load in footer
+                );
+            }
         }
     }
 });

@@ -1,0 +1,40 @@
+.jmdc-counter {
+    background: #000;
+}
+.jmdc-counter .jmdc-work__inner {
+    padding: 80px 20px;
+}
+.jmdc-counter .jmdc-counter__heading {
+    color: #fff;
+    font-size: 70px;
+    font-weight: 400;
+}
+.jmdc-counter .jmdc-counter__row {
+    display: flex;
+    flex-flow: wrap;
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0 0 0;
+}
+.jmdc-counter .jmdc-counter__item {
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.jmdc-counter .jmdc-counter__item .jmdc-counter__number {
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 80px;
+}
+.jmdc-counter .jmdc-counter__item .jmdc-counter__label {
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+@media (max-width: 767.98px) {
+    .jmdc-counter .jmdc-counter__heading {
+        text-align: center;
+    }
+}

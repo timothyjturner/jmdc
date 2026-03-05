@@ -1,0 +1,14 @@
+{
+    "name": "acf/simplelistcontent",
+    "title": "Simple List Content",
+    "description": "A simple list content block.",
+    "style": "file:./simplelistcontent.css",
+    "editorStyle": "file:./simplelistcontent.css",
+    "category": "formatting",
+    "icon": "list-view",
+    "keywords": ["simple", "list", "content"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "simplelistcontent.php"
+    }
+}

@@ -38,7 +38,7 @@ if ($case_studies) :
                 $video = get_field('jmdc_case_study_video', $post->ID);
                 ?>
 
-                <div class="jmdc-case-study-item">
+                <div class="jmdc-case-study-item jmdc-reveal">
                     <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
                         <div class="jmdc-case-study-image">
                             <?php if (!empty($video)) : ?>
@@ -89,7 +89,7 @@ if ($case_studies) :
                         $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                         $video = get_field('jmdc_case_study_video', $post->ID);
                     ?>
-                                <div class="jmdc-case-study-item">
+                                <div class="jmdc-case-study-item jmdc-reveal">
                                     <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
                                         <div class="jmdc-case-study-image">
                                     <?php if (!empty($video)) : ?>
