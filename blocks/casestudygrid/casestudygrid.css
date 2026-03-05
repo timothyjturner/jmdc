@@ -16,7 +16,7 @@
     overflow: hidden;
     background: #f3f3f3;
     @media (max-width: 767.98px) {
-        aspect-ratio: 600 / 400;
+        aspect-ratio: 600 / 650;
     }
 }
 .jmdc-case-study-grid .jmdc-case-study-image img,
