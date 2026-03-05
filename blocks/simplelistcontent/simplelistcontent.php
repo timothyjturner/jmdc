@@ -19,7 +19,9 @@ if (!empty($simple_list_content)) :
         <?php foreach ($simple_list_content as $item) : ?>
                 <?php if (!empty($item['jmdc_heading'])) : ?>
                     <div class="jmdc-simple-list-content__item">
-                        <?php echo $item['jmdc_heading']; ?>
+                        <span>
+                            <?php echo $item['jmdc_heading']; ?>
+                        </span>
                     </div>
                 <?php endif; ?>
         <?php endforeach; ?>
