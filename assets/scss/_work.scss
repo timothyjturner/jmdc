@@ -1,9 +1,14 @@
-/* WORK archive layout */
 .jmdc-work__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 160px 24px 100px; /* big whitespace like your SVG */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 160px 24px 100px; /* big whitespace like your SVG */
+}
+
+.jmdc-case-study-grid .jmdc-work__inner {
+  @media (max-width: 1440.98px) {
+    padding-top: 38px !important;
   }
+}
   
   .jmdc-work__title {
     margin: 0;
@@ -96,7 +101,7 @@
     }
   
     .jmdc-work__inner {
-      padding: 135px 18px 110px;
+      padding: 135px 35px 110px;
     }
   
     .jmdc-work__grid {
