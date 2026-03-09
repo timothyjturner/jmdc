@@ -1,3 +1,4 @@
+
 .jmdc-case-study-grid  .jmdc-case-study-row.three-items {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -8,6 +9,18 @@
         column-gap: 0;
     }
 }
+
+.jmdc-case-study-grid  .jmdc-case-study-row.two-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 75px;
+    @media (max-width: 767.98px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        row-gap: 50px;
+        column-gap: 0;
+    }
+}
+
 .jmdc-case-study-button {
     text-align: center;
     margin-bottom: 50px;
@@ -25,4 +38,39 @@
 
 .jmdc-case-study-grid  .jmdc-case-study-row.three-items .jmdc-case-study-image {
     aspect-ratio: 600 / 710;
+}
+
+.jmdc-case-study-grid .jmdc-case-study-image img,
+.jmdc-case-study-grid .jmdc-case-study-image video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.jmdc-case-study-grid .jmdc-case-study-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 600 / 650;
+    overflow: hidden;
+    background: #f3f3f3;
+    @media (max-width: 767.98px) {
+        aspect-ratio: 600 / 650;
+    }
+}
+
+.jmdc-case-study-grid .jmdc-case-study-content {
+    margin: 16px 0 0 0;
+}
+.jmdc-case-study-grid .jmdc-case-study-content h3 {
+    color: #06060C;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 5px;;
+    text-transform: uppercase;
+}
+.jmdc-case-study-grid .jmdc-case-study-content p {
+    color: #06060C;
+    font-size: 12px;
+    font-weight: 700;
 }

@@ -2,7 +2,7 @@
 .jmdc-work__inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 200px 24px 140px; /* big whitespace like your SVG */
+    padding: 160px 24px 100px; /* big whitespace like your SVG */
   }
   
   .jmdc-work__title {
@@ -17,11 +17,11 @@
   }
   
   .jmdc-work__grid {
-    margin-top: 140px;
+    margin-top: 70px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 70px;
-    row-gap: 70px;
+    column-gap: 75px;
+    row-gap: 75px;
   }
   
   /* Card */

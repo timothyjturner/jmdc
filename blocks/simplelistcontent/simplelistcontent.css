@@ -1,6 +1,6 @@
 .jmdc-simple-list-content {
     background-color: #06060C;
-    margin: 50px 0;
+    /* margin: 50px 0; */
     @media (max-width: 767.98px) {
         margin: 25px 0px;
     }

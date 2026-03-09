@@ -6,22 +6,26 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 /* Remove default margin */
 * {
-  margin: 0; }
+  margin: 0;
+}
 
 /* Base html/body */
 html,
 body {
-  height: 100%; }
+  height: 100%;
+}
 
 /* Improve text rendering */
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility; }
+  text-rendering: optimizeLegibility;
+}
 
 /* Media defaults */
 img,
@@ -30,14 +34,16 @@ video,
 canvas,
 svg {
   display: block;
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 /* Remove built-in form typography styles */
 input,
 button,
 textarea,
 select {
-  font: inherit; }
+  font: inherit;
+}
 
 /* Avoid text overflows */
 p,
@@ -47,67 +53,240 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word; }
+  overflow-wrap: break-word;
+}
 
-/* Remove list styles (optional ΓÇô keep if you want full control) */
+/* Remove list styles (optional – keep if you want full control) */
 ul,
 ol {
   list-style: none;
-  padding: 0; }
+  padding: 0;
+}
 
 /* Anchor defaults */
 a {
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+}
 
 /* Button reset */
 button {
   background: none;
   border: none;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 /* Tables */
 table {
   border-collapse: collapse;
-  border-spacing: 0; }
+  border-spacing: 0;
+}
 
 /* Root stacking context (helps with z-index sanity) */
 #root,
 #__next {
-  isolation: isolate; }
+  isolation: isolate;
+}
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Articulat", sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Articulat", sans-serif;
   font-weight: 600;
   line-height: 1.2;
-  margin-bottom: 0.5em; }
+  margin-bottom: 0.5em;
+}
 
 strong, b {
-  font-weight: 700; }
+  font-weight: 700;
+}
 
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Bold.eot");
+  src: url("../fonts/Articulat-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Bold.woff2") format("woff2"), url("../fonts/Articulat-Bold.woff") format("woff"), url("../fonts/Articulat-Bold.ttf") format("truetype"), url("../fonts/Articulat-Bold.svg#FONTSPRINGDEMO-ArticulatCFBold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-BoldOblique.eot");
+  src: url("../fonts/Articulat-BoldOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-BoldOblique.woff2") format("woff2"), url("../fonts/Articulat-BoldOblique.woff") format("woff"), url("../fonts/Articulat-BoldOblique.ttf") format("truetype"), url("../fonts/Articulat-BoldOblique.svg#FONTSPRINGDEMO-ArticulatCFBoldItalic") format("svg");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-DemiBold.eot");
+  src: url("../fonts/Articulat-DemiBold.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-DemiBold.woff2") format("woff2"), url("../fonts/Articulat-DemiBold.woff") format("woff"), url("../fonts/Articulat-DemiBold.ttf") format("truetype"), url("../fonts/Articulat-DemiBold.svg#FONTSPRINGDEMO-ArticulatCFDemiBoldRegular") format("svg");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-DemiBoldOblique.eot");
+  src: url("../fonts/Articulat-DemiBoldOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-DemiBoldOblique.woff2") format("woff2"), url("../fonts/Articulat-DemiBoldOblique.woff") format("woff"), url("../fonts/Articulat-DemiBoldOblique.ttf") format("truetype"), url("../fonts/Articulat-DemiBoldOblique.svg#FONTSPRINGDEMO-ArticulatCFDemiBoldItalic") format("svg");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-ExtraBold.eot");
+  src: url("../fonts/Articulat-ExtraBold.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-ExtraBold.woff2") format("woff2"), url("../fonts/Articulat-ExtraBold.woff") format("woff"), url("../fonts/Articulat-ExtraBold.ttf") format("truetype"), url("../fonts/Articulat-ExtraBold.svg#FONTSPRINGDEMO-ArticulatCFExtraBoldRegular") format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-ExtraBoldOblique.eot");
+  src: url("../fonts/Articulat-ExtraBoldOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-ExtraBoldOblique.woff2") format("woff2"), url("../fonts/Articulat-ExtraBoldOblique.woff") format("woff"), url("../fonts/Articulat-ExtraBoldOblique.ttf") format("truetype"), url("../fonts/Articulat-ExtraBoldOblique.svg#FONTSPRINGDEMO-ArticulatCFExtraBoldItalic") format("svg");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-ExtraLight.eot");
+  src: url("../fonts/Articulat-ExtraLight.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-ExtraLight.woff2") format("woff2"), url("../fonts/Articulat-ExtraLight.woff") format("woff"), url("../fonts/Articulat-ExtraLight.ttf") format("truetype"), url("../fonts/Articulat-ExtraLight.svg#FONTSPRINGDEMO-ArticulatCFExtraLightRegular") format("svg");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-ExtraLightOblique.eot");
+  src: url("../fonts/Articulat-ExtraLightOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-ExtraLightOblique.woff2") format("woff2"), url("../fonts/Articulat-ExtraLightOblique.woff") format("woff"), url("../fonts/Articulat-ExtraLightOblique.ttf") format("truetype"), url("../fonts/Articulat-ExtraLightOblique.svg#FONTSPRINGDEMO-ArticulatCFExtraLightItalic") format("svg");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Heavy.eot");
+  src: url("../fonts/Articulat-Heavy.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Heavy.woff2") format("woff2"), url("../fonts/Articulat-Heavy.woff") format("woff"), url("../fonts/Articulat-Heavy.ttf") format("truetype"), url("../fonts/Articulat-Heavy.svg#FONTSPRINGDEMO-ArticulatCFHeavyRegular") format("svg");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-HeavyOblique.eot");
+  src: url("../fonts/Articulat-HeavyOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-HeavyOblique.woff2") format("woff2"), url("../fonts/Articulat-HeavyOblique.woff") format("woff"), url("../fonts/Articulat-HeavyOblique.ttf") format("truetype"), url("../fonts/Articulat-HeavyOblique.svg#FONTSPRINGDEMO-ArticulatCFHeavyItalic") format("svg");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Light.eot");
+  src: url("../fonts/Articulat-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Light.woff2") format("woff2"), url("../fonts/Articulat-Light.woff") format("woff"), url("../fonts/Articulat-Light.ttf") format("truetype"), url("../fonts/Articulat-Light.svg#FONTSPRINGDEMO-ArticulatCFLightRegular") format("svg");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-LightOblique.eot");
+  src: url("../fonts/Articulat-LightOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-LightOblique.woff2") format("woff2"), url("../fonts/Articulat-LightOblique.woff") format("woff"), url("../fonts/Articulat-LightOblique.ttf") format("truetype"), url("../fonts/Articulat-LightOblique.svg#FONTSPRINGDEMO-ArticulatCFLightItalic") format("svg");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Medium.eot");
+  src: url("../fonts/Articulat-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Medium.woff2") format("woff2"), url("../fonts/Articulat-Medium.woff") format("woff"), url("../fonts/Articulat-Medium.ttf") format("truetype"), url("../fonts/Articulat-Medium.svg#FONTSPRINGDEMO-ArticulatCFMediumRegular") format("svg");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-MediumOblique.eot");
+  src: url("../fonts/Articulat-MediumOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-MediumOblique.woff2") format("woff2"), url("../fonts/Articulat-MediumOblique.woff") format("woff"), url("../fonts/Articulat-MediumOblique.ttf") format("truetype"), url("../fonts/Articulat-MediumOblique.svg#FONTSPRINGDEMO-ArticulatCFMediumItalic") format("svg");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Normal.eot");
+  src: url("../fonts/Articulat-Normal.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Normal.woff2") format("woff2"), url("../fonts/Articulat-Normal.woff") format("woff"), url("../fonts/Articulat-Normal.ttf") format("truetype"), url("../fonts/Articulat-Normal.svg#FONTSPRINGDEMO-ArticulatCFNormalRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-NormalOblique.eot");
+  src: url("../fonts/Articulat-NormalOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-NormalOblique.woff2") format("woff2"), url("../fonts/Articulat-NormalOblique.woff") format("woff"), url("../fonts/Articulat-NormalOblique.ttf") format("truetype"), url("../fonts/Articulat-NormalOblique.svg#FONTSPRINGDEMO-ArticulatCFNormalItalic") format("svg");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Regular.eot");
+  src: url("../fonts/Articulat-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Regular.woff2") format("woff2"), url("../fonts/Articulat-Regular.woff") format("woff"), url("../fonts/Articulat-Regular.ttf") format("truetype"), url("../fonts/Articulat-Regular.svg#FONTSPRINGDEMO-ArticulatCFRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Oblique.eot");
+  src: url("../fonts/Articulat-Oblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Oblique.woff2") format("woff2"), url("../fonts/Articulat-Oblique.woff") format("woff"), url("../fonts/Articulat-Oblique.ttf") format("truetype"), url("../fonts/Articulat-Oblique.svg#FONTSPRINGDEMO-ArticulatCFItalic") format("svg");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-Thin.eot");
+  src: url("../fonts/Articulat-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-Thin.woff2") format("woff2"), url("../fonts/Articulat-Thin.woff") format("woff"), url("../fonts/Articulat-Thin.ttf") format("truetype"), url("../fonts/Articulat-Thin.svg#FONTSPRINGDEMO-ArticulatCFThinRegular") format("svg");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Articulat";
+  src: url("../fonts/Articulat-ThinOblique.eot");
+  src: url("../fonts/Articulat-ThinOblique.eot?#iefix") format("embedded-opentype"), url("../fonts/Articulat-ThinOblique.woff2") format("woff2"), url("../fonts/Articulat-ThinOblique.woff") format("woff"), url("../fonts/Articulat-ThinOblique.ttf") format("truetype"), url("../fonts/Articulat-ThinOblique.svg#FONTSPRINGDEMO-ArticulatCFThinItalic") format("svg");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Articulat", sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Articulat", sans-serif;
   font-weight: 600;
   line-height: 1.2;
-  margin-bottom: 0.5em; }
+  margin-bottom: 0.5em;
+}
 
 strong, b {
-  font-weight: 700; }
+  font-weight: 700;
+}
 
 .jmdc-main-page-content {
-  margin-top: 130px; }
+  margin-top: 130px;
+}
 
 .jmdc-site-header {
   position: fixed;
@@ -116,27 +295,33 @@ strong, b {
   width: 100%;
   z-index: 9999;
   padding: 50px;
-  background: #fff; }
+  background: #fff;
+}
 
 .jmdc-site-header__inner {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end; }
+  justify-content: flex-end;
+}
 
 /* Center logo */
 .jmdc-site-header__logo {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+}
 
 .jmdc-site-header__logo img {
   display: block;
   height: 53px;
-  width: auto; }
-  @media (max-width: 575px) {
-    .jmdc-site-header__logo img {
-      height: 32px; } }
+  width: auto;
+}
+@media (max-width: 575px) {
+  .jmdc-site-header__logo img {
+    height: 32px;
+  }
+}
 
 /* Desktop nav */
 .jmdc-site-header__nav .jmdc-header-menu {
@@ -144,26 +329,30 @@ strong, b {
   gap: 32px;
   list-style: none;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 .jmdc-site-header__nav .jmdc-header-menu a {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 500;
-  font-size: 18px; }
+  font-size: 18px;
+}
 
 /* Hamburger button (hidden on desktop) */
 .jmdc-nav-toggle {
   display: none;
   align-items: center;
   gap: 10px;
-  padding: 10px 0; }
+  padding: 10px 0;
+}
 
 .jmdc-nav-toggle__label {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 500;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 /* Hamburger icon: 3 lines, no images */
 .jmdc-nav-toggle__icon {
@@ -173,7 +362,8 @@ strong, b {
   display: block;
   background: currentColor;
   border-radius: 2px;
-  transition: background 180ms ease; }
+  transition: background 180ms ease;
+}
 
 .jmdc-nav-toggle__icon::before,
 .jmdc-nav-toggle__icon::after {
@@ -184,26 +374,31 @@ strong, b {
   height: 2px;
   background: currentColor;
   border-radius: 2px;
-  transition: transform 220ms ease, top 220ms ease, opacity 180ms ease; }
+  transition: transform 220ms ease, top 220ms ease, opacity 180ms ease;
+}
 
 .jmdc-nav-toggle__icon::before {
-  top: -7px; }
+  top: -7px;
+}
 
 .jmdc-nav-toggle__icon::after {
-  top: 7px; }
+  top: 7px;
+}
 
 /* Open state -> X */
 .jmdc-nav-toggle.is-open .jmdc-nav-toggle__icon {
-  background: transparent;
-  /* hides the middle bar */ }
+  background: transparent; /* hides the middle bar */
+}
 
 .jmdc-nav-toggle.is-open .jmdc-nav-toggle__icon::before {
   top: 0;
-  transform: rotate(45deg); }
+  transform: rotate(45deg);
+}
 
 .jmdc-nav-toggle.is-open .jmdc-nav-toggle__icon::after {
   top: 0;
-  transform: rotate(-45deg); }
+  transform: rotate(-45deg);
+}
 
 @media (max-width: 1024px) {
   .jmdc-site-header__nav {
@@ -211,13 +406,14 @@ strong, b {
     opacity: 0;
     pointer-events: none;
     transition: opacity 180ms ease, transform 180ms ease;
-    display: block;
-    /* keep it in flow for animation */ }
-
+    display: block; /* keep it in flow for animation */
+  }
   .jmdc-site-header__nav.is-open {
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto; } }
+    pointer-events: auto;
+  }
+}
 /* Tablet/mobile layout */
 @media (max-width: 1024px) {
   /* Hide desktop horizontal menu */
@@ -229,73 +425,85 @@ strong, b {
     display: none;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 14px 16px; }
-
+    padding: 14px 16px;
+  }
   .jmdc-site-header__nav.is-open {
-    display: block; }
-
+    display: block;
+  }
   /* Make menu vertical on mobile */
   .jmdc-site-header__nav .jmdc-header-menu {
     display: flex;
     flex-direction: column;
-    gap: 14px; }
-
+    gap: 14px;
+  }
   /* Show hamburger on tablet/mobile */
   .jmdc-nav-toggle {
     display: inline-flex;
-    margin-left: auto; } }
+    margin-left: auto;
+  }
+}
 /* Optional: prevent background scroll when menu is open */
 body.jmdc-nav-open {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .jmdc-footer {
   background: #000;
-  color: #fff; }
+  color: #fff;
+}
 
 .jmdc-footer__inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 24px 48px; }
+  padding: 80px 24px 48px;
+}
 
 .jmdc-footer__title {
   margin: 0 0 44px;
   font-size: clamp(48px, 6vw, 80px);
   font-weight: 800;
   letter-spacing: 0.02em;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
 .jmdc-footer__grid {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 48px;
   align-items: start;
-  font-weight: 500; }
+  font-weight: 500;
+}
 
 .jmdc-footer__contact-lines {
   margin: 0 0 22px;
   font-size: 16px;
   line-height: 1.45;
-  opacity: 0.95; }
-
+  opacity: 0.95;
+}
 .jmdc-footer__link {
   color: inherit;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 .jmdc-footer__social {
-  text-align: right; }
+  text-align: right;
+}
 
 .jmdc-footer__social-nav {
-  display: block; }
+  display: block;
+}
 
 .jmdc-footer__social-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 10px; }
+  gap: 10px;
+}
 
 .jmdc-footer__social-item {
-  margin: 0; }
+  margin: 0;
+}
 
 .jmdc-footer__social-link,
 .jmdc-footer__social-nav a {
@@ -304,51 +512,60 @@ body.jmdc-nav-open {
   font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.9; }
+  opacity: 0.9;
+}
 
 .jmdc-footer__social-link:hover,
 .jmdc-footer__social-nav a:hover,
 .jmdc-footer__social-link:focus-visible,
 .jmdc-footer__social-nav a:focus-visible {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .jmdc-footer__bottom {
-  margin-top: 64px; }
+  margin-top: 64px;
+}
 
 .jmdc-footer__brand-lockup {
   display: flex;
-  align-items: center; }
+  align-items: center;
+}
 
 .jmdc-footer__brand-lockup-img {
   display: block;
   height: 80px;
   width: auto;
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 @media (max-width: 720px) {
   .jmdc-footer__brand-lockup-img {
-    height: 60px; } }
+    height: 60px;
+  }
+}
 /* Responsive */
 @media (max-width: 720px) {
   .jmdc-footer__inner {
-    padding: 56px 18px 36px; }
-
+    padding: 56px 18px 36px;
+  }
   .jmdc-footer__grid {
     grid-template-columns: 1fr;
-    gap: 28px; }
-
+    gap: 28px;
+  }
   .jmdc-footer__social {
-    text-align: left; }
-
+    text-align: left;
+  }
   .jmdc-footer__brand {
     flex-wrap: wrap;
-    gap: 12px; } }
+    gap: 12px;
+  }
+}
 /* WORK archive layout */
 .jmdc-work__inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 200px 24px 140px;
-  /* big whitespace like your SVG */ }
+  padding: 160px 24px 100px; /* big whitespace like your SVG */
+}
 
 .jmdc-work__title {
   margin: 0;
@@ -358,29 +575,32 @@ body.jmdc-nav-open {
   font-size: 100px;
   font-weight: 400;
   line-height: 106px;
-  letter-spacing: 4px; }
+  letter-spacing: 4px;
+}
 
 .jmdc-work__grid {
-  margin-top: 140px;
+  margin-top: 70px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 70px;
-  row-gap: 70px; }
+  column-gap: 75px;
+  row-gap: 75px;
+}
 
 /* Card */
 .jmdc-work-card__hit {
   display: block;
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+}
 
 /* Thumbnail region */
 .jmdc-work-card__thumb {
   position: relative;
   width: 100%;
-  aspect-ratio: 600 / 650;
+  aspect-ratio: 600/650;
   overflow: hidden;
-  background: #f3f3f3;
-  /* only visible if no image */ }
+  background: #f3f3f3; /* only visible if no image */
+}
 
 /* If you want the image area to feel more invisible like the SVG, set bg to transparent:
 .jmdc-work-card__thumb { background: transparent; }
@@ -389,7 +609,8 @@ body.jmdc-nav-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block; }
+  display: block;
+}
 
 /* Hover Gallery: stack images and crossfade */
 .jmdc-hover-gallery__img {
@@ -397,63 +618,76 @@ body.jmdc-nav-open {
   inset: 0;
   opacity: 0;
   transition: opacity 420ms cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 .jmdc-hover-gallery__img.is-active {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .jmdc-work-card__meta {
-  margin-top: 16px; }
+  margin-top: 16px;
+}
 
 .jmdc-work-card__title {
   margin: 0 0 2px;
   font-size: 22px;
   font-weight: 700;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
 .jmdc-work-card__subtitle {
   margin: 0;
   font-size: 12px;
   line-height: 1.15;
-  font-weight: 700; }
+  font-weight: 700;
+}
 
 /* Gallery cards shouldn't show pointer cursor */
 .jmdc-work-card--gallery .jmdc-work-card__hit {
-  cursor: default; }
+  cursor: default;
+}
 
 /* Responsive */
 @media (max-width: 900px) {
   .jmdc-work__grid {
     grid-template-columns: 1fr;
     row-gap: 90px;
-    column-gap: 0; }
-
+    column-gap: 0;
+  }
   .jmdc-work__inner {
-    padding: 135px 18px 110px; }
-
+    padding: 135px 18px 110px;
+  }
   .jmdc-work__grid {
-    margin-top: 80px; }
-
+    margin-top: 80px;
+  }
   .jmdc-work__title {
-    font-size: 64px; } }
+    font-size: 64px;
+  }
+}
 /* Reveal on scroll */
 .jmdc-reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 520ms ease, transform 520ms ease;
-  will-change: opacity, transform; }
+  will-change: opacity, transform;
+}
 
 .jmdc-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0); }
+  transform: translateY(0);
+}
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .jmdc-reveal {
     opacity: 1;
     transform: none;
-    transition: none; } }
+    transition: none;
+  }
+}
 .jmdc-work__grid > .jmdc-work-card:nth-child(2n) {
-  transition-delay: 90ms; }
+  transition-delay: 90ms;
+}
 
 /*# sourceMappingURL=main.css.map */
