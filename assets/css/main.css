@@ -534,9 +534,7 @@ body.jmdc-nav-open {
 }
 
 @media (max-width: 900px) {
-  .jmdc-work__grid {
-    gap: 35px;
-  }
+ 
   /* .jmdc-work__inner {
     padding: 135px 35px 110px;
   } */
