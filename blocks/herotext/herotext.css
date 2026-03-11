@@ -3,12 +3,12 @@
     margin: 0 auto;
     padding: 72px 50px 70px 50px;
     text-align: center;
-    @media (max-width: 900px) {
-        padding: 50px 35px
+    @media (max-width: 991.98px) {
+        padding: 50px 35px;
     }
-    /* @media (max-width: 767.98px) {
-        padding: 50px 20px;
-    } */
+    @media (max-width: 767.98px) {
+        padding: 50px 15px;
+    }
 }
 .jmdc-herotext h1 {
     text-transform: uppercase;

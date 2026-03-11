@@ -135,10 +135,17 @@ strong, b {
   left: 0;
   width: 100%;
   z-index: 9999;
-  padding: 50px;
+  padding: 50px 75px;
   background: #fff;
-  @media (max-width:900px) {
+
+  @media (max-width: 1599.98px) {
+    padding: 50px;
+  }
+  @media (max-width: 991.98px) {
     padding: 35px;
+  }
+  @media (max-width: 667.98px) {
+    padding: 35px 15px;
   }
 }
 
@@ -299,7 +306,10 @@ body.jmdc-nav-open {
 .jmdc-footer__inner {
   /* max-width: 1200px; */
   margin: 0 auto;
-  padding: 80px 50px 48px;
+  padding: 80px 75px 48px;
+  @media (max-width: 1599.98px) {
+    padding: 80px 50px 48px;
+  }
 }
 
 .jmdc-footer__title {
@@ -386,16 +396,26 @@ body.jmdc-nav-open {
   max-width: 100%;
 }
 
+@media (max-width: 991.98px) {
+  .jmdc-footer__inner {
+    padding: 56px 35px 36px;
+  }
+}
+
 @media (max-width: 720px) {
   .jmdc-footer__brand-lockup-img {
     height: 60px;
   }
 }
+
+@media (max-width: 767.98px) {
+  .jmdc-footer__inner {
+    padding: 56px 15px 36px;
+  }
+}
 /* Responsive */
 @media (max-width: 720px) {
-  .jmdc-footer__inner {
-    padding: 56px 35px 36px;
-  }
+  
   .jmdc-footer__grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -411,7 +431,13 @@ body.jmdc-nav-open {
 .jmdc-work__inner {
   /* max-width: 1200px; */
   margin: 0 auto;
-  padding: 160px 50px 100px; /* big whitespace like your SVG */
+  padding: 160px 75px 100px; /* big whitespace like your SVG */
+  @media (max-width: 1599.98px) {
+    padding: 160px 50px 100px;
+  }
+  @media (max-width: 991.98px) {
+    padding: 100px 35px 80px;
+  }
 }
 
 @media (max-width: 1440.98px) {
@@ -435,7 +461,7 @@ body.jmdc-nav-open {
   margin-top: 70px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 50px;
+  gap: 75px;
 }
 
 /* Card */
@@ -501,13 +527,19 @@ body.jmdc-nav-open {
 }
 
 /* Responsive */
+@media (max-width: 1599.98px) {
+  .jmdc-work__grid {
+    gap: 50px;
+  }
+}
+
 @media (max-width: 900px) {
   .jmdc-work__grid {
     gap: 35px;
   }
-  .jmdc-work__inner {
+  /* .jmdc-work__inner {
     padding: 135px 35px 110px;
-  }
+  } */
   .jmdc-work__grid {
     margin-top: 80px;
   }
@@ -518,6 +550,9 @@ body.jmdc-nav-open {
 @media (max-width: 767.98px) {
   .jmdc-work__grid {
     grid-template-columns: 1fr;
+  }
+  .jmdc-work__inner {
+    padding: 100px 15px 80px;
   }
 }
 /* Reveal on scroll */

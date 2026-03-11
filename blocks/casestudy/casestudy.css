@@ -13,7 +13,11 @@
 .jmdc-case-study-grid  .jmdc-case-study-row.two-items {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 50px;
+    gap: 75px;
+
+    @media (max-width: 1599.98px) {
+        gap: 50px;
+    }
     
     @media (max-width: 900.98px) {
         gap: 35px;
