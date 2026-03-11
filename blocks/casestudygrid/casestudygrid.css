@@ -9,6 +9,11 @@
     }
     @media (max-width: 900px) {
         padding: 35px;
+        column-gap: 0;
+    }
+
+    @media (max-width: 767.98px) {
+        padding: 35px 15px;
         row-gap: 35px;
         column-gap: 0;
     }

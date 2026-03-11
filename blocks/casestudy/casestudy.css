@@ -24,7 +24,6 @@
     }
     @media (max-width: 767.98px) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
-        row-gap: 50px;
         column-gap: 0;
     }
 }
