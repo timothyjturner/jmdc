@@ -1,11 +1,11 @@
 .jmdc-case-study-grid .jmdc-work__inner {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    row-gap: 70px;
-    padding: 50px 24px;
-    @media (max-width: 767.98px) {
-        padding: 50px 20px;
-        row-gap: 90px;
+    row-gap: 50px;
+    padding: 50px;
+    @media (max-width: 900px) {
+        padding: 35px;
+        row-gap: 35px;
         column-gap: 0;
     }
 }
@@ -39,9 +39,9 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 50px;
-    @media (max-width: 767.98px) {
+    @media (max-width: 900px) {
         grid-template-columns: repeat(1, minmax(0, 1fr));
-        row-gap: 90px;
+        row-gap: 35px;
         column-gap: 0;
     }
 }
