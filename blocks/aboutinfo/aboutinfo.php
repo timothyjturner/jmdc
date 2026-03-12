@@ -15,7 +15,7 @@ if (!empty($block['className'])) {
     $class_name .= ' ' . $block['className'];
 }
 ?>
-<section class="jmdc-about-info jmdc-reveal<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-about-info <?php echo esc_attr($class_name); ?>">
     <div class="jmdc-about-info__container">
         <div class="jmdc-about-info">
             <?php if ($image) : 

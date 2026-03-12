@@ -14,7 +14,7 @@ if (!empty($block['className'])) {
 
 if ($full_with_slider) :
 	?>
-<section class="jmdc-full-with-slider jmdc-reveal<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-full-with-slider <?php echo esc_attr($class_name); ?>">
 	<div class="jmdc-full-with-slider__container swiper">
 		<div class="swiper-wrapper">
 			<?php foreach ($full_with_slider as $slide) : ?>

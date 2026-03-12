@@ -13,7 +13,7 @@ if (!empty($block['className'])) {
 }
 if($logo_grid) :
 ?>
-<section class="jmdc-logo-grid jmdc-reveal<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-logo-grid <?php echo esc_attr($class_name); ?>">
     <div class="jmdc-logo-grid__container">
         <div class="jmdc-logo-grid__grid">
             <?php foreach ($logo_grid as $logo) : ?>

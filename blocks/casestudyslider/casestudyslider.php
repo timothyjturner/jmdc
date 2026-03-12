@@ -14,7 +14,7 @@ if (!empty($block['className'])) {
 
 if ($case_studies) :
 ?>
-<section class="jmdc-case-study-slider-section jmdc-reveal<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-case-study-slider-section <?php echo esc_attr($class_name); ?>">
     <div class="jmdc-case-study-slider-wrapper">
         <div class="jmdc-case-study-slider swiper">
             <div class="jmdc-case-study-slider__track swiper-wrapper">
