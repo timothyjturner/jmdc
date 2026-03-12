@@ -21,6 +21,7 @@
 
 
 .jmdc-case-study-grid .jmdc-case-study-row.single-item .jmdc-case-study-content,
+.jmdc-case-study-row.three-items,
 .jmdc-case-study-row.two-items {
     padding-inline: 75px;
     @media (max-width: 1599.98px) {
