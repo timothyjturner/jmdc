@@ -1,0 +1,16 @@
+{
+    "name": "acf/casestudyslider",
+    "title": "Case Study Slider",
+    "description": "A custom case study slider layout.",
+    "style": "file:./casestudyslider.css",
+    "editorStyle": "file:./casestudyslider.css",
+    "editorScript": "file:./casestudyslider.js",
+    "script": "file:./casestudyslider.js",
+    "category": "formatting",
+    "icon": "excerpt-view",
+    "keywords": ["casestudy", "slider"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "casestudyslider.php"
+    } 
+}

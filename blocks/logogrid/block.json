@@ -1,0 +1,14 @@
+{
+    "name": "acf/logogrid",
+    "title": "Logo Grid",
+    "description": "A custom logo grid layout.",
+    "style": "file:./logogrid.css",
+    "editorStyle": "file:./logogrid.css",
+    "category": "formatting",
+    "icon": "grid-view",
+    "keywords": ["logo", "grid"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "logogrid.php"
+    }
+}

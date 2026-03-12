@@ -160,6 +160,25 @@ require_once get_template_directory() . '/inc/admin-tweaks.php';
 
 
 add_action('wp_enqueue_scripts', function () {
+
+  $version = time(); 
+    // Swiper CSS
+    wp_enqueue_style(
+      'swiper-css',
+      'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+      [],
+      $version
+    );
+
+    // Swiper JS
+    wp_enqueue_script(
+      'swiper-js',
+      'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+      [],
+      $version,
+      true
+    );
+    
   if (is_post_type_archive('case_study')) {
     wp_enqueue_script(
       'jmdc-work-hover-gallery',

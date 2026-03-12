@@ -1,0 +1,16 @@
+{
+    "name": "acf/fullwithslider",
+    "title": "Full With Slider",
+    "description": "A custom full with slider layout.",
+    "style": "file:./fullwithslider.css",
+    "editorStyle": "file:./fullwithslider.css",
+    "editorScript": "file:./fullwithslider.js",
+    "script": "file:./fullwithslider.js",
+    "category": "formatting",
+    "icon": "excerpt-view",
+    "keywords": ["fullwith", "slider"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "fullwithslider.php"
+    }
+}

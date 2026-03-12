@@ -1,0 +1,132 @@
+.jmdc-case-study-slider-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.jmdc-case-study-slider-wrapper {
+  margin: 0 auto;
+  padding: 50px 75px;
+
+  @media (max-width: 1599.98px) {
+    padding: 50px 50px;
+  }
+  @media (max-width: 900.98px) {
+    padding: 50px 35px;
+  }
+  @media (max-width: 767.98px) {
+    padding: 50px 15px;
+  }
+}
+
+.jmdc-case-study-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.jmdc-case-study-slider__track {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+.jmdc-case-study-slider__slide {
+  box-sizing: border-box;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.jmdc-case-study-slider__link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.jmdc-case-study-slider__media {
+  position: relative;
+  overflow: hidden;
+  padding-top: 66.6667%;
+  background-color: #f3f3f3;
+}
+
+.jmdc-case-study-slider__image,
+.jmdc-case-study-slider__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.jmdc-case-study-slider__content {
+  padding-top: 16px;
+  text-align: left;
+}
+
+.jmdc-case-study-slider__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.jmdc-case-study-slider__subtitle {
+  font-size: 14px;
+  margin: 0;
+  color: #666666;
+}
+
+.jmdc-case-study-slider__pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.jmdc-case-study-slider__pagination .swiper-pagination-bullet,
+.jmdc-case-study-slider__pagination .jmdc-case-study-slider__bullet {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  line-height: 1;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #222222;
+  background-color: transparent;
+  opacity: 0.4;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: opacity 200ms ease, background-color 200ms ease;
+  cursor: pointer;
+}
+
+.jmdc-case-study-slider__pagination .swiper-pagination-bullet-active,
+.jmdc-case-study-slider__pagination .jmdc-case-study-slider__bullet--active {
+  background-color: #222222;
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .jmdc-case-study-slider-section {
+    padding: 48px 0;
+  }
+
+  .jmdc-case-study-slider-wrapper {
+    padding: 0 16px;
+  }
+}

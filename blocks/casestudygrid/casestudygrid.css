@@ -2,22 +2,40 @@
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     row-gap: 75px;
-    padding: 50px 75px;
+    padding: 50px 0px;
     @media (max-width: 1599.98px) {
         row-gap: 50px;
-        padding: 50px;
+        padding: 50px 0px;
     }
     @media (max-width: 900px) {
-        padding: 35px;
+        padding: 35px 0px;
         column-gap: 0;
     }
 
     @media (max-width: 767.98px) {
-        padding: 35px 15px;
+        padding: 35px 0px;
         row-gap: 50px;
         column-gap: 0;
     }
 }
+
+
+.jmdc-case-study-grid .jmdc-case-study-row.single-item .jmdc-case-study-content,
+.jmdc-case-study-row.two-items {
+    padding-inline: 75px;
+    @media (max-width: 1599.98px) {
+        padding-inline: 50px;
+    }
+    @media (max-width: 900px) {
+        padding-inline: 35px;
+    }
+
+    @media (max-width: 767.98px) {
+        padding-inline: 15px;
+    }
+}
+
+
 .jmdc-case-study-grid .jmdc-case-study-image {
     position: relative;
     width: 100%;

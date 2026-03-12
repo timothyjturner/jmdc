@@ -1,0 +1,132 @@
+/* Full Width Slider
+   -------------------------------------------------------------------------- */
+
+.jmdc-full-with-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.jmdc-full-with-slider__container {
+  width: 100%;
+  height: calc(100vh - 130px); /* main height control for all slides */
+}
+
+@media (max-width: 999.98px) {
+  .jmdc-full-with-slider__container {
+    height: calc(100vh - 95px);
+  }
+}
+
+.jmdc-full-with-slider__item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.jmdc-full-with-slider__image,
+.jmdc-full-with-slider__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Make sure slides stretch to viewport width */
+.jmdc-full-with-slider .swiper-wrapper {
+  width: 100%;
+}
+
+.jmdc-full-with-slider .swiper-slide {
+  width: 100%;
+}
+
+/* Optional: basic transition, scoped to this slider only */
+.jmdc-full-with-slider .swiper-slide {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Navigation arrows - show on hover only */
+.jmdc-full-with-slider__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.jmdc-full-with-slider__nav--prev {
+  left: 24px;
+}
+
+.jmdc-full-with-slider__nav--next {
+  right: 24px;
+}
+
+.jmdc-full-with-slider__nav::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.jmdc-full-with-slider__nav--prev::before {
+  transform: rotate(-135deg);
+}
+
+.jmdc-full-with-slider__nav--next::before {
+  transform: rotate(45deg);
+}
+
+.jmdc-full-with-slider:hover .jmdc-full-with-slider__nav {
+  opacity: 1;
+  visibility: visible;
+}
+
+.jmdc-full-with-slider__nav:hover {
+  background: #f5f5f5;
+  border-color: #000;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.jmdc-full-with-slider__nav:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767.98px) {
+  .jmdc-full-with-slider__nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .jmdc-full-with-slider__nav--prev {
+    left: 12px;
+  }
+
+  .jmdc-full-with-slider__nav--next {
+    right: 12px;
+  }
+}
+
+
+

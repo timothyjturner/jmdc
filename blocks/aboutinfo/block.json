@@ -1,0 +1,14 @@
+{
+    "name": "acf/aboutinfo",
+    "title": "About Info",
+    "description": "A custom about info layout.",
+    "style": "file:./aboutinfo.css",
+    "editorStyle": "file:./aboutinfo.css",
+    "category": "formatting",
+    "icon": "id",
+    "keywords": ["about", "info"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "aboutinfo.php"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "acf/testimonialslider",
+    "title": "Testimonial Slider",
+    "description": "A custom testimonial slider layout.",
+    "style": "file:./testimonialslider.css",
+    "editorStyle": "file:./testimonialslider.css",
+    "category": "formatting",
+    "icon": "feedback",
+    "keywords": ["testimonial", "slider"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "testimonialslider.php"
+    }
+}
