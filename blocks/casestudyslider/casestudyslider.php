@@ -14,10 +14,10 @@ if (!empty($block['className'])) {
 
 if ($case_studies) :
 ?>
-<section class="jmdc-case-study-slider-section<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-case-study-slider-section jmdc-reveal<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-case-study-slider-wrapper">
-        <div class="jmdc-case-study-slider">
-            <div class="jmdc-case-study-slider__track">
+        <div class="jmdc-case-study-slider swiper">
+            <div class="jmdc-case-study-slider__track swiper-wrapper">
                 <?php foreach ($case_studies as $post) : 
                     setup_postdata($post);
 
@@ -25,13 +25,16 @@ if ($case_studies) :
                     $subtitle     = get_field('jmdc_case_study_subtitle', $post->ID);
                     $title        = $custom_title ?: get_the_title($post->ID);
 
-                    $image_url = get_the_post_thumbnail_url($post->ID, 'large');
-                    $image_id  = get_post_thumbnail_id($post->ID);
-                    $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
-                    $video     = get_field('jmdc_case_study_video', $post->ID);
+                    $image_id   = get_post_thumbnail_id($post->ID);
+                    $image_data = $image_id ? wp_get_attachment_image_src($image_id, 'large') : false;
+                    $image_url  = $image_data[0] ?? get_the_post_thumbnail_url($post->ID, 'large');
+                    $image_alt  = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+                    $image_width  = $image_data[1] ?? '';
+                    $image_height = $image_data[2] ?? '';
+                    $video      = get_field('jmdc_case_study_video', $post->ID);
                 ?>
 
-                <div class="jmdc-case-study-slider__slide">
+                <div class="jmdc-case-study-slider__slide swiper-slide">
                     <a href="<?php echo esc_url(get_permalink($post->ID)); ?>" class="jmdc-case-study-slider__link">
 
                         <div class="jmdc-case-study-slider__media">
@@ -51,21 +54,22 @@ if ($case_studies) :
                                     class="jmdc-case-study-slider__image"
                                     src="<?php echo esc_url($image_url); ?>" 
                                     alt="<?php echo esc_attr($image_alt ?: $title); ?>"
+                                    <?php if ($image_width) : ?>
+                                        width="<?php echo esc_attr($image_width); ?>"
+                                    <?php endif; ?>
+                                    <?php if ($image_height) : ?>
+                                        height="<?php echo esc_attr($image_height); ?>"
+                                    <?php endif; ?>
                                 >
                             <?php endif; ?>
                         </div>
-                        <!-- <div class="jmdc-case-study-slider__content">
-                            <h3 class="jmdc-case-study-slider__title"><?php echo esc_html($title); ?></h3>
-                            <?php if ($subtitle) : ?>
-                                <p class="jmdc-case-study-slider__subtitle"><?php echo esc_html($subtitle); ?></p>
-                            <?php endif; ?>
-                        </div> -->
+
                     </a>
                 </div>
 
                 <?php endforeach; wp_reset_postdata(); ?>
             </div>
-            <div class="jmdc-case-study-slider__pagination "></div>
+            <div class="jmdc-case-study-slider__pagination swiper-pagination" aria-hidden="true"></div>
         </div>
     </div>
 </section>

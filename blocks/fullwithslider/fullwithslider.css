@@ -1,20 +1,20 @@
-/* Full Width Slider
-   -------------------------------------------------------------------------- */
 
 .jmdc-full-with-slider {
   width: 100%;
   position: relative;
-  overflow: hidden;
+  padding-bottom: 40px;
+  padding-top: 80px;
 }
 
 .jmdc-full-with-slider__container {
   width: 100%;
-  height: calc(100vh - 130px); /* main height control for all slides */
+  height: calc(100vh - 170px);
+  overflow: hidden;
 }
 
 @media (max-width: 999.98px) {
   .jmdc-full-with-slider__container {
-    height: calc(100vh - 95px);
+    height: calc(100vh - 135px);
   }
 }
 
@@ -128,5 +128,32 @@
   }
 }
 
+/* Pagination bullets (appear below container) */
+.jmdc-full-with-slider__pagination {
+  margin-top: 32px; /* gap between slider and dots */
+  display: flex;
+  justify-content: center;
+}
 
+.jmdc-full-with-slider__pagination .swiper-pagination-bullet {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  line-height: 1;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #222222;
+  background-color: transparent;
+  opacity: 0.4;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: opacity 200ms ease, background-color 200ms ease;
+  cursor: pointer;
+}
 
+.jmdc-full-with-slider__pagination .swiper-pagination-bullet-active {
+  background-color: #222222;
+  opacity: 1;
+}

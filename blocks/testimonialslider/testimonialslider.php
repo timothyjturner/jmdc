@@ -14,7 +14,7 @@ if (!empty($block['className'])) {
 
 if ($testimonial_slider) :
 ?>
-<section class="jmdc-testimonial-slider<?php echo esc_attr($class_name); ?>">
+<section class="jmdc-testimonial-slider jmdc-reveal<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-testimonial-slider__container swiper">
         <div class="swiper-wrapper">
             <?php foreach ($testimonial_slider as $testimonial) : ?>

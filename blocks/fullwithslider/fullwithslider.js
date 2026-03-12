@@ -9,13 +9,25 @@
       // Avoid re-initializing if Swiper instance already exists.
       if (containerEl.swiper) return;
 
-      new Swiper(containerEl, {
+      var sectionEl = containerEl.closest('.jmdc-full-with-slider');
+      var paginationEl = sectionEl ? sectionEl.querySelector('.jmdc-full-with-slider__pagination') : null;
+
+      var options = {
         slidesPerView: 1,
         slidesPerGroup: 1,
         loop: true,
         speed: 1200,
         spaceBetween: 0,
-      });
+      };
+
+      if (paginationEl) {
+        options.pagination = {
+          el: paginationEl,
+          clickable: true
+        };
+      }
+
+      new Swiper(containerEl, options);
     });
   }
 
