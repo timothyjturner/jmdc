@@ -16,7 +16,7 @@ if (!empty($block['className'])) {
 }
 ?>
 <section class="jmdc-about-info <?php echo esc_attr($class_name); ?>">
-    <div class="jmdc-about-info__container">
+    <div class="jmdc-about-info__container jmdc-reveal">
         <div class="jmdc-about-info">
             <?php if ($image) : 
                 $image_width  = $image['width'] ?? '';
