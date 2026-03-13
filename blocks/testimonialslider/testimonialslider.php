@@ -25,7 +25,7 @@ if ($testimonial_slider) :
                         <?php endif; ?>
                         <div class="jmdc-testimonial-slider__author-info">
                             <?php if (!empty($testimonial['jmdc_author_name'])) : ?>
-                                <span class="jmdc-testimonial-slider__author">- <?php echo esc_html($testimonial['jmdc_author_name']); ?></span>
+                                <span class="jmdc-testimonial-slider__author">- <?php echo esc_html($testimonial['jmdc_author_name']); ?>,</span>
                             <?php endif; ?>
                             <?php if (!empty($testimonial['jmdc_designation'])) : ?>
                                 <span class="jmdc-testimonial-slider__author-title"><?php echo esc_html($testimonial['jmdc_designation']); ?></span>
