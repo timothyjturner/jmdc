@@ -13,10 +13,8 @@
 
       new Swiper(container, {
         slidesPerView: 1,
-        slidesPerGroup: 1,
-        spaceBetween: 16,
+        spaceBetween: 24,
         speed: 1500,
-        watchSlidesProgress: true,
         breakpoints: {
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 }

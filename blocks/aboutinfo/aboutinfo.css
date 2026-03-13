@@ -8,13 +8,13 @@ section.jmdc-about-info {
     padding: 0 24px;
     display: flex;
     align-items: stretch;
-    gap: 60px;
+    gap: 40px;
 }
 
 /* LEFT COLUMN – IMAGE + NAME + TITLE */
 
 .jmdc-about-info__container > .jmdc-about-info {
-    flex: 0 0 40%;
+    flex: 0 0 42%;
     display: flex;
     flex-direction: column;
 }
@@ -37,6 +37,13 @@ section.jmdc-about-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 5px;
+
+    @media (max-width: 667.98px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
 }
 
 .jmdc-about-info__name,
@@ -47,7 +54,7 @@ section.jmdc-about-info {
 .jmdc-about-info__name {
     font-size: 24px;
     margin-bottom: 0;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .jmdc-about-info__designation {
@@ -80,7 +87,9 @@ section.jmdc-about-info {
     }
 
     .jmdc-about-info__container > .jmdc-about-info {
-        flex: 1 1 auto;
+        /* flex: 1 1 auto; */
+        max-width: calc(100vw - 50%);
+        margin-inline: auto;
     }
 
     .jmdc-about.info__content {

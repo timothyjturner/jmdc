@@ -23,6 +23,10 @@
     line-height: 100px;
     font-weight: 400;
     color: #06060C;
+
+    @media (max-width: 991.98px) {
+        font-size: 64px;
+    }
     @media (max-width: 767.98px) {
         font-size: 40px;
         line-height: 40px;
@@ -43,6 +47,15 @@
     @media (max-width: 767.98px) {
         font-size: 16px;
     }
+}
+
+.jmdc-herotext.agency-text .jmdc-herotext__description {
+    max-width: 750px;
+    margin-inline: auto;
+}
+
+.jmdc-herotext__description p br {
+    display: none;
 }
 
 

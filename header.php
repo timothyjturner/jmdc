@@ -29,6 +29,7 @@
       type="button"
       aria-controls="jmdc-mobile-nav"
       aria-expanded="false"
+      aria-label="Toggle navigation"
     >
       <span class="jmdc-nav-toggle__icon" aria-hidden="true"></span>
     </button>

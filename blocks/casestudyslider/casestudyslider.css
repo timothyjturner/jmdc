@@ -1,5 +1,5 @@
 .jmdc-case-study-slider-section {
-  padding-bottom: 80px;
+  padding-bottom: 50px;
   background-color: #ffffff;
 }
 
@@ -21,20 +21,8 @@
   height: auto;
   display: flex;
   align-items: stretch;
-  flex: 0 0 100%;
 }
 
-@media (min-width: 768px) {
-  .jmdc-case-study-slider__slide {
-    flex: 0 0 50%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .jmdc-case-study-slider__slide {
-    flex: 0 0 33.3333%;
-  }
-}
 
 .jmdc-case-study-slider__link {
   display: flex;
@@ -47,7 +35,7 @@
 .jmdc-case-study-slider__media {
   position: relative;
   overflow: hidden;
-  padding-top: 90%;
+  padding-top: 80%;
   background-color: #f3f3f3;
 }
 
@@ -82,7 +70,7 @@
   position: static;
   display: flex;
   justify-content: center;
-  margin-top: 24px; /* place just below slider in highlighted area */
+  margin-top: 40px; /* place just below slider in highlighted area */
   /* gap: 10px; */
 }
 

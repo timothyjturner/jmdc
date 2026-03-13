@@ -35,7 +35,7 @@ if ($case_studies) :
                 ?>
 
                 <div class="jmdc-case-study-slider__slide swiper-slide">
-                    <a href="<?php echo esc_url(get_permalink($post->ID)); ?>" class="jmdc-case-study-slider__link">
+                    <a aria-label="View case study <?php echo esc_attr($title); ?>" href="<?php echo esc_url(get_permalink($post->ID)); ?>" class="jmdc-case-study-slider__link">
 
                         <div class="jmdc-case-study-slider__media">
                             <?php if (!empty($video)) : ?>

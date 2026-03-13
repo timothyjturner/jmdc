@@ -1,5 +1,5 @@
 .jmdc-logo-grid {
-  padding: 60px 20px;
+  padding: 60px 20px 100px 20px;
   background-color: #ffffff;
 }
 
@@ -15,6 +15,7 @@
   align-items: center;
   justify-items: center;
 }
+
 
 .jmdc-logo-grid__item {
   display: flex;
@@ -40,12 +41,12 @@
 
 @media (max-width: 768px) {
   .jmdc-logo-grid {
-    padding: 40px 16px;
+    padding: 40px 16px 60px 16px;
   }
 
   .jmdc-logo-grid__grid {
     gap: 24px 24px;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
   }
 
   .jmdc-logo-grid__item img {
