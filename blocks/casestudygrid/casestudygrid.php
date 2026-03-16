@@ -32,16 +32,16 @@ if ($case_studies) :
                 $subtitle     = get_field('jmdc_case_study_subtitle', $post->ID);
                 $title        = $custom_title ?: get_the_title($post->ID);
 
-                $image_url = get_the_post_thumbnail_url($post->ID, 'large');
-                $image_id  = get_post_thumbnail_id($post->ID);
-                $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
-                $video = get_field('jmdc_case_study_video', $post->ID);
+                $card_media = jmdc_get_case_study_card_media($post->ID);
+                $image_url  = $card_media['image_url'] ?: $card_media['poster_url'];
+                $image_alt  = $card_media['image_alt'];
+                $video_url  = $card_media['video_url'];
                 ?>
 
                 <div class="jmdc-case-study-item jmdc-reveal">
                     <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
                         <div class="jmdc-case-study-image">
-                            <?php if (!empty($video)) : ?>
+                            <?php if (!empty($video_url)) : ?>
                                 <video 
                                     autoplay 
                                     muted 
@@ -49,7 +49,7 @@ if ($case_studies) :
                                     playsinline
                                     poster="<?php echo esc_url($image_url); ?>"
                                 >
-                                    <source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
+                                    <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             <?php elseif ($image_url) : ?>
@@ -84,15 +84,15 @@ if ($case_studies) :
                         $subtitle     = get_field('jmdc_case_study_subtitle', $post->ID);
                         $title        = $custom_title ?: get_the_title($post->ID);
 
-                        $image_url = get_the_post_thumbnail_url($post->ID, 'large');
-                        $image_id  = get_post_thumbnail_id($post->ID);
-                        $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
-                        $video = get_field('jmdc_case_study_video', $post->ID);
+                        $card_media = jmdc_get_case_study_card_media($post->ID);
+                        $image_url  = $card_media['image_url'] ?: $card_media['poster_url'];
+                        $image_alt  = $card_media['image_alt'];
+                        $video_url  = $card_media['video_url'];
                     ?>
                                 <div class="jmdc-case-study-item jmdc-reveal">
                                     <a href="<?php echo esc_url(get_permalink($post->ID)); ?>">
                                         <div class="jmdc-case-study-image">
-                                    <?php if (!empty($video)) : ?>
+                                    <?php if (!empty($video_url)) : ?>
                                         <video 
                                             autoplay 
                                             muted 
@@ -100,7 +100,7 @@ if ($case_studies) :
                                             playsinline
                                             poster="<?php echo esc_url($image_url); ?>"
                                         >
-                                            <source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
+                                            <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
                                     <?php elseif ($image_url) : ?>

@@ -149,6 +149,69 @@
             "min_size": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_jmdc_case_study_front_page_tab",
+            "label": "Front Page Overrides",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "Used only by the front-page Case Study and Case Study Grid blocks.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_jmdc_case_study_front_page_video",
+            "label": "Front Page Video Override",
+            "name": "jmdc_case_study_front_page_video",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Optional. Used on the front page before the regular video or featured image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,m4v,mov,webm"
+        },
+        {
+            "key": "field_jmdc_case_study_front_page_image",
+            "label": "Front Page Image Override",
+            "name": "jmdc_case_study_front_page_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional. Used on the front page after the video override, and before the regular video or featured image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         }
     ],
     "location": [
@@ -169,5 +232,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1772537794
+    "modified": 1774000000
 }
