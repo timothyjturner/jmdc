@@ -16,28 +16,28 @@
           $display_title = get_field('jmdc_case_study_title');
           $subtitle      = get_field('jmdc_case_study_subtitle');
           $type          = get_field('jmdc_case_study_type') ?: 'internal';
-
+          $video         = get_field('jmdc_case_study_video');
           $gallery       = get_field('jmdc_case_study_hover_gallery'); // array of images (return_format=array)
           $external      = get_field('jmdc_case_study_external_link');
 
           // Choose title
           $title = $display_title ? $display_title : get_the_title();
 
-          // Featured image (fallback / default)
-          $featured_id = get_post_thumbnail_id(get_the_ID());
+          // Featured image (fallback / default / poster)
+          $featured_id  = get_post_thumbnail_id(get_the_ID());
           $featured_src = $featured_id ? wp_get_attachment_image_src($featured_id, 'large') : false;
 
           // Link rules:
           // - gallery: no link
           // - external: link out if url exists
           // - internal: link to single
-          $is_gallery = ($type === 'gallery');
-          $href = '';
+          $is_gallery  = ($type === 'gallery');
+          $href        = '';
           $target_attr = '';
 
           if (!$is_gallery) {
             if ($type === 'external' && !empty($external)) {
-              $href = esc_url($external);
+              $href        = esc_url($external);
               $target_attr = ' target="_blank" rel="noopener noreferrer"';
             } else {
               $href = esc_url(get_permalink());
@@ -59,7 +59,9 @@
           if (is_array($gallery) && !empty($gallery)) {
             foreach ($gallery as $img) {
               // Avoid duplicates if featured is also in gallery
-              if (!empty($img['ID']) && $img['ID'] === $featured_id) continue;
+              if (!empty($img['ID']) && $img['ID'] === $featured_id) {
+                continue;
+              }
 
               $slide_images[] = [
                 'id'  => $img['ID'] ?? 0,
@@ -69,7 +71,8 @@
             }
           }
 
-          // If no images at all, we'll just render an empty thumbnail box.
+          $video_url  = !empty($video['url']) ? $video['url'] : '';
+          $has_video  = !empty($video_url);
           $has_slides = !empty($slide_images);
           ?>
 
@@ -81,19 +84,38 @@
             <?php endif; ?>
 
                 <div
-                  class="jmdc-work-card__thumb <?php echo $is_gallery ? 'jmdc-hover-gallery' : ''; ?>"
-                  <?php if ($is_gallery && $has_slides) : ?>
+                  class="jmdc-work-card__thumb <?php echo (!$has_video && $is_gallery) ? 'jmdc-hover-gallery' : ''; ?>"
+                  <?php if (!$has_video && $is_gallery && $has_slides) : ?>
                     data-hover-gallery="1"
                     data-interval="1800"
                   <?php endif; ?>
                 >
-                  <?php if ($has_slides) : ?>
+
+                  <?php if ($has_video) : ?>
+                    <video
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      <?php if (!empty($featured_src[0])) : ?>
+                        poster="<?php echo esc_url($featured_src[0]); ?>"
+                      <?php endif; ?>
+                    >
+                      <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+
+                  <?php elseif ($has_slides) : ?>
                     <?php
                     $i = 0;
                     foreach ($slide_images as $slide) :
                       $src = $slide['src'];
-                      if (!$src) continue;
-                      $alt = $slide['alt'] ? $slide['alt'] : $title;
+                      if (!$src) {
+                        continue;
+                      }
+
+                      $alt       = $slide['alt'] ? $slide['alt'] : $title;
                       $is_active = ($i === 0);
                     ?>
                       <img
@@ -107,9 +129,11 @@
                       $i++;
                     endforeach;
                     ?>
+
                   <?php else : ?>
                     <div class="jmdc-work-card__thumb-empty" aria-hidden="true"></div>
                   <?php endif; ?>
+
                 </div>
 
                 <div class="jmdc-work-card__meta">
