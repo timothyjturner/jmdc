@@ -15,6 +15,7 @@ if (!empty($block['className'])) {
 if (!empty($simple_list_content)) :
 ?>
 <section class="jmdc-simple-list-content<?php echo esc_attr($class_name); ?>">
+    <h2 class="jmdc-simple-list-content__title" style="color: #fff;font-size: 40px;font-weight: 400;padding: 80px 50px 0;">CAPABILITIES</h2>
     <div class="jmdc-work__inner">
         <?php foreach ($simple_list_content as $item) : ?>
                 <?php if (!empty($item['jmdc_heading'])) : ?>
