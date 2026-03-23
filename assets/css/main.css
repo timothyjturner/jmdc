@@ -467,8 +467,8 @@ body.jmdc-nav-open {
   .jmdc-case-study__content {
     margin: 0 auto;
     padding: 120px 0 80px;
-    /* ONLY direct children of content wrapper get gutters */
-    /* EVERYTHING else = full bleed */ }
+    /* EVERYTHING else = full bleed */
+    /* ONLY direct children of content wrapper get gutters */ }
     .jmdc-case-study__content > * {
       margin-top: 0;
       margin-bottom: 24px; }
@@ -575,14 +575,14 @@ body.jmdc-nav-open {
     .jmdc-case-study__content .wp-block-group > .wp-block-image:last-child,
     .jmdc-case-study__content .wp-block-group > .wp-block-video:last-child {
       margin-bottom: 0; }
-    .jmdc-case-study__content > .wp-block-image {
-      max-width: calc(100% - 48px);
-      margin-left: auto;
-      margin-right: auto; }
     .jmdc-case-study__content .wp-block-image {
       max-width: 100%;
       margin-left: 0;
       margin-right: 0; }
+    .jmdc-case-study__content > .wp-block-image {
+      max-width: calc(100% - 48px);
+      margin-left: auto;
+      margin-right: auto; }
 
 @media (max-width: 781px) {
   .jmdc-case-study__inner {
