@@ -585,6 +585,9 @@ body.jmdc-nav-open {
       margin-right: auto; }
 
 @media (max-width: 781px) {
+  .desktop-only {
+    display: none !important; }
+
   .jmdc-case-study__inner {
     padding: 0; }
   .jmdc-case-study .jmdc-case-study__content .wp-block-columns .wp-block-image img {

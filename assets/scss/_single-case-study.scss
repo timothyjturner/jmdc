@@ -181,6 +181,9 @@
 }
 
 @media (max-width: 781px) {
+ .desktop-only {
+    display: none !important;
+ }
   .jmdc-case-study {
     &__inner {
       padding: 0;
