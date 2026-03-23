@@ -23,10 +23,13 @@
 
     figure {
       margin: 0;
+      &.wp-block-image {
+        width: 100%;
+      }
     }
 
     .wp-block-image {
-      margin: 0 0 24px;
+      margin: 0;
 
       img {
         display: block;
@@ -58,7 +61,7 @@
     .wp-block-columns {
       display: flex;
       flex-wrap: nowrap;
-      gap: 12px;
+      gap: 24px;
       margin: 0 0 24px;
       max-width: calc(100vw - 60px);
       margin-left: auto;
@@ -66,6 +69,19 @@
 
       &.is-not-stacked-on-mobile {
         flex-wrap: nowrap;
+      }
+
+      .wp-block-image {
+        figure {
+            width: 100%;
+        }
+        
+        img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            height: auto;
+            object-fit: cover;
+        }
       }
 
       .wp-block-column {
@@ -156,6 +172,9 @@
     &__inner {
       padding: 0;
     }
+  .jmdc-case-study__content .wp-block-columns .wp-block-image img {
+    aspect-ratio: 1 / 1;
+  }
 
     &__content {
 

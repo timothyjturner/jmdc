@@ -477,8 +477,10 @@ body.jmdc-nav-open {
       height: auto; }
     .jmdc-case-study__content figure {
       margin: 0; }
+      .jmdc-case-study__content figure.wp-block-image {
+        width: 100%; }
     .jmdc-case-study__content .wp-block-image {
-      margin: 0 0 24px; }
+      margin: 0; }
       .jmdc-case-study__content .wp-block-image img {
         display: block;
         margin-left: auto;
@@ -498,13 +500,20 @@ body.jmdc-nav-open {
     .jmdc-case-study__content .wp-block-columns {
       display: flex;
       flex-wrap: nowrap;
-      gap: 12px;
+      gap: 24px;
       margin: 0 0 24px;
       max-width: calc(100vw - 60px);
       margin-left: auto;
       margin-right: auto; }
       .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile {
         flex-wrap: nowrap; }
+      .jmdc-case-study__content .wp-block-columns .wp-block-image figure {
+        width: 100%; }
+      .jmdc-case-study__content .wp-block-columns .wp-block-image img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        height: auto;
+        object-fit: cover; }
       .jmdc-case-study__content .wp-block-columns .wp-block-column {
         flex: 1 1 0;
         min-width: 0;
@@ -570,6 +579,8 @@ body.jmdc-nav-open {
 @media (max-width: 781px) {
   .jmdc-case-study__inner {
     padding: 0; }
+  .jmdc-case-study .jmdc-case-study__content .wp-block-columns .wp-block-image img {
+    aspect-ratio: 1 / 1; }
   .jmdc-case-study__content .wp-block-columns {
     flex-wrap: wrap;
     gap: 12px; }
