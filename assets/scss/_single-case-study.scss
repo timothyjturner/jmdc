@@ -1,0 +1,138 @@
+.jmdc-case-study {
+  background: #fff;
+
+  &__inner {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  &__content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 120px 0 80px;
+
+    > * {
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    img,
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .wp-block-image {
+      margin: 0 0 24px;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .wp-block-video {
+      margin: 0 0 24px;
+
+      video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .wp-block-spacer {
+      margin-bottom: 0;
+    }
+
+    .wp-block-group {
+      margin-bottom: 24px;
+    }
+
+    .wp-block-columns {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 12px;
+      margin: 0 0 24px;
+
+      &.is-not-stacked-on-mobile {
+        flex-wrap: nowrap;
+      }
+
+      .wp-block-column {
+        flex: 1 1 0;
+        min-width: 0;
+        margin: 0;
+
+        > *:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      margin-top: 0;
+    }
+
+    p:last-child,
+    h1:last-child,
+    h2:last-child,
+    h3:last-child,
+    h4:last-child,
+    h5:last-child,
+    h6:last-child {
+      margin-bottom: 0;
+    }
+
+    .wp-block-columns + .wp-block-columns {
+    margin-top: -12px;
+    }
+
+    .wp-block-group > .wp-block-columns:last-child,
+    .wp-block-group > .wp-block-image:last-child,
+    .wp-block-group > .wp-block-video:last-child {
+        margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 781px) {
+  .jmdc-case-study {
+    &__inner {
+      padding: 0 16px;
+    }
+
+    &__content {
+      padding: 72px 0 48px;
+
+      .wp-block-columns {
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .wp-block-column {
+          flex: 0 0 100%;
+        }
+
+        &.is-not-stacked-on-mobile {
+          flex-wrap: nowrap;
+
+          .wp-block-column {
+            flex: 1 1 0;
+          }
+        }
+      }
+    }
+  }
+}
