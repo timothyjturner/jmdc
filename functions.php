@@ -292,3 +292,35 @@ add_action('wp_enqueue_scripts', function () {
         }
     }
 });
+
+
+add_filter( 'render_block', 'jmdc_preserve_spacer_custom_classes', 10, 2 );
+
+function jmdc_preserve_spacer_custom_classes( $block_content, $block ) {
+	if ( empty( $block['blockName'] ) || 'core/spacer' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	if ( empty( $block['attrs']['className'] ) ) {
+		return $block_content;
+	}
+
+	$custom_classes = trim( $block['attrs']['className'] );
+
+	if ( '' === $custom_classes ) {
+		return $block_content;
+	}
+
+	if ( false !== strpos( $block_content, $custom_classes ) ) {
+		return $block_content;
+	}
+
+	$block_content = preg_replace(
+		'/class="([^"]*)"/',
+		'class="$1 ' . esc_attr( $custom_classes ) . '"',
+		$block_content,
+		1
+	);
+
+	return $block_content;
+}
