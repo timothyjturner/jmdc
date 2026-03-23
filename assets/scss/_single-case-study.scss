@@ -3,11 +3,9 @@
 
   &__inner {
     width: 100%;
-    padding: 0 20px;
   }
 
   &__content {
-    max-width: 760px;
     margin: 0 auto;
     padding: 120px 0 80px;
 
@@ -86,6 +84,34 @@
       margin-top: 0;
     }
 
+    h1 {
+        color: #06060C;
+        text-align: center;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    h2 {
+        color: #2C2E35;
+        text-align: center;
+        font-size: 100px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100px; /* 100% */
+        letter-spacing: 4px;
+    }
+
+    p {
+        color: #06060C;
+        text-align: center;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
     p:last-child,
     h1:last-child,
     h2:last-child,
@@ -111,11 +137,10 @@
 @media (max-width: 781px) {
   .jmdc-case-study {
     &__inner {
-      padding: 0 16px;
+      padding: 0;
     }
 
     &__content {
-      padding: 72px 0 48px;
 
       .wp-block-columns {
         flex-wrap: wrap;

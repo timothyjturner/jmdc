@@ -463,10 +463,8 @@ body.jmdc-nav-open {
 .jmdc-case-study {
   background: #fff; }
   .jmdc-case-study__inner {
-    width: 100%;
-    padding: 0 20px; }
+    width: 100%; }
   .jmdc-case-study__content {
-    max-width: 760px;
     margin: 0 auto;
     padding: 120px 0 80px; }
     .jmdc-case-study__content > * {
@@ -516,6 +514,29 @@ body.jmdc-nav-open {
     .jmdc-case-study__content h6,
     .jmdc-case-study__content p {
       margin-top: 0; }
+    .jmdc-case-study__content h1 {
+      color: #06060C;
+      text-align: center;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal; }
+    .jmdc-case-study__content h2 {
+      color: #2C2E35;
+      text-align: center;
+      font-size: 100px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100px;
+      /* 100% */
+      letter-spacing: 4px; }
+    .jmdc-case-study__content p {
+      color: #06060C;
+      text-align: center;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal; }
     .jmdc-case-study__content p:last-child,
     .jmdc-case-study__content h1:last-child,
     .jmdc-case-study__content h2:last-child,
@@ -533,17 +554,15 @@ body.jmdc-nav-open {
 
 @media (max-width: 781px) {
   .jmdc-case-study__inner {
-    padding: 0 16px; }
-  .jmdc-case-study__content {
-    padding: 72px 0 48px; }
-    .jmdc-case-study__content .wp-block-columns {
-      flex-wrap: wrap;
-      gap: 12px; }
-      .jmdc-case-study__content .wp-block-columns .wp-block-column {
-        flex: 0 0 100%; }
-      .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile {
-        flex-wrap: nowrap; }
-        .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile .wp-block-column {
-          flex: 1 1 0; } }
+    padding: 0; }
+  .jmdc-case-study__content .wp-block-columns {
+    flex-wrap: wrap;
+    gap: 12px; }
+    .jmdc-case-study__content .wp-block-columns .wp-block-column {
+      flex: 0 0 100%; }
+    .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile {
+      flex-wrap: nowrap; }
+      .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile .wp-block-column {
+        flex: 1 1 0; } }
 
 /*# sourceMappingURL=main.css.map */
