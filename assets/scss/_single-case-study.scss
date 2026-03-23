@@ -180,6 +180,12 @@
   }
 }
 
+@media (min-width: 782px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
 @media (max-width: 781px) {
  .desktop-only {
     display: none !important;
