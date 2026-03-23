@@ -157,14 +157,24 @@
       margin-bottom: 0;
     }
 
-    .wp-block-columns + .wp-block-columns {
-    margin-top: -12px;
-    }
-
     .wp-block-group > .wp-block-columns:last-child,
     .wp-block-group > .wp-block-image:last-child,
     .wp-block-group > .wp-block-video:last-child {
         margin-bottom: 0;
+    }
+
+    /* ONLY direct children of content wrapper get gutters */
+    > .wp-block-image {
+    max-width: calc(100% - 48px);
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    /* EVERYTHING else = full bleed */
+    .wp-block-image {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     }
   }
 }

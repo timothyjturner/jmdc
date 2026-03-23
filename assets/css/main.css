@@ -466,7 +466,9 @@ body.jmdc-nav-open {
     width: 100%; }
   .jmdc-case-study__content {
     margin: 0 auto;
-    padding: 120px 0 80px; }
+    padding: 120px 0 80px;
+    /* ONLY direct children of content wrapper get gutters */
+    /* EVERYTHING else = full bleed */ }
     .jmdc-case-study__content > * {
       margin-top: 0;
       margin-bottom: 24px; }
@@ -569,12 +571,18 @@ body.jmdc-nav-open {
     .jmdc-case-study__content h5:last-child,
     .jmdc-case-study__content h6:last-child {
       margin-bottom: 0; }
-    .jmdc-case-study__content .wp-block-columns + .wp-block-columns {
-      margin-top: -12px; }
     .jmdc-case-study__content .wp-block-group > .wp-block-columns:last-child,
     .jmdc-case-study__content .wp-block-group > .wp-block-image:last-child,
     .jmdc-case-study__content .wp-block-group > .wp-block-video:last-child {
       margin-bottom: 0; }
+    .jmdc-case-study__content > .wp-block-image {
+      max-width: calc(100% - 48px);
+      margin-left: auto;
+      margin-right: auto; }
+    .jmdc-case-study__content .wp-block-image {
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0; }
 
 @media (max-width: 781px) {
   .jmdc-case-study__inner {
