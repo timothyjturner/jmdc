@@ -124,3 +124,7 @@ section.jmdc-about-info {
         line-height: 1.1;
     }
 }
+
+.page-id-11 .jmdc-about-info__container {
+    max-width: unset;
+}

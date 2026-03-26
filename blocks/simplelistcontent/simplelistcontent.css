@@ -90,11 +90,6 @@
     }
 }
 
-.jmdc-simple-list-content--marquee .jmdc-simple-list-content__group .jmdc-simple-list-content__item:last-child::after {
-    content: "";
-    margin-left: 0;
-}
-
 @keyframes jmdc-marquee-scroll {
     from {
         transform: translateX(0);

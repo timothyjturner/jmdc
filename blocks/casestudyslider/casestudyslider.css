@@ -103,3 +103,11 @@
     padding: 48px 0;
   }
 }
+
+.page-id-11 .jmdc-case-study-slider__media {
+	padding-top: 120%;
+}
+
+.page-id-11 .jmdc-full-with-slider__container {
+    height: auto;
+}

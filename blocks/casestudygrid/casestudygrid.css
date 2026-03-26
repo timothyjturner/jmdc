@@ -88,6 +88,11 @@
 }
 .jmdc-case-study-grid .jmdc-case-study-content p {
     color: #06060C;
-    font-size: 12px;
-    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.jmdc-case-study-grid .jmdc-case-study-row.single-item .jmdc-case-study-image {
+    aspect-ratio: 500 / 300;
 }
