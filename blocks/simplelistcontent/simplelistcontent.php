@@ -7,25 +7,38 @@
 
 $simple_list_content = get_field('jmdc_simple_list_content');
 
-
 $class_name = '';
-if (!empty($block['className'])) {
+if (! empty($block['className'])) {
     $class_name .= ' ' . $block['className'];
 }
-if (!empty($simple_list_content)) :
+
+if (! empty($simple_list_content)) :
 ?>
-<section class="jmdc-simple-list-content<?php echo esc_attr($class_name); ?>">
-    <h2 class="jmdc-simple-list-content__title" style="color: #fff;font-size: 40px;font-weight: 400;padding: 80px 50px 0;">CAPABILITIES</h2>
-    <div class="jmdc-work__inner">
-        <?php foreach ($simple_list_content as $item) : ?>
-                <?php if (!empty($item['jmdc_heading'])) : ?>
-                    <div class="jmdc-simple-list-content__item">
-                        <span>
-                            <?php echo $item['jmdc_heading']; ?>
+<section class="jmdc-simple-list-content jmdc-simple-list-content--marquee<?php echo esc_attr($class_name); ?>">
+    <h2 class="jmdc-simple-list-content__title">CAPABILITIES</h2>
+
+    <div class="jmdc-simple-list-content__marquee">
+        <div class="jmdc-simple-list-content__track">
+            <div class="jmdc-simple-list-content__group">
+                <?php foreach ($simple_list_content as $item) : ?>
+                    <?php if (! empty($item['jmdc_heading'])) : ?>
+                        <span class="jmdc-simple-list-content__item">
+                            <?php echo esc_html($item['jmdc_heading']); ?>
                         </span>
-                    </div>
-                <?php endif; ?>
-        <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="jmdc-simple-list-content__group" aria-hidden="true">
+                <?php foreach ($simple_list_content as $item) : ?>
+                    <?php if (! empty($item['jmdc_heading'])) : ?>
+                        <span class="jmdc-simple-list-content__item">
+                            <?php echo esc_html($item['jmdc_heading']); ?>
+                        </span>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 </section>
-<?php endif; ?> 
+<?php endif; ?>
