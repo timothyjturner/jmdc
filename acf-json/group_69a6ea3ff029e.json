@@ -3,6 +3,31 @@
     "title": "Simple List Content",
     "fields": [
         {
+            "key": "field_jmdc_simple_list_version",
+            "label": "Version",
+            "name": "jmdc_simple_list_version",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "animated": "Version 1 (Animated)",
+                "columns": "Version 2 (3 Columns)"
+            },
+            "default_value": "animated",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "layout": "vertical",
+            "save_other_choice": 0
+        },
+        {
             "key": "field_69a6ea3f99c28",
             "label": "Simple List Content",
             "name": "jmdc_simple_list_content",
@@ -53,7 +78,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/simplelistcontent"
+                "value": "acf/simplelistcontent"
             }
         ]
     ],

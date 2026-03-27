@@ -1,6 +1,5 @@
-.jmdc-simple-list-content--marquee {
+.jmdc-simple-list-content {
     background-color: #06060C;
-    overflow: hidden;
     position: relative;
 
     @media (max-width: 767.98px) {
@@ -8,12 +7,12 @@
     }
 }
 
-.jmdc-simple-list-content--marquee .jmdc-simple-list-content__title {
+.jmdc-simple-list-content .jmdc-simple-list-content__title {
     color: #fff;
     font-size: 40px;
     font-weight: 400;
-    padding: 80px 50px 30px;
     margin: 0;
+    padding: 80px 50px 30px;
 
     @media (max-width: 1599.98px) {
         padding: 80px 35px 30px;
@@ -27,6 +26,14 @@
         padding: 50px 15px 20px;
         font-size: 32px;
     }
+}
+
+/* =========================
+   VERSION 1: ANIMATED
+   ========================= */
+
+.jmdc-simple-list-content--marquee {
+    overflow: hidden;
 }
 
 .jmdc-simple-list-content--marquee .jmdc-simple-list-content__marquee {
@@ -80,14 +87,11 @@
             margin-left: 36px;
         }
     }
+}
 
-    @media (max-width: 767.98px) {
-        padding-right: 28px;
-
-        &::after {
-            margin-left: 28px;
-        }
-    }
+.jmdc-simple-list-content--marquee .jmdc-simple-list-content__group .jmdc-simple-list-content__item:last-child::after {
+    content: "";
+    margin-left: 0;
 }
 
 @keyframes jmdc-marquee-scroll {
@@ -102,5 +106,48 @@
 @media (prefers-reduced-motion: reduce) {
     .jmdc-simple-list-content--marquee .jmdc-simple-list-content__track {
         animation: none;
+    }
+}
+
+/* =========================
+   VERSION 2: 3 COLUMNS DESKTOP / 1 MOBILE
+   ========================= */
+
+.jmdc-simple-list-content--grid .jmdc-simple-list-content__grid {
+    padding: 20px 60px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 40px;
+    row-gap: 20px;
+
+    @media (max-width: 1599.98px) {
+        padding: 20px 35px 80px;
+    }
+
+    @media (max-width: 1024.98px) {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 0;
+        padding: 10px 35px 50px;
+    }
+
+    @media (max-width: 767.98px) {
+        padding: 10px 15px 50px;
+    }
+}
+
+.jmdc-simple-list-content--grid .jmdc-simple-list-content__grid-item {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 15px 0;
+
+    @media (max-width: 1366.98px) {
+        font-size: 25px;
+    }
+
+    @media (max-width: 767.98px) {
+        font-size: 20px;
     }
 }
