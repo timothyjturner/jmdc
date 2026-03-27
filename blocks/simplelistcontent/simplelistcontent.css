@@ -118,7 +118,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 40px;
-    row-gap: 20px;
+    row-gap: 0;
 
     @media (max-width: 1599.98px) {
         padding: 20px 35px 80px;
@@ -138,16 +138,16 @@
 
 .jmdc-simple-list-content--grid .jmdc-simple-list-content__grid-item {
     color: #fff;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 400;
     text-transform: uppercase;
-    padding: 15px 0;
+    padding: 0;
 
     @media (max-width: 1366.98px) {
-        font-size: 25px;
+        font-size: 22px;
     }
 
-    @media (max-width: 767.98px) {
-        font-size: 20px;
+    @media (max-width: 1249px) {
+        font-size: 18px;
     }
 }
