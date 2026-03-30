@@ -69,7 +69,6 @@ $quote_count = count($valid_quotes);
                 data-slider
                 data-autoplay="true"
                 data-autoplay-speed="5000"
-                data-count="<?php echo esc_attr($quote_count); ?>"
             >
                 <div class="jmdc-about-info__slider-viewport">
                     <div class="jmdc-about-info__slider-track">
@@ -81,7 +80,7 @@ $quote_count = count($valid_quotes);
                             >
                                 <div class="jmdc-about-info__text-wrap">
                                     <p class="jmdc-about-info__text" data-fit-text>
-                                        “<?php echo wp_kses(nl2br($quote_text), array('br' => array())); ?>”
+                                        “<?php echo wp_kses($quote_text, array('br' => array())); ?>”
                                     </p>
                                 </div>
                             </div>
