@@ -19,6 +19,7 @@
 .jmdc-testimonial-slider .swiper-wrapper {
   display: flex;
   align-items: stretch;
+  transition-property: transform, height;
 }
 
 .jmdc-testimonial-slider__item {
@@ -37,6 +38,7 @@
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
+  padding-top: 8px;
 }
 
 .jmdc-testimonial-slider__text-wrap {
@@ -48,7 +50,7 @@
 .jmdc-testimonial-slider__text {
   --quote-font-size: 26px;
   font-size: var(--quote-font-size);
-  line-height: 1.6;
+  line-height: 1.55;
   font-weight: 400;
   margin: 0 0 24px;
   overflow-wrap: break-word;
@@ -57,7 +59,7 @@
 .jmdc-testimonial-slider__text br {
   display: block;
   content: "";
-  margin-top: 0.65em;
+  margin-top: 0.8em;
 }
 
 .jmdc-testimonial-slider__author-info {
@@ -122,7 +124,7 @@
 
   .jmdc-testimonial-slider__text {
     --quote-font-size: 22px;
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
   .jmdc-testimonial-slider__author,
@@ -146,7 +148,7 @@
 
   .jmdc-testimonial-slider__text {
     --quote-font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
   .jmdc-testimonial-slider__author,
@@ -162,7 +164,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .jmdc-testimonial-slider__pagination .swiper-pagination-bullet,
-  .jmdc-testimonial-slider__pagination .jmdc-testimonial-slider__bullet {
+  .jmdc-testimonial-slider__pagination .jmdc-testimonial-slider__bullet,
+  .jmdc-testimonial-slider .swiper-wrapper {
     transition: none;
   }
 }

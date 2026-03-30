@@ -35,7 +35,7 @@ if (!empty($valid_testimonials)) :
                         <?php if (!empty($testimonial['jmdc_testimonial'])) : ?>
                             <div class="jmdc-testimonial-slider__text-wrap">
                                 <p class="jmdc-testimonial-slider__text" data-fit-text>
-                                    “<?php echo wp_kses($testimonial['jmdc_testimonial'], array('br' => array())); ?>”
+                                    “<?php echo wp_kses(nl2br(esc_html($testimonial['jmdc_testimonial'])), array('br' => array())); ?>”
                                 </p>
                             </div>
                         <?php endif; ?>
