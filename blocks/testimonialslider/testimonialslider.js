@@ -9,49 +9,54 @@
     return window.innerWidth <= 767 ? 14 : 16;
   }
 
+  function getMaxTextHeight() {
+    if (window.innerWidth <= 767) return 340;
+    if (window.innerWidth <= 1024) return 440;
+    return 520;
+  }
+
   function fitSlideText(slide) {
     var text = slide.querySelector("[data-fit-text]");
     var wrap = slide.querySelector(".jmdc-testimonial-slider__text-wrap");
+    var content = slide.querySelector(".jmdc-testimonial-slider__content");
 
-    if (!text || !wrap) {
+    if (!text || !wrap || !content) {
       return;
     }
 
     var maxSize = getMaxFontSize();
     var minSize = getMinFontSize();
+    var maxHeight = getMaxTextHeight();
     var size = maxSize;
 
     text.style.setProperty("--quote-font-size", maxSize + "px");
 
-    var previousHidden = slide.hasAttribute("hidden");
-    var previousVisibility = slide.style.visibility;
-    var previousPosition = slide.style.position;
-    var previousPointerEvents = slide.style.pointerEvents;
-    var previousOpacity = slide.style.opacity;
+    var prevHidden = slide.hasAttribute("hidden");
+    var prevVisibility = slide.style.visibility;
+    var prevPosition = slide.style.position;
+    var prevPointerEvents = slide.style.pointerEvents;
+    var prevOpacity = slide.style.opacity;
+    var prevDisplay = slide.style.display;
 
     slide.removeAttribute("hidden");
     slide.style.visibility = "hidden";
     slide.style.position = "relative";
     slide.style.pointerEvents = "none";
     slide.style.opacity = "1";
+    slide.style.display = "block";
 
-    var maxWidth = wrap.clientWidth;
-    var maxHeight = window.innerWidth <= 767 ? 260 : 380;
-
-    while (
-      size > minSize &&
-      (text.scrollWidth > maxWidth + 2 || text.scrollHeight > maxHeight)
-    ) {
+    while (size > minSize && text.scrollHeight > maxHeight) {
       size -= 1;
       text.style.setProperty("--quote-font-size", size + "px");
     }
 
-    slide.style.visibility = previousVisibility;
-    slide.style.position = previousPosition;
-    slide.style.pointerEvents = previousPointerEvents;
-    slide.style.opacity = previousOpacity;
+    slide.style.visibility = prevVisibility;
+    slide.style.position = prevPosition;
+    slide.style.pointerEvents = prevPointerEvents;
+    slide.style.opacity = prevOpacity;
+    slide.style.display = prevDisplay;
 
-    if (previousHidden) {
+    if (prevHidden) {
       slide.setAttribute("hidden", "hidden");
     }
   }
@@ -115,6 +120,9 @@
             measureActiveSlideHeight(this);
           },
           slideChangeTransitionStart: function () {
+            measureActiveSlideHeight(this);
+          },
+          slideChangeTransitionEnd: function () {
             measureActiveSlideHeight(this);
           },
           resize: function () {
