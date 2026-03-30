@@ -68,11 +68,11 @@
             "append": ""
         },
         {
-            "key": "field_69b29a7447075",
-            "label": "About Text",
-            "name": "jmdc_about_text",
+            "key": "field_jmdc_quotes",
+            "label": "Quotes",
+            "name": "jmdc_quotes",
             "aria-label": "",
-            "type": "textarea",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -81,11 +81,36 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "rows": "",
-            "placeholder": "",
-            "new_lines": ""
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Quote",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_jmdc_quote_text",
+                    "label": "Quote Text",
+                    "name": "jmdc_quote_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "placeholder": "",
+                    "new_lines": "br",
+                    "parent_repeater": "field_jmdc_quotes"
+                }
+            ]
         }
     ],
     "location": [
@@ -93,7 +118,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/aboutinfo"
+                "value": "acf/aboutinfo"
             }
         ]
     ],

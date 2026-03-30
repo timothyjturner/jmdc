@@ -8,17 +8,20 @@
 $image = get_field('jmdc_image');
 $name = get_field('jmdc_name');
 $designation = get_field('jmdc_designation');
-$about_text = get_field('jmdc_about_text');
+$quotes = get_field('jmdc_quotes');
 
 $class_name = '';
-if (!empty($block['className'])) {
+if (! empty($block['className'])) {
     $class_name .= ' ' . $block['className'];
 }
+
+$has_quotes = ! empty($quotes) && is_array($quotes);
+$quote_count = $has_quotes ? count($quotes) : 0;
 ?>
-<section class="jmdc-about-info <?php echo esc_attr($class_name); ?>">
+<section class="jmdc-about-info<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-about-info__container jmdc-reveal">
-        <div class="jmdc-about-info">
-            <?php if ($image) : 
+        <div class="jmdc-about-info__media">
+            <?php if ($image) :
                 $image_width  = $image['width'] ?? '';
                 $image_height = $image['height'] ?? '';
             ?>
@@ -35,19 +38,68 @@ if (!empty($block['className'])) {
                     >
                 </div>
             <?php endif; ?>
-            <div class="jmdc-about-info__wrapper">
-            <?php if ($name) : ?>
-                    <h2 class="jmdc-about-info__name"><?php echo esc_html($name); ?></h2>
+
+            <?php if ($name || $designation) : ?>
+                <div class="jmdc-about-info__meta">
+                    <?php if ($name) : ?>
+                        <h2 class="jmdc-about-info__name"><?php echo esc_html($name); ?></h2>
+                    <?php endif; ?>
+
+                    <?php if ($designation) : ?>
+                        <span class="jmdc-about-info__designation"><?php echo esc_html($designation); ?></span>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
-                <?php if ($designation) : ?>
-                    <span class="jmdc-about-info__designation"><?php echo esc_html($designation); ?></span>
+        </div>
+
+        <?php if ($has_quotes) : ?>
+            <div
+                class="jmdc-about-info__content"
+                data-slider
+                data-autoplay="true"
+                data-autoplay-speed="5000"
+                data-count="<?php echo esc_attr($quote_count); ?>"
+            >
+                <div class="jmdc-about-info__slider-viewport">
+                    <div class="jmdc-about-info__slider-track">
+                        <?php foreach ($quotes as $index => $quote) :
+                            $quote_text = $quote['jmdc_quote_text'] ?? '';
+
+                            if (! $quote_text) {
+                                continue;
+                            }
+                        ?>
+                            <div
+                                class="jmdc-about-info__slide<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                                data-slide="<?php echo esc_attr($index); ?>"
+                                <?php echo $index === 0 ? '' : 'hidden'; ?>
+                            >
+                                <p class="jmdc-about-info__text">“<?php echo nl2br(esc_html($quote_text)); ?>”</p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <?php if ($quote_count > 1) : ?>
+                    <div class="jmdc-about-info__dots" aria-label="Quote navigation">
+                        <?php foreach ($quotes as $index => $quote) :
+                            $quote_text = $quote['jmdc_quote_text'] ?? '';
+
+                            if (! $quote_text) {
+                                continue;
+                            }
+                        ?>
+                            <button
+                                type="button"
+                                class="jmdc-about-info__dot<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                                data-dot="<?php echo esc_attr($index); ?>"
+                                aria-label="<?php echo esc_attr('Go to quote ' . ($index + 1)); ?>"
+                                aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>"
+                            ></button>
+                        <?php endforeach; ?>
+                    </div>
                 <?php endif; ?>
             </div>
-        </div>
-         <?php if ($about_text) : ?>
-        <div class="jmdc-about info__content">
-            <p class="jmdc-about-info__text">"<?php echo esc_html($about_text); ?>"</p>
-        </div>
         <?php endif; ?>
     </div>
 </section>
