@@ -38,6 +38,74 @@
     });
   }
 
+  function fitQuoteText(slider) {
+    var slides = slider.querySelectorAll("[data-slide]");
+    var viewport = slider.querySelector(".jmdc-about-info__slider-track");
+
+    if (!slides.length || !viewport) {
+      return;
+    }
+
+    slides.forEach(function (slide) {
+      var text = slide.querySelector("[data-fit-text]");
+
+      if (!text) {
+        return;
+      }
+
+      text.style.setProperty("--quote-font-size", "");
+      slide.removeAttribute("hidden");
+      slide.classList.add("is-measuring");
+
+      var maxSize = window.innerWidth <= 600 ? 22 :
+                    window.innerWidth <= 1024 ? 32 :
+                    window.innerWidth <= 1200 ? 38 : 44;
+
+      var minSize = window.innerWidth <= 600 ? 16 : 20;
+      var size = maxSize;
+
+      text.style.setProperty("--quote-font-size", size + "px");
+
+      var availableHeight = viewport.clientHeight || 420;
+
+      while (
+        size > minSize &&
+        (text.scrollHeight > availableHeight * 0.92 || text.scrollWidth > text.clientWidth + 2)
+      ) {
+        size -= 1;
+        text.style.setProperty("--quote-font-size", size + "px");
+      }
+
+      slide.classList.remove("is-measuring");
+
+      if (!slide.classList.contains("is-active")) {
+        slide.setAttribute("hidden", "hidden");
+      }
+    });
+
+    var maxHeight = 0;
+
+    slides.forEach(function (slide) {
+      slide.removeAttribute("hidden");
+      slide.classList.add("is-measuring");
+
+      var height = slide.offsetHeight;
+      if (height > maxHeight) {
+        maxHeight = height;
+      }
+
+      slide.classList.remove("is-measuring");
+
+      if (!slide.classList.contains("is-active")) {
+        slide.setAttribute("hidden", "hidden");
+      }
+    });
+
+    if (maxHeight) {
+      viewport.style.minHeight = maxHeight + "px";
+    }
+  }
+
   function initSliders() {
     var sliders = document.querySelectorAll(".jmdc-about-info [data-slider]");
 
@@ -120,8 +188,18 @@
       slider.addEventListener("focusin", stopAutoplay);
       slider.addEventListener("focusout", startAutoplay);
 
+      fitQuoteText(slider);
       showSlide(0);
       startAutoplay();
+
+      var resizeTimer = null;
+      window.addEventListener("resize", function () {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(function () {
+          fitQuoteText(slider);
+          showSlide(current);
+        }, 120);
+      });
     });
   }
 

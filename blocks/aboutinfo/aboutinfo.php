@@ -15,8 +15,19 @@ if (! empty($block['className'])) {
     $class_name .= ' ' . $block['className'];
 }
 
-$has_quotes = ! empty($quotes) && is_array($quotes);
-$quote_count = $has_quotes ? count($quotes) : 0;
+$valid_quotes = [];
+
+if (! empty($quotes) && is_array($quotes)) {
+    foreach ($quotes as $quote) {
+        $quote_text = $quote['jmdc_quote_text'] ?? '';
+
+        if (! empty($quote_text)) {
+            $valid_quotes[] = $quote_text;
+        }
+    }
+}
+
+$quote_count = count($valid_quotes);
 ?>
 <section class="jmdc-about-info<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-about-info__container jmdc-reveal">
@@ -52,7 +63,7 @@ $quote_count = $has_quotes ? count($quotes) : 0;
             <?php endif; ?>
         </div>
 
-        <?php if ($has_quotes) : ?>
+        <?php if (! empty($valid_quotes)) : ?>
             <div
                 class="jmdc-about-info__content"
                 data-slider
@@ -62,19 +73,17 @@ $quote_count = $has_quotes ? count($quotes) : 0;
             >
                 <div class="jmdc-about-info__slider-viewport">
                     <div class="jmdc-about-info__slider-track">
-                        <?php foreach ($quotes as $index => $quote) :
-                            $quote_text = $quote['jmdc_quote_text'] ?? '';
-
-                            if (! $quote_text) {
-                                continue;
-                            }
-                        ?>
+                        <?php foreach ($valid_quotes as $index => $quote_text) : ?>
                             <div
                                 class="jmdc-about-info__slide<?php echo $index === 0 ? ' is-active' : ''; ?>"
                                 data-slide="<?php echo esc_attr($index); ?>"
                                 <?php echo $index === 0 ? '' : 'hidden'; ?>
                             >
-                                <p class="jmdc-about-info__text">“<?php echo nl2br(esc_html($quote_text)); ?>”</p>
+                                <div class="jmdc-about-info__text-wrap">
+                                    <p class="jmdc-about-info__text" data-fit-text>
+                                        “<?php echo wp_kses(nl2br($quote_text), array('br' => array())); ?>”
+                                    </p>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -82,13 +91,7 @@ $quote_count = $has_quotes ? count($quotes) : 0;
 
                 <?php if ($quote_count > 1) : ?>
                     <div class="jmdc-about-info__dots" aria-label="Quote navigation">
-                        <?php foreach ($quotes as $index => $quote) :
-                            $quote_text = $quote['jmdc_quote_text'] ?? '';
-
-                            if (! $quote_text) {
-                                continue;
-                            }
-                        ?>
+                        <?php foreach ($valid_quotes as $index => $quote_text) : ?>
                             <button
                                 type="button"
                                 class="jmdc-about-info__dot<?php echo $index === 0 ? ' is-active' : ''; ?>"
