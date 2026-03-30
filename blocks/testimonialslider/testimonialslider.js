@@ -18,9 +18,8 @@
   function fitSlideText(slide) {
     var text = slide.querySelector("[data-fit-text]");
     var wrap = slide.querySelector(".jmdc-testimonial-slider__text-wrap");
-    var content = slide.querySelector(".jmdc-testimonial-slider__content");
 
-    if (!text || !wrap || !content) {
+    if (!text || !wrap) {
       return;
     }
 
@@ -32,48 +31,33 @@
     text.style.setProperty("--quote-font-size", maxSize + "px");
 
     var prevHidden = slide.hasAttribute("hidden");
+    var prevDisplay = slide.style.display;
     var prevVisibility = slide.style.visibility;
     var prevPosition = slide.style.position;
-    var prevPointerEvents = slide.style.pointerEvents;
     var prevOpacity = slide.style.opacity;
-    var prevDisplay = slide.style.display;
+    var prevPointerEvents = slide.style.pointerEvents;
 
     slide.removeAttribute("hidden");
+    slide.style.display = "block";
     slide.style.visibility = "hidden";
     slide.style.position = "relative";
-    slide.style.pointerEvents = "none";
     slide.style.opacity = "1";
-    slide.style.display = "block";
+    slide.style.pointerEvents = "none";
 
     while (size > minSize && text.scrollHeight > maxHeight) {
       size -= 1;
       text.style.setProperty("--quote-font-size", size + "px");
     }
 
+    slide.style.display = prevDisplay;
     slide.style.visibility = prevVisibility;
     slide.style.position = prevPosition;
-    slide.style.pointerEvents = prevPointerEvents;
     slide.style.opacity = prevOpacity;
-    slide.style.display = prevDisplay;
+    slide.style.pointerEvents = prevPointerEvents;
 
     if (prevHidden) {
       slide.setAttribute("hidden", "hidden");
     }
-  }
-
-  function measureActiveSlideHeight(swiper) {
-    if (!swiper || !swiper.slides || typeof swiper.activeIndex === "undefined") {
-      return;
-    }
-
-    var activeSlide = swiper.slides[swiper.activeIndex];
-    var wrapper = swiper.wrapperEl;
-
-    if (!activeSlide || !wrapper) {
-      return;
-    }
-
-    wrapper.style.height = activeSlide.offsetHeight + "px";
   }
 
   function fitAllSlides(containerEl) {
@@ -82,6 +66,14 @@
     slides.forEach(function (slide) {
       fitSlideText(slide);
     });
+  }
+
+  function refreshSliderHeight(swiper) {
+    if (!swiper) return;
+
+    swiper.updateSlides();
+    swiper.update();
+    swiper.updateAutoHeight(300);
   }
 
   function initTestimonialSlider() {
@@ -103,7 +95,7 @@
         slidesPerGroup: 1,
         speed: 900,
         loop: true,
-        autoHeight: false,
+        autoHeight: true,
         spaceBetween: 20,
         autoplay: {
           delay: 6000,
@@ -117,18 +109,17 @@
         },
         on: {
           init: function () {
-            measureActiveSlideHeight(this);
+            refreshSliderHeight(this);
           },
           slideChangeTransitionStart: function () {
-            measureActiveSlideHeight(this);
+            refreshSliderHeight(this);
           },
           slideChangeTransitionEnd: function () {
-            measureActiveSlideHeight(this);
+            refreshSliderHeight(this);
           },
           resize: function () {
             fitAllSlides(containerEl);
-            this.update();
-            measureActiveSlideHeight(this);
+            refreshSliderHeight(this);
           }
         }
       });
@@ -138,8 +129,7 @@
         window.clearTimeout(resizeTimer);
         resizeTimer = window.setTimeout(function () {
           fitAllSlides(containerEl);
-          swiper.update();
-          measureActiveSlideHeight(swiper);
+          refreshSliderHeight(swiper);
         }, 120);
       });
     });

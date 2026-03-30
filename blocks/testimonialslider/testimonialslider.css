@@ -2,7 +2,11 @@
   padding: 100px 0 30px;
   background-color: #000000;
   color: #ffffff;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.jmdc-testimonial-slider .swiper-wrapper {
+  align-items: flex-start;
 }
 
 .jmdc-testimonial-slider__container {
