@@ -141,10 +141,14 @@
         line-height: normal;
         padding-left: 24px;
         padding-right: 24px;
+        padding-bottom: 24px;
         max-width: calc(100vw - 60px);
         box-sizing: content-box;
         margin-left: auto;
         margin-right: auto;
+        strong {
+          font-weight: 900;
+        }
     }
 
     p:last-child,

@@ -571,10 +571,13 @@ body.jmdc-nav-open {
       line-height: normal;
       padding-left: 24px;
       padding-right: 24px;
+      padding-bottom: 24px;
       max-width: calc(100vw - 60px);
       box-sizing: content-box;
       margin-left: auto;
       margin-right: auto; }
+      .jmdc-case-study__content p strong {
+        font-weight: 900; }
     .jmdc-case-study__content p:last-child,
     .jmdc-case-study__content h1:last-child,
     .jmdc-case-study__content h2:last-child,
