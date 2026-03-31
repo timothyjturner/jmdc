@@ -72,13 +72,13 @@
 }
 .jmdc-case-study-grid .jmdc-case-study-content h3 {
     color: #06060C;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
-    margin-bottom: 5px;;
+    margin-bottom: 0;
     text-transform: uppercase;
 }
 .jmdc-case-study-grid .jmdc-case-study-content p {
     color: #06060C;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
 }
