@@ -81,7 +81,7 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
+            "layout": "block",
             "pagination": 0,
             "min": 0,
             "max": 0,
@@ -90,12 +90,12 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_jmdc_quote_text",
-                    "label": "Quote Text",
-                    "name": "jmdc_quote_text",
+                    "key": "field_jmdc_quote_content",
+                    "label": "Quote Content",
+                    "name": "jmdc_quote_content",
                     "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
+                    "type": "wysiwyg",
+                    "instructions": "Use line breaks exactly as desired for the design. Keep formatting minimal.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -104,10 +104,54 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
-                    "rows": 4,
-                    "placeholder": "",
-                    "new_lines": "br",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "parent_repeater": "field_jmdc_quotes"
+                },
+                {
+                    "key": "field_jmdc_quote_font_size_desktop",
+                    "label": "Quote Font Size Desktop",
+                    "name": "jmdc_quote_font_size_desktop",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Optional. Value in px.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 1,
+                    "max": 200,
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_jmdc_quotes"
+                },
+                {
+                    "key": "field_jmdc_quote_font_size_mobile",
+                    "label": "Quote Font Size Mobile",
+                    "name": "jmdc_quote_font_size_mobile",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Optional. Value in px.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 1,
+                    "max": 200,
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
                     "parent_repeater": "field_jmdc_quotes"
                 }
             ]

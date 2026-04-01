@@ -1,239 +1,122 @@
-section.jmdc-about-info {
-    padding: 72px 0;
+<?php
+/**
+ * About Info Block template.
+ *
+ * @param array $block The block settings and attributes.
+ */
+
+$image = get_field('jmdc_image');
+$name = get_field('jmdc_name');
+$designation = get_field('jmdc_designation');
+$quotes = get_field('jmdc_quotes');
+
+$class_name = '';
+if (! empty($block['className'])) {
+    $class_name .= ' ' . $block['className'];
 }
 
-.jmdc-about-info__container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 72px;
-}
+$valid_quotes = [];
 
-.jmdc-about-info__media {
-    flex: 0 0 48%;
-    display: flex;
-    flex-direction: column;
-}
+if (! empty($quotes) && is_array($quotes)) {
+    foreach ($quotes as $quote) {
+        $quote_content = $quote['jmdc_quote_content'] ?? '';
 
-.jmdc-about-info__image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 0.76;
-    overflow: hidden;
-}
-
-.jmdc-about-info__image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.jmdc-about-info__meta {
-    margin-top: 8px;
-}
-
-.jmdc-about-info__name,
-.jmdc-about-info__designation {
-    text-transform: uppercase;
-}
-
-.jmdc-about-info__name {
-    font-size: 24px;
-    line-height: 1;
-    margin: 0 0 4px;
-    font-weight: 900;
-}
-
-.jmdc-about-info__designation {
-    display: block;
-    font-size: 14px;
-    line-height: 1.1;
-    font-weight: 500;
-}
-
-.jmdc-about-info__content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.jmdc-about-info__slider-viewport {
-    width: 100%;
-    position: relative;
-    transition: height 0.35s ease;
-    overflow: hidden;
-}
-
-.jmdc-about-info__slider-track {
-    position: relative;
-    width: 100%;
-}
-
-.jmdc-about-info__slide {
-    width: 100%;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
-}
-
-.jmdc-about-info__slide.is-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    position: relative;
-}
-
-.jmdc-about-info__text-wrap {
-    width: 100%;
-    max-width: 720px;
-    margin: 0 auto;
-}
-
-.jmdc-about-info__text {
-    --quote-font-size: 42px;
-    margin: 0;
-    font-size: var(--quote-font-size);
-    line-height: 1.12;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 700;
-    max-width: 100%;
-    overflow-wrap: break-word;
-}
-
-.jmdc-about-info__text br {
-    display: block;
-    content: "";
-    margin-top: 0.5em;
-}
-
-.jmdc-about-info__dots {
-    margin-top: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.jmdc-about-info__dot {
-    width: 10px;
-    height: 10px;
-    padding: 0;
-    border-radius: 50%;
-    border: 1px solid #000;
-    background: transparent;
-    cursor: pointer;
-    appearance: none;
-    transition: background-color 0.25s ease, transform 0.25s ease;
-}
-
-.jmdc-about-info__dot.is-active {
-    background: #000;
-}
-
-.jmdc-about-info__dot:hover,
-.jmdc-about-info__dot:focus-visible {
-    transform: scale(1.1);
-}
-
-@media (max-width: 1199.98px) {
-    .jmdc-about-info__container {
-        gap: 48px;
-    }
-
-    .jmdc-about-info__text-wrap {
-        max-width: 660px;
-    }
-
-    .jmdc-about-info__text {
-        --quote-font-size: 36px;
+        if (! empty(trim(wp_strip_all_tags($quote_content)))) {
+            $valid_quotes[] = array(
+                'content'       => $quote_content,
+                'font_desktop'  => ! empty($quote['jmdc_quote_font_size_desktop']) ? (int) $quote['jmdc_quote_font_size_desktop'] : '',
+                'font_mobile'   => ! empty($quote['jmdc_quote_font_size_mobile']) ? (int) $quote['jmdc_quote_font_size_mobile'] : '',
+            );
+        }
     }
 }
 
-@media (max-width: 1024.98px) {
-    .jmdc-about-info__container {
-        gap: 36px;
-    }
+$quote_count = count($valid_quotes);
+?>
+<section class="jmdc-about-info<?php echo esc_attr($class_name); ?>">
+    <div class="jmdc-about-info__container jmdc-reveal">
+        <div class="jmdc-about-info__media">
+            <?php if ($image) :
+                $image_width  = $image['width'] ?? '';
+                $image_height = $image['height'] ?? '';
+            ?>
+                <div class="jmdc-about-info__image">
+                    <img
+                        src="<?php echo esc_url($image['url']); ?>"
+                        alt="<?php echo esc_attr($image['alt']); ?>"
+                        <?php if ($image_width) : ?>
+                            width="<?php echo esc_attr($image_width); ?>"
+                        <?php endif; ?>
+                        <?php if ($image_height) : ?>
+                            height="<?php echo esc_attr($image_height); ?>"
+                        <?php endif; ?>
+                    >
+                </div>
+            <?php endif; ?>
 
-    .jmdc-about-info__text-wrap {
-        max-width: 600px;
-    }
+            <?php if ($name || $designation) : ?>
+                <div class="jmdc-about-info__meta">
+                    <?php if ($name) : ?>
+                        <h2 class="jmdc-about-info__name"><?php echo esc_html($name); ?></h2>
+                    <?php endif; ?>
 
-    .jmdc-about-info__text {
-        --quote-font-size: 30px;
-    }
-}
+                    <?php if ($designation) : ?>
+                        <span class="jmdc-about-info__designation"><?php echo esc_html($designation); ?></span>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
-@media (max-width: 900px) {
-    .jmdc-about-info__container {
-        flex-direction: column;
-        gap: 36px;
-    }
+        <?php if (! empty($valid_quotes)) : ?>
+            <div
+                class="jmdc-about-info__content"
+                data-slider
+                data-autoplay="true"
+                data-autoplay-speed="5000"
+            >
+                <div class="jmdc-about-info__slider-viewport">
+                    <div class="jmdc-about-info__slider-track">
+                        <?php foreach ($valid_quotes as $index => $quote) : ?>
+                            <?php
+                            $style = '';
 
-    .jmdc-about-info__media {
-        width: 100%;
-        max-width: 340px;
-        margin-inline: auto;
-    }
+                            if (! empty($quote['font_desktop'])) {
+                                $style .= '--quote-font-size-desktop:' . (int) $quote['font_desktop'] . 'px;';
+                            }
 
-    .jmdc-about-info__content {
-        width: 100%;
-    }
+                            if (! empty($quote['font_mobile'])) {
+                                $style .= '--quote-font-size-mobile:' . (int) $quote['font_mobile'] . 'px;';
+                            }
+                            ?>
+                            <div
+                                class="jmdc-about-info__slide<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                                data-slide="<?php echo esc_attr($index); ?>"
+                                <?php echo $index === 0 ? '' : 'hidden'; ?>
+                            >
+                                <div class="jmdc-about-info__text-wrap" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
+                                    <div class="jmdc-about-info__text">
+                                        <?php echo wp_kses_post($quote['content']); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
-    .jmdc-about-info__text-wrap {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 600px) {
-    section.jmdc-about-info {
-        padding: 40px 0;
-    }
-
-    .jmdc-about-info__container {
-        padding: 0 16px;
-        gap: 24px;
-    }
-
-    .jmdc-about-info__media {
-        max-width: 100%;
-    }
-
-    .jmdc-about-info__name {
-        font-size: 20px;
-    }
-
-    .jmdc-about-info__designation {
-        font-size: 13px;
-    }
-
-    .jmdc-about-info__text {
-        --quote-font-size: 22px;
-        line-height: 1.18;
-    }
-
-    .jmdc-about-info__dots {
-        margin-top: 10px;
-    }
-}
-
-.page-id-11 .jmdc-about-info__container {
-    max-width: unset;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .jmdc-about-info__slider-viewport,
-    .jmdc-about-info__slide,
-    .jmdc-about-info__dot {
-        transition: none;
-    }
-}
+                <?php if ($quote_count > 1) : ?>
+                    <div class="jmdc-about-info__dots" aria-label="Quote navigation">
+                        <?php foreach ($valid_quotes as $index => $quote) : ?>
+                            <button
+                                type="button"
+                                class="jmdc-about-info__dot<?php echo $index === 0 ? ' is-active' : ''; ?>"
+                                data-dot="<?php echo esc_attr($index); ?>"
+                                aria-label="<?php echo esc_attr('Go to quote ' . ($index + 1)); ?>"
+                                aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>"
+                            ></button>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
