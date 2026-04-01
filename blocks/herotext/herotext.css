@@ -43,6 +43,14 @@
 }
 
 .jmdc-herotext.agency-text .jmdc-herotext__description p {
+    white-space: pre;
+    line-height: normal;
+    @media (max-width: 991.98px) {
+        white-space: normal;
+    }
+    @media (max-width: 767.98px) {
+        font-size: 14px;
+    }
     @media (max-width: 991.98px) {
         font-size:20px;
     }
@@ -84,14 +92,6 @@
     margin-top: 20px;
     color: #06060C;
     font-weight: 500;
-    white-space: pre;
-    line-height: normal;
-    @media (max-width: 991.98px) {
-        white-space: normal;
-    }
-    @media (max-width: 767.98px) {
-        font-size: 14px;
-    }
 }
 
 .jmdc-herotext.agency-text .jmdc-herotext__description {
