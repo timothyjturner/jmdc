@@ -120,10 +120,6 @@
     column-gap: 40px;
     row-gap: 14px;
 
-    .jmdc-simple-list-content__title {
-        font-size: 64px;
-    }
-
     @media (max-width: 1599.98px) {
         padding: 20px 35px 80px;
     }
@@ -138,6 +134,10 @@
     @media (max-width: 767.98px) {
         padding: 10px 15px 50px;
     }
+}
+
+.jmdc-simple-list-content--grid .jmdc-simple-list-content__grid .jmdc-simple-list-content__title {
+    font-size: 64px;
 }
 
 .jmdc-simple-list-content--grid .jmdc-simple-list-content__grid-item {
