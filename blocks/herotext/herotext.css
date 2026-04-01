@@ -45,6 +45,7 @@
     color: #06060C;
     font-weight: 500;
     white-space: pre;
+    line-height: normal;
     @media (max-width: 767.98px) {
         font-size: 16px;
     }
