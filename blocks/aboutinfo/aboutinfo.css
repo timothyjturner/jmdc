@@ -115,10 +115,6 @@ section.jmdc-about-info {
     margin: 0;
 }
 
-.jmdc-about-info__text p + p {
-    margin-top: 1em;
-}
-
 .jmdc-about-info__text strong,
 .jmdc-about-info__text b {
     font-weight: 600;
