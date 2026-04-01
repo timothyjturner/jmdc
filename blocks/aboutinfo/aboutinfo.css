@@ -43,13 +43,13 @@ section.jmdc-about-info {
 .jmdc-about-info__name {
     font-size: 24px;
     line-height: 1;
-    margin: 0 0 4px;
-    font-weight: 400;
+    margin: 4px 0 4px;
+    font-weight: 600;
 }
 
 .jmdc-about-info__designation {
     display: block;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.1;
     font-weight: 400;
 }
