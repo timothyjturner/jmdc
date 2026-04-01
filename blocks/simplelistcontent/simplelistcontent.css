@@ -114,11 +114,15 @@
    ========================= */
 
 .jmdc-simple-list-content--grid .jmdc-simple-list-content__grid {
-    padding: 20px 60px 80px;
+    padding: 20px 60px 90px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 40px;
-    row-gap: 0;
+    row-gap: 14px;
+
+    .jmdc-simple-list-content__title {
+        font-size: 64px;
+    }
 
     @media (max-width: 1599.98px) {
         padding: 20px 35px 80px;
