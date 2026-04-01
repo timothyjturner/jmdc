@@ -136,8 +136,14 @@
     }
 }
 
-.jmdc-simple-list-content--grid .jmdc-simple-list-content__grid .jmdc-simple-list-content__title {
+.jmdc-simple-list-content--grid .jmdc-simple-list-content__title {
     font-size: 64px;
+    @media (max-width: 1599.98px) {
+      font-size: 50px;
+    }
+    @media (max-width: 1024.98px) {
+      font-size: 40px;
+    }
 }
 
 .jmdc-simple-list-content--grid .jmdc-simple-list-content__grid-item {
