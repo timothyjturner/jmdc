@@ -29,8 +29,8 @@
                     "label": "Testimonial",
                     "name": "jmdc_testimonial",
                     "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
+                    "type": "wysiwyg",
+                    "instructions": "Use line breaks exactly as desired for the design. Keep formatting minimal.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -39,10 +39,54 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
-                    "rows": "",
-                    "placeholder": "",
-                    "new_lines": "",
+                    "tabs": "visual",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "parent_repeater": "field_69b177e06694b"
+                },
+                {
+                    "key": "field_jmdc_testimonial_font_size_desktop",
+                    "label": "Quote Font Size Desktop",
+                    "name": "jmdc_testimonial_font_size_desktop",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Optional. Value in px.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 1,
+                    "max": 200,
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
+                    "parent_repeater": "field_69b177e06694b"
+                },
+                {
+                    "key": "field_jmdc_testimonial_font_size_mobile",
+                    "label": "Quote Font Size Mobile",
+                    "name": "jmdc_testimonial_font_size_mobile",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "Optional. Value in px.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": 1,
+                    "max": 200,
+                    "step": 1,
+                    "prepend": "",
+                    "append": "px",
                     "parent_repeater": "field_69b177e06694b"
                 },
                 {
@@ -95,7 +139,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/testimonialslider"
+                "value": "acf/testimonialslider"
             }
         ]
     ],

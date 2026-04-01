@@ -16,10 +16,16 @@ $valid_testimonials = [];
 
 if (!empty($testimonial_slider) && is_array($testimonial_slider)) {
     foreach ($testimonial_slider as $testimonial) {
-        $quote = $testimonial['jmdc_testimonial'] ?? '';
+        $quote_content = $testimonial['jmdc_testimonial'] ?? '';
 
-        if (!empty($quote)) {
-            $valid_testimonials[] = $testimonial;
+        if (!empty(trim(wp_strip_all_tags($quote_content)))) {
+            $valid_testimonials[] = array(
+                'content'       => $quote_content,
+                'font_desktop'  => !empty($testimonial['jmdc_testimonial_font_size_desktop']) ? (int) $testimonial['jmdc_testimonial_font_size_desktop'] : '',
+                'font_mobile'   => !empty($testimonial['jmdc_testimonial_font_size_mobile']) ? (int) $testimonial['jmdc_testimonial_font_size_mobile'] : '',
+                'author_name'   => $testimonial['jmdc_author_name'] ?? '',
+                'designation'   => $testimonial['jmdc_designation'] ?? '',
+            );
         }
     }
 }
@@ -30,20 +36,27 @@ if (!empty($valid_testimonials)) :
     <div class="jmdc-testimonial-slider__container swiper">
         <div class="swiper-wrapper">
             <?php foreach ($valid_testimonials as $testimonial) : ?>
+                <?php
+                $style = '';
+
+                if (!empty($testimonial['font_desktop'])) {
+                    $style .= '--quote-font-size-desktop:' . (int) $testimonial['font_desktop'] . 'px;';
+                }
+
+                if (!empty($testimonial['font_mobile'])) {
+                    $style .= '--quote-font-size-mobile:' . (int) $testimonial['font_mobile'] . 'px;';
+                }
+
+                $author_name = $testimonial['author_name'];
+                $designation = $testimonial['designation'];
+                ?>
                 <div class="jmdc-testimonial-slider__item swiper-slide">
                     <div class="jmdc-testimonial-slider__content">
-                        <?php if (!empty($testimonial['jmdc_testimonial'])) : ?>
-                            <div class="jmdc-testimonial-slider__text-wrap">
-                                <p class="jmdc-testimonial-slider__text" data-fit-text>
-                                    “<?php echo wp_kses(nl2br(esc_html($testimonial['jmdc_testimonial'])), array('br' => array())); ?>”
-                                </p>
+                        <div class="jmdc-testimonial-slider__text-wrap" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
+                            <div class="jmdc-testimonial-slider__text">
+                                <?php echo wp_kses_post($testimonial['content']); ?>
                             </div>
-                        <?php endif; ?>
-
-                        <?php
-                        $author_name = $testimonial['jmdc_author_name'] ?? '';
-                        $designation = $testimonial['jmdc_designation'] ?? '';
-                        ?>
+                        </div>
 
                         <?php if (!empty($author_name) || !empty($designation)) : ?>
                             <div class="jmdc-testimonial-slider__author-info">

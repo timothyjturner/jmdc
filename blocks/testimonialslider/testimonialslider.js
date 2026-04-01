@@ -1,79 +1,17 @@
 (function () {
-  function getMaxFontSize() {
-    if (window.innerWidth <= 767) return 18;
-    if (window.innerWidth <= 1024) return 22;
-    return 26;
-  }
-
-  function getMinFontSize() {
-    return window.innerWidth <= 767 ? 14 : 16;
-  }
-
-  function getMaxTextHeight() {
-    if (window.innerWidth <= 767) return 340;
-    if (window.innerWidth <= 1024) return 440;
-    return 520;
-  }
-
-  function fitSlideText(slide) {
-    var text = slide.querySelector("[data-fit-text]");
-    var wrap = slide.querySelector(".jmdc-testimonial-slider__text-wrap");
-
-    if (!text || !wrap) {
+  function setActiveSlideHeight(swiper) {
+    if (!swiper || !swiper.slides || typeof swiper.activeIndex === "undefined") {
       return;
     }
 
-    var maxSize = getMaxFontSize();
-    var minSize = getMinFontSize();
-    var maxHeight = getMaxTextHeight();
-    var size = maxSize;
+    var activeSlide = swiper.slides[swiper.activeIndex];
+    var wrapper = swiper.wrapperEl;
 
-    text.style.setProperty("--quote-font-size", maxSize + "px");
-
-    var prevHidden = slide.hasAttribute("hidden");
-    var prevDisplay = slide.style.display;
-    var prevVisibility = slide.style.visibility;
-    var prevPosition = slide.style.position;
-    var prevOpacity = slide.style.opacity;
-    var prevPointerEvents = slide.style.pointerEvents;
-
-    slide.removeAttribute("hidden");
-    slide.style.display = "block";
-    slide.style.visibility = "hidden";
-    slide.style.position = "relative";
-    slide.style.opacity = "1";
-    slide.style.pointerEvents = "none";
-
-    while (size > minSize && text.scrollHeight > maxHeight) {
-      size -= 1;
-      text.style.setProperty("--quote-font-size", size + "px");
+    if (!activeSlide || !wrapper) {
+      return;
     }
 
-    slide.style.display = prevDisplay;
-    slide.style.visibility = prevVisibility;
-    slide.style.position = prevPosition;
-    slide.style.opacity = prevOpacity;
-    slide.style.pointerEvents = prevPointerEvents;
-
-    if (prevHidden) {
-      slide.setAttribute("hidden", "hidden");
-    }
-  }
-
-  function fitAllSlides(containerEl) {
-    var slides = containerEl.querySelectorAll(".swiper-slide");
-
-    slides.forEach(function (slide) {
-      fitSlideText(slide);
-    });
-  }
-
-  function refreshSliderHeight(swiper) {
-    if (!swiper) return;
-
-    swiper.updateSlides();
-    swiper.update();
-    swiper.updateAutoHeight(300);
+    wrapper.style.height = activeSlide.offsetHeight + "px";
   }
 
   function initTestimonialSlider() {
@@ -88,14 +26,12 @@
       var paginationEl = containerEl.querySelector(".jmdc-testimonial-slider__pagination");
       if (!paginationEl) return;
 
-      fitAllSlides(containerEl);
-
-      var swiper = new Swiper(containerEl, {
+      new Swiper(containerEl, {
         slidesPerView: 1,
         slidesPerGroup: 1,
         speed: 900,
         loop: true,
-        autoHeight: true,
+        autoHeight: false,
         spaceBetween: 20,
         autoplay: {
           delay: 6000,
@@ -109,28 +45,19 @@
         },
         on: {
           init: function () {
-            refreshSliderHeight(this);
+            setActiveSlideHeight(this);
           },
           slideChangeTransitionStart: function () {
-            refreshSliderHeight(this);
+            setActiveSlideHeight(this);
           },
           slideChangeTransitionEnd: function () {
-            refreshSliderHeight(this);
+            setActiveSlideHeight(this);
           },
           resize: function () {
-            fitAllSlides(containerEl);
-            refreshSliderHeight(this);
+            this.update();
+            setActiveSlideHeight(this);
           }
         }
-      });
-
-      var resizeTimer = null;
-      window.addEventListener("resize", function () {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(function () {
-          fitAllSlides(containerEl);
-          refreshSliderHeight(swiper);
-        }, 120);
       });
     });
   }
