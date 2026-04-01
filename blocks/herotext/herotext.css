@@ -47,12 +47,12 @@
     white-space: pre-line;
     line-height: normal;
     @media (max-width: 767.98px) {
-        font-size: 16px;
+        font-size: 14px;
+        white-space: normal;
     }
 }
 
 .jmdc-herotext.agency-text .jmdc-herotext__description {
-    max-width: 750px;
     margin-inline: auto;
 }
 
