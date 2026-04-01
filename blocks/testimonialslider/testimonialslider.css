@@ -1,5 +1,5 @@
 .jmdc-testimonial-slider {
-  padding: 60px 0 30px;
+  padding: 90px 0 70px;
   background-color: #000000;
   color: #ffffff;
   overflow: visible;
@@ -28,6 +28,7 @@
   justify-content: center;
   padding: 0 16px;
   box-sizing: border-box;
+  min-height: 420px;
 }
 
 .jmdc-testimonial-slider__item.swiper-slide {
@@ -36,9 +37,16 @@
 
 .jmdc-testimonial-slider__content {
   max-width: 720px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
-  padding-top: 8px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+  box-sizing: border-box;
 }
 
 .jmdc-testimonial-slider__text-wrap {
@@ -53,7 +61,7 @@
   font-size: var(--quote-font-size-desktop);
   line-height: 1.55;
   font-weight: 400;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
   overflow-wrap: break-word;
 }
 
@@ -87,6 +95,7 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 4px;
 }
 
 .jmdc-testimonial-slider__author,
@@ -101,8 +110,8 @@
   position: static;
   display: flex;
   justify-content: center;
-  margin-top: 48px;
-  padding-bottom: 24px;
+  margin-top: 34px;
+  padding-bottom: 0;
 }
 
 .jmdc-testimonial-slider__pagination .swiper-pagination-bullet,
@@ -133,12 +142,17 @@
 
 @media (max-width: 1024px) {
   .jmdc-testimonial-slider {
-    padding: 64px 0;
+    padding: 72px 0 56px;
   }
 
   .jmdc-testimonial-slider__content,
   .jmdc-testimonial-slider__text-wrap {
     max-width: 600px;
+  }
+
+  .jmdc-testimonial-slider__item,
+  .jmdc-testimonial-slider__content {
+    min-height: 380px;
   }
 
   .jmdc-testimonial-slider__text {
@@ -154,7 +168,7 @@
 
 @media (max-width: 767px) {
   .jmdc-testimonial-slider {
-    padding: 48px 0;
+    padding: 56px 0 44px;
   }
 
   .jmdc-testimonial-slider__container {
@@ -163,6 +177,12 @@
 
   .jmdc-testimonial-slider__item {
     padding: 0;
+    min-height: 320px;
+  }
+
+  .jmdc-testimonial-slider__content {
+    min-height: 320px;
+    padding: 18px 0;
   }
 
   .jmdc-testimonial-slider__text {
@@ -176,8 +196,7 @@
   }
 
   .jmdc-testimonial-slider__pagination.swiper-pagination {
-    margin-top: 32px;
-    padding-bottom: 16px;
+    margin-top: 26px;
   }
 }
 

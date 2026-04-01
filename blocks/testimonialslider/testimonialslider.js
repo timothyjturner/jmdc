@@ -11,7 +11,9 @@
       return;
     }
 
-    wrapper.style.height = activeSlide.offsetHeight + "px";
+    var minHeight = window.innerWidth <= 767 ? 320 : window.innerWidth <= 1024 ? 380 : 420;
+    var measuredHeight = activeSlide.offsetHeight;
+    wrapper.style.height = Math.max(measuredHeight, minHeight) + "px";
   }
 
   function initTestimonialSlider() {
