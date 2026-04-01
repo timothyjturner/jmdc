@@ -44,14 +44,14 @@ section.jmdc-about-info {
     font-size: 24px;
     line-height: 1;
     margin: 0 0 4px;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .jmdc-about-info__designation {
     display: block;
     font-size: 14px;
     line-height: 1.1;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .jmdc-about-info__content {
@@ -96,24 +96,43 @@ section.jmdc-about-info {
     width: 100%;
     max-width: 720px;
     margin: 0 auto;
+    --quote-font-size-desktop: 42px;
+    --quote-font-size-mobile: 22px;
 }
 
 .jmdc-about-info__text {
-    --quote-font-size: 42px;
     margin: 0;
-    font-size: var(--quote-font-size);
+    font-size: var(--quote-font-size-desktop);
     line-height: 1.12;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 400;
     max-width: 100%;
     overflow-wrap: break-word;
+}
+
+.jmdc-about-info__text p {
+    margin: 0;
+}
+
+.jmdc-about-info__text p + p {
+    margin-top: 1em;
+}
+
+.jmdc-about-info__text strong,
+.jmdc-about-info__text b {
+    font-weight: 600;
+}
+
+.jmdc-about-info__text em,
+.jmdc-about-info__text i {
+    font-style: italic;
 }
 
 .jmdc-about-info__text br {
     display: block;
     content: "";
-    margin-top: 0.5em;
+    margin-top: 0;
 }
 
 .jmdc-about-info__dots {
@@ -153,10 +172,6 @@ section.jmdc-about-info {
     .jmdc-about-info__text-wrap {
         max-width: 660px;
     }
-
-    .jmdc-about-info__text {
-        --quote-font-size: 36px;
-    }
 }
 
 @media (max-width: 1024.98px) {
@@ -169,7 +184,7 @@ section.jmdc-about-info {
     }
 
     .jmdc-about-info__text {
-        --quote-font-size: 30px;
+        font-size: calc(var(--quote-font-size-desktop) * 0.78);
     }
 }
 
@@ -217,7 +232,7 @@ section.jmdc-about-info {
     }
 
     .jmdc-about-info__text {
-        --quote-font-size: 22px;
+        font-size: var(--quote-font-size-mobile);
         line-height: 1.18;
     }
 

@@ -38,61 +38,6 @@
     });
   }
 
-  function getMaxFontSize() {
-    if (window.innerWidth <= 600) return 22;
-    if (window.innerWidth <= 1024) return 30;
-    if (window.innerWidth <= 1200) return 36;
-    return 42;
-  }
-
-  function getMinFontSize() {
-    return window.innerWidth <= 600 ? 16 : 18;
-  }
-
-  function fitSlideText(slide) {
-    var text = slide.querySelector("[data-fit-text]");
-    var wrap = slide.querySelector(".jmdc-about-info__text-wrap");
-
-    if (!text || !wrap) {
-      return;
-    }
-
-    var maxSize = getMaxFontSize();
-    var minSize = getMinFontSize();
-    var size = maxSize;
-
-    text.style.setProperty("--quote-font-size", maxSize + "px");
-
-    // temporarily measure naturally
-    slide.removeAttribute("hidden");
-    slide.classList.add("is-active", "is-measuring");
-    slide.style.position = "relative";
-    slide.style.visibility = "hidden";
-    slide.style.opacity = "0";
-    slide.style.pointerEvents = "none";
-
-    var maxWidth = wrap.clientWidth;
-    var maxHeight = window.innerWidth <= 600 ? 260 : 520;
-
-    while (
-      size > minSize &&
-      (text.scrollWidth > maxWidth + 2 || text.scrollHeight > maxHeight)
-    ) {
-      size -= 1;
-      text.style.setProperty("--quote-font-size", size + "px");
-    }
-
-    slide.classList.remove("is-measuring");
-    slide.style.position = "";
-    slide.style.visibility = "";
-    slide.style.opacity = "";
-    slide.style.pointerEvents = "";
-
-    if (!slide.classList.contains("is-active")) {
-      slide.setAttribute("hidden", "hidden");
-    }
-  }
-
   function setViewportHeight(slider, index) {
     var viewport = slider.querySelector(".jmdc-about-info__slider-viewport");
     var slide = slider.querySelector('[data-slide="' + index + '"]');
@@ -102,8 +47,7 @@
     }
 
     slide.removeAttribute("hidden");
-    var height = slide.offsetHeight;
-    viewport.style.height = height + "px";
+    viewport.style.height = slide.offsetHeight + "px";
   }
 
   function initSliders() {
@@ -127,10 +71,6 @@
       if (!slides.length) {
         return;
       }
-
-      slides.forEach(function (slide) {
-        fitSlideText(slide);
-      });
 
       function showSlide(index) {
         slides.forEach(function (slide, i) {
@@ -200,9 +140,6 @@
       window.addEventListener("resize", function () {
         window.clearTimeout(resizeTimer);
         resizeTimer = window.setTimeout(function () {
-          slides.forEach(function (slide) {
-            fitSlideText(slide);
-          });
           showSlide(current);
         }, 120);
       });

@@ -19,10 +19,14 @@ $valid_quotes = [];
 
 if (! empty($quotes) && is_array($quotes)) {
     foreach ($quotes as $quote) {
-        $quote_text = $quote['jmdc_quote_text'] ?? '';
+        $quote_content = $quote['jmdc_quote_content'] ?? '';
 
-        if (! empty($quote_text)) {
-            $valid_quotes[] = $quote_text;
+        if (! empty(trim(wp_strip_all_tags($quote_content)))) {
+            $valid_quotes[] = array(
+                'content'       => $quote_content,
+                'font_desktop'  => ! empty($quote['jmdc_quote_font_size_desktop']) ? (int) $quote['jmdc_quote_font_size_desktop'] : '',
+                'font_mobile'   => ! empty($quote['jmdc_quote_font_size_mobile']) ? (int) $quote['jmdc_quote_font_size_mobile'] : '',
+            );
         }
     }
 }
@@ -72,16 +76,27 @@ $quote_count = count($valid_quotes);
             >
                 <div class="jmdc-about-info__slider-viewport">
                     <div class="jmdc-about-info__slider-track">
-                        <?php foreach ($valid_quotes as $index => $quote_text) : ?>
+                        <?php foreach ($valid_quotes as $index => $quote) : ?>
+                            <?php
+                            $style = '';
+
+                            if (! empty($quote['font_desktop'])) {
+                                $style .= '--quote-font-size-desktop:' . (int) $quote['font_desktop'] . 'px;';
+                            }
+
+                            if (! empty($quote['font_mobile'])) {
+                                $style .= '--quote-font-size-mobile:' . (int) $quote['font_mobile'] . 'px;';
+                            }
+                            ?>
                             <div
                                 class="jmdc-about-info__slide<?php echo $index === 0 ? ' is-active' : ''; ?>"
                                 data-slide="<?php echo esc_attr($index); ?>"
                                 <?php echo $index === 0 ? '' : 'hidden'; ?>
                             >
-                                <div class="jmdc-about-info__text-wrap">
-                                    <p class="jmdc-about-info__text" data-fit-text>
-                                        “<?php echo wp_kses($quote_text, array('br' => array())); ?>”
-                                    </p>
+                                <div class="jmdc-about-info__text-wrap" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
+                                    <div class="jmdc-about-info__text">
+                                        <?php echo wp_kses_post($quote['content']); ?>
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -90,7 +105,7 @@ $quote_count = count($valid_quotes);
 
                 <?php if ($quote_count > 1) : ?>
                     <div class="jmdc-about-info__dots" aria-label="Quote navigation">
-                        <?php foreach ($valid_quotes as $index => $quote_text) : ?>
+                        <?php foreach ($valid_quotes as $index => $quote) : ?>
                             <button
                                 type="button"
                                 class="jmdc-about-info__dot<?php echo $index === 0 ? ' is-active' : ''; ?>"
