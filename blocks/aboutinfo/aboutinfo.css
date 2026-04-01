@@ -113,6 +113,7 @@ section.jmdc-about-info {
 
 .jmdc-about-info__text p {
     margin: 0;
+    line-height: 1.2em;
 }
 
 .jmdc-about-info__text p + p {
