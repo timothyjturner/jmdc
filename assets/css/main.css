@@ -507,8 +507,11 @@ body.jmdc-nav-open {
         display: block;
         width: 100%;
         height: auto; }
-    .jmdc-case-study__content .jmdc-case-study__content > .wp-block-video {
+    .jmdc-case-study__content > .wp-block-video {
       margin: 0 30px 24px; }
+      @media (max-width: 781px) {
+        .jmdc-case-study__content > .wp-block-video {
+          margin: 0 24px 24px; } }
     .jmdc-case-study__content .wp-block-spacer {
       margin-bottom: 0; }
     .jmdc-case-study__content .wp-block-group {
