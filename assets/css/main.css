@@ -631,7 +631,7 @@ body.jmdc-nav-open {
   .jmdc-case-study__content .wp-block-columns {
     flex-wrap: wrap;
     gap: 12px;
-    margin: 0 0 12px; }
+    margin: 12px auto; }
     .jmdc-case-study__content .wp-block-columns .wp-block-column {
       flex: 0 0 100%; }
     .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile {
