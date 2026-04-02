@@ -524,6 +524,9 @@ body.jmdc-nav-open {
       max-width: calc(100vw - 60px);
       margin-left: auto;
       margin-right: auto; }
+      @media (max-width: 781px) {
+        .jmdc-case-study__content .wp-block-columns {
+          max-width: calc(100vw - 48px); } }
       .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile {
         flex-wrap: nowrap; }
       .jmdc-case-study__content .wp-block-columns .wp-block-image figure {

@@ -74,6 +74,9 @@
       max-width: calc(100vw - 60px);
       margin-left: auto;
       margin-right: auto;
+      @media(max-width: 781px) {
+        max-width: calc(100vw - 48px);
+      }
 
       &.is-not-stacked-on-mobile {
         flex-wrap: nowrap;
