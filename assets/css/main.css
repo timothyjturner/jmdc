@@ -661,4 +661,9 @@ body.jmdc-nav-open {
     .video45 video {
       aspect-ratio: 1 / 1 !important; } }
 
+.fullwidthcols {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: unset; }
+
 /*# sourceMappingURL=main.css.map */
