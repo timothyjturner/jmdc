@@ -299,3 +299,14 @@
       height: 100%;
   }
 }
+
+@media (max-width: 781px) {
+  .jmdc-case-study__content .wp-block-columns.unevenimagecontainer {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+  .jmdc-case-study__content .wp-block-columns.unevenimagecontainer .wp-block-image img {
+      aspect-ratio: auto;
+  }
+}
