@@ -154,6 +154,10 @@
           color: #06060C;
           font-size: 26px;
           font-weight: 700;
+          @media (max-width: 781px) {
+            font-size: 16px;
+            line-height: 1.5;
+          }
         }
     }
 

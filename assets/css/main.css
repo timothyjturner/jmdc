@@ -584,6 +584,10 @@ body.jmdc-nav-open {
         color: #06060C;
         font-size: 26px;
         font-weight: 700; }
+        @media (max-width: 781px) {
+          .jmdc-case-study__content p strong {
+            font-size: 16px;
+            line-height: 1.5; } }
     .jmdc-case-study__content p:last-child,
     .jmdc-case-study__content h1:last-child,
     .jmdc-case-study__content h2:last-child,
