@@ -630,7 +630,8 @@ body.jmdc-nav-open {
     aspect-ratio: 1 / 1; }
   .jmdc-case-study__content .wp-block-columns {
     flex-wrap: wrap;
-    gap: 12px; }
+    gap: 12px;
+    margin: 0 0 12px; }
     .jmdc-case-study__content .wp-block-columns .wp-block-column {
       flex: 0 0 100%; }
     .jmdc-case-study__content .wp-block-columns.is-not-stacked-on-mobile {
