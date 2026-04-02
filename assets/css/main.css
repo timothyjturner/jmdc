@@ -666,4 +666,9 @@ body.jmdc-nav-open {
   margin-right: 0;
   max-width: unset; }
 
+.maxw1280 {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto; }
+
 /*# sourceMappingURL=main.css.map */
