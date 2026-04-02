@@ -655,7 +655,7 @@ body.jmdc-nav-open {
     font-weight: 500;
     line-height: 1.5; }
 
-  .video45 {
+  .video45 video {
     aspect-ratio: 4 / 5 !important;
     object-fit: cover; } }
 
