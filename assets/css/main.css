@@ -657,5 +657,8 @@ body.jmdc-nav-open {
 .video45 video {
   aspect-ratio: 4 / 5 !important;
   object-fit: cover; }
+  @media (max-width: 781px) {
+    .video45 video {
+      aspect-ratio: 1 / 1 !important; } }
 
 /*# sourceMappingURL=main.css.map */

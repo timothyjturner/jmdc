@@ -269,4 +269,7 @@
 .video45 video {
   aspect-ratio: 4 / 5 !important;
   object-fit: cover;
+  @media (max-width: 781px) {
+    aspect-ratio: 1 / 1 !important;
+  }
 }
