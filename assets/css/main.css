@@ -564,20 +564,25 @@ body.jmdc-nav-open {
       padding-right: 80px;
       box-sizing: content-box; }
     .jmdc-case-study__content p {
-      text-align: center;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
       padding-left: 24px;
       padding-right: 24px;
       padding-bottom: 24px;
       max-width: calc(100vw - 60px);
       box-sizing: content-box;
       margin-left: auto;
-      margin-right: auto; }
+      margin-right: auto;
+      color: #2C2E35;
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 34px;
+      text-transform: uppercase;
+      font-family: "articulat-cf", sans-serif; }
       .jmdc-case-study__content p strong {
-        font-weight: 900; }
+        color: #06060C;
+        font-size: 26px;
+        font-weight: 700; }
     .jmdc-case-study__content p:last-child,
     .jmdc-case-study__content h1:last-child,
     .jmdc-case-study__content h2:last-child,

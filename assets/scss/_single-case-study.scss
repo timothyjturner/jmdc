@@ -134,11 +134,6 @@
     }
 
     p {
-        text-align: center;
-        font-size: 30px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
         padding-left: 24px;
         padding-right: 24px;
         padding-bottom: 24px;
@@ -146,8 +141,18 @@
         box-sizing: content-box;
         margin-left: auto;
         margin-right: auto;
+        color: #2C2E35;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 34px;
+        text-transform: uppercase;
+        font-family: "articulat-cf", sans-serif;
         strong {
-          font-weight: 900;
+          color: #06060C;
+          font-size: 26px;
+          font-weight: 700;
         }
     }
 
