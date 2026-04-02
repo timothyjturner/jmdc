@@ -674,4 +674,11 @@ body.jmdc-nav-open {
     .maxw1280 {
       max-width: calc(1280px - 48px); } }
 
+.jmdc-case-study__content .wp-block-columns.unevenimagecontainer .wp-block-image img {
+  aspect-ratio: auto;
+  height: 100%; }
+
+.jmdc-case-study__content .wp-block-columns.unevenimagecontainer figure {
+  height: 100%; }
+
 /*# sourceMappingURL=main.css.map */
