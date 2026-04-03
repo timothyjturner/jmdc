@@ -128,19 +128,18 @@ section.jmdc-about-info {
 }
 
 /* ========================
-   MODAL / LIGHTBOX
+   MODAL (CENTERED DESKTOP)
 ======================== */
 
 .jmdc-about-info__modal {
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    z-index: 99999;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding: 72px 24px 24px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 24px;
+    overflow: hidden;
 }
 
 .jmdc-about-info__modal[hidden] {
@@ -148,25 +147,25 @@ section.jmdc-about-info {
 }
 
 .jmdc-about-info__modal-backdrop {
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.2s ease;
 }
 
-/* modal box */
 .jmdc-about-info__modal-dialog {
     position: relative;
     z-index: 1;
-    width: min(720px, 100%);
+    width: min(720px, calc(100vw - 48px));
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
     background: #ffffff;
     padding: 44px 48px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
     opacity: 0;
-    transform: translateY(12px);
+    transform: scale(0.98);
     transition: opacity 0.2s ease, transform 0.2s ease;
-    margin: 0 auto;
 }
 
 .jmdc-about-info__modal.is-open .jmdc-about-info__modal-backdrop {
@@ -175,10 +174,9 @@ section.jmdc-about-info {
 
 .jmdc-about-info__modal.is-open .jmdc-about-info__modal-dialog {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
 }
 
-/* close button */
 .jmdc-about-info__modal-close {
     appearance: none;
     border: 0;
@@ -193,9 +191,9 @@ section.jmdc-about-info {
     font-size: 30px;
     line-height: 1;
     cursor: pointer;
+    z-index: 2;
 }
 
-/* modal content */
 .jmdc-about-info__modal-content {
     display: block;
 }
@@ -217,7 +215,7 @@ section.jmdc-about-info {
     margin-top: 1em;
 }
 
-/* prevent background scroll */
+/* prevent scroll behind modal */
 html.jmdc-about-info-modal-open,
 body.jmdc-about-info-modal-open {
     overflow: hidden;
@@ -272,6 +270,10 @@ body.jmdc-about-info-modal-open {
     }
 }
 
+/* ========================
+   MOBILE FULLSCREEN MODAL
+======================== */
+
 @media (max-width: 600px) {
     section.jmdc-about-info {
         padding: 40px 0;
@@ -299,32 +301,36 @@ body.jmdc-about-info-modal-open {
         line-height: 1.18;
     }
 
-    /* modal mobile fix */
     .jmdc-about-info__modal {
-        align-items: flex-start;
-        padding: 84px 16px 16px;
+        padding: 0;
     }
 
     .jmdc-about-info__modal-dialog {
-        width: 100%;
-        padding: 32px 20px 24px;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        padding: 56px 24px 32px;
+        border-radius: 0;
     }
 
     .jmdc-about-info__modal-close {
-        top: 6px;
-        right: 6px;
+        top: 12px;
+        right: 12px;
+        width: 44px;
+        height: 44px;
     }
 
     .jmdc-about-info__modal-body {
         max-width: 100%;
         font-size: 15px;
         line-height: 1.55;
-        text-align: left;
+        text-align: center;
     }
 }
 
 /* ========================
-   ACCESSIBILITY / MOTION
+   ACCESSIBILITY
 ======================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -334,7 +340,7 @@ body.jmdc-about-info-modal-open {
     }
 }
 
-/* special page override (kept from original) */
+/* existing override kept */
 .page-id-11 .jmdc-about-info__container {
     max-width: unset;
 }
