@@ -140,7 +140,6 @@ section.jmdc-about-info {
     justify-content: center;
     padding: 24px;
     overflow: hidden;
-    height: 100vh;
 }
 
 .jmdc-about-info__modal[hidden] {
