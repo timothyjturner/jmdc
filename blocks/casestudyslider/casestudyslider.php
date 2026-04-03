@@ -5,33 +5,48 @@
  * @param array $block The block settings and attributes.
  */
 
-$case_studies = get_field('jmdc_select_case_study');
+$slides = get_field('jmdc_case_study_slides');
 
 $class_name = '';
 if (!empty($block['className'])) {
     $class_name .= ' ' . $block['className'];
 }
 
-if ($case_studies) :
+if ($slides) :
 ?>
 <section class="jmdc-case-study-slider-section <?php echo esc_attr($class_name); ?>">
     <div class="jmdc-case-study-slider-wrapper">
         <div class="jmdc-case-study-slider swiper">
             <div class="jmdc-case-study-slider__track swiper-wrapper">
-                <?php foreach ($case_studies as $post) : 
+                <?php foreach ($slides as $slide) :
+                    $post = $slide['case_study'] ?? null;
+
+                    if (!$post instanceof WP_Post) {
+                        continue;
+                    }
+
                     setup_postdata($post);
 
-                    $custom_title = get_field('jmdc_case_study_title', $post->ID);
-                    $subtitle     = get_field('jmdc_case_study_subtitle', $post->ID);
-                    $title        = $custom_title ?: get_the_title($post->ID);
+                    $custom_title   = get_field('jmdc_case_study_title', $post->ID);
+                    $subtitle       = get_field('jmdc_case_study_subtitle', $post->ID);
+                    $title          = $custom_title ?: get_the_title($post->ID);
+                    $override_image = $slide['override_image'] ?? null;
+                    $video          = get_field('jmdc_case_study_video', $post->ID);
 
-                    $image_id   = get_post_thumbnail_id($post->ID);
-                    $image_data = $image_id ? wp_get_attachment_image_src($image_id, 'large') : false;
-                    $image_url  = $image_data[0] ?? get_the_post_thumbnail_url($post->ID, 'large');
-                    $image_alt  = get_post_meta($image_id, '_wp_attachment_image_alt', true);
-                    $image_width  = $image_data[1] ?? '';
-                    $image_height = $image_data[2] ?? '';
-                    $video      = get_field('jmdc_case_study_video', $post->ID);
+                    if (!empty($override_image['ID'])) {
+                        $image_id     = $override_image['ID'];
+                        $image_url    = $override_image['sizes']['large'] ?? $override_image['url'];
+                        $image_alt    = $override_image['alt'] ?? '';
+                        $image_width  = $override_image['sizes']['large-width'] ?? $override_image['width'] ?? '';
+                        $image_height = $override_image['sizes']['large-height'] ?? $override_image['height'] ?? '';
+                    } else {
+                        $image_id     = get_post_thumbnail_id($post->ID);
+                        $image_data   = $image_id ? wp_get_attachment_image_src($image_id, 'large') : false;
+                        $image_url    = $image_data[0] ?? get_the_post_thumbnail_url($post->ID, 'large');
+                        $image_alt    = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
+                        $image_width  = $image_data[1] ?? '';
+                        $image_height = $image_data[2] ?? '';
+                    }
                 ?>
 
                 <div class="jmdc-case-study-slider__slide swiper-slide">
@@ -50,9 +65,9 @@ if ($case_studies) :
                                     <source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
                                 </video>
                             <?php elseif ($image_url) : ?>
-                                <img 
+                                <img
                                     class="jmdc-case-study-slider__image"
-                                    src="<?php echo esc_url($image_url); ?>" 
+                                    src="<?php echo esc_url($image_url); ?>"
                                     alt="<?php echo esc_attr($image_alt ?: $title); ?>"
                                     <?php if ($image_width) : ?>
                                         width="<?php echo esc_attr($image_width); ?>"

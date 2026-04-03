@@ -3,12 +3,12 @@
     "title": "Case Study Slider",
     "fields": [
         {
-            "key": "field_69b17cc5762c4",
-            "label": "Select Case Study",
-            "name": "jmdc_select_case_study",
+            "key": "field_jmdc_case_study_slides",
+            "label": "Case Study Slides",
+            "name": "jmdc_case_study_slides",
             "aria-label": "",
-            "type": "post_object",
-            "instructions": "",
+            "type": "repeater",
+            "instructions": "Add each case study slide here. Upload an override image if you want to replace the case study featured image.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,14 +16,59 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "case_study"
-            ],
-            "taxonomy": "",
-            "return_format": "object",
-            "multiple": 1,
-            "allow_null": 0,
-            "ui": 1
+            "layout": "row",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_jmdc_case_study_post",
+            "button_label": "Add Slide",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_jmdc_case_study_post",
+                    "label": "Case Study",
+                    "name": "case_study",
+                    "aria-label": "",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "case_study"
+                    ],
+                    "taxonomy": "",
+                    "return_format": "object",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 1,
+                    "parent_repeater": "field_jmdc_case_study_slides"
+                },
+                {
+                    "key": "field_jmdc_case_study_override_image",
+                    "label": "Override Image",
+                    "name": "override_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Optional. If uploaded, this image will be used instead of the case study featured image.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "preview_size": "medium",
+                    "mime_types": "",
+                    "parent_repeater": "field_jmdc_case_study_slides"
+                }
+            ]
         }
     ],
     "location": [
@@ -31,7 +76,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/casestudyslider"
+                "value": "acf/casestudyslider"
             }
         ]
     ],
