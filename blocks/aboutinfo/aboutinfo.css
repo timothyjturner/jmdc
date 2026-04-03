@@ -128,18 +128,17 @@ section.jmdc-about-info {
 }
 
 /* ========================
-   MODAL (CENTERED DESKTOP)
+   MODAL (TRUE VIEWPORT)
 ======================== */
 
 .jmdc-about-info__modal {
     position: fixed;
     inset: 0;
-    z-index: 99999;
+    z-index: 2147483647;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
-    overflow: hidden;
 }
 
 .jmdc-about-info__modal[hidden] {
@@ -147,36 +146,40 @@ section.jmdc-about-info {
 }
 
 .jmdc-about-info__modal-backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
     opacity: 0;
     transition: opacity 0.2s ease;
 }
 
+/* dialog */
 .jmdc-about-info__modal-dialog {
     position: relative;
     z-index: 1;
     width: min(720px, calc(100vw - 48px));
     max-height: calc(100vh - 48px);
     overflow-y: auto;
+    margin: 0;
     background: #ffffff;
     padding: 44px 48px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     opacity: 0;
-    transform: scale(0.98);
+    transform: translate3d(0, 8px, 0);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+/* open state */
 .jmdc-about-info__modal.is-open .jmdc-about-info__modal-backdrop {
     opacity: 1;
 }
 
 .jmdc-about-info__modal.is-open .jmdc-about-info__modal-dialog {
     opacity: 1;
-    transform: scale(1);
+    transform: translate3d(0, 0, 0);
 }
 
+/* close button */
 .jmdc-about-info__modal-close {
     appearance: none;
     border: 0;
@@ -194,6 +197,7 @@ section.jmdc-about-info {
     z-index: 2;
 }
 
+/* modal content */
 .jmdc-about-info__modal-content {
     display: block;
 }
@@ -311,7 +315,6 @@ body.jmdc-about-info-modal-open {
         height: 100vh;
         max-height: 100vh;
         padding: 56px 24px 32px;
-        border-radius: 0;
     }
 
     .jmdc-about-info__modal-close {
@@ -340,7 +343,7 @@ body.jmdc-about-info-modal-open {
     }
 }
 
-/* existing override kept */
+/* existing override */
 .page-id-11 .jmdc-about-info__container {
     max-width: unset;
 }

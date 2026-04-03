@@ -64,7 +64,22 @@
     }
   }
 
+  function moveModalsToBody() {
+    var modals = document.querySelectorAll(".jmdc-about-info__modal");
+
+    modals.forEach(function (modal) {
+      if (modal.dataset.movedToBody === "true") {
+        return;
+      }
+
+      document.body.appendChild(modal);
+      modal.dataset.movedToBody = "true";
+    });
+  }
+
   function initBioModals() {
+    moveModalsToBody();
+
     var openButtons = document.querySelectorAll("[data-about-info-open]");
 
     if (!openButtons.length) {
@@ -95,6 +110,7 @@
 
         previousActiveElement = document.activeElement;
         modal.hidden = false;
+
         document.documentElement.classList.add("jmdc-about-info-modal-open");
         document.body.classList.add("jmdc-about-info-modal-open");
 
