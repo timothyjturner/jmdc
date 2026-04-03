@@ -410,16 +410,16 @@ body.jmdc-nav-open {
   margin-top: 16px; }
 
 .jmdc-work-card__title {
-  margin: 0 0 2px;
+  margin: 20px 0 2px;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase; }
 
 .jmdc-work-card__subtitle {
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.15;
-  font-weight: 700; }
+  font-weight: 600; }
 
 /* Gallery cards shouldn't show pointer cursor */
 .jmdc-work-card--gallery .jmdc-work-card__hit {
