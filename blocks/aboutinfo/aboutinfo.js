@@ -4,9 +4,7 @@
       ".jmdc-about-info .jmdc-about-info__container.jmdc-reveal"
     );
 
-    if (!items.length) {
-      return;
-    }
+    if (!items.length) return;
 
     if (!("IntersectionObserver" in window)) {
       items.forEach(function (el) {
@@ -18,9 +16,7 @@
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting) {
-            return;
-          }
+          if (!entry.isIntersecting) return;
 
           entry.target.classList.add("is-visible");
           io.unobserve(entry.target);
@@ -38,117 +34,57 @@
     });
   }
 
-  function setViewportHeight(slider, index) {
-    var viewport = slider.querySelector(".jmdc-about-info__slider-viewport");
-    var slide = slider.querySelector('[data-slide="' + index + '"]');
+  function initBioModal() {
+    var triggers = document.querySelectorAll("[data-bio-trigger]");
 
-    if (!viewport || !slide) {
-      return;
-    }
+    if (!triggers.length) return;
 
-    slide.removeAttribute("hidden");
-    viewport.style.height = slide.offsetHeight + "px";
-  }
+    triggers.forEach(function (trigger) {
+      var targetId = trigger.getAttribute("data-bio-trigger");
+      var modal = document.querySelector('[data-bio-modal="' + targetId + '"]');
 
-  function initSliders() {
-    var sliders = document.querySelectorAll(".jmdc-about-info [data-slider]");
+      if (!modal) return;
 
-    if (!sliders.length) {
-      return;
-    }
+      var closeBtn = modal.querySelector("[data-bio-close]");
 
-    sliders.forEach(function (slider) {
-      var slides = slider.querySelectorAll("[data-slide]");
-      var dots = slider.querySelectorAll("[data-dot]");
-      var autoplay = slider.getAttribute("data-autoplay") === "true";
-      var autoplaySpeed = parseInt(
-        slider.getAttribute("data-autoplay-speed") || "5000",
-        10
-      );
-      var current = 0;
-      var timer = null;
-
-      if (!slides.length) {
-        return;
+      function openModal() {
+        modal.classList.add("is-active");
+        document.body.classList.add("jmdc-modal-open");
       }
 
-      function showSlide(index) {
-        slides.forEach(function (slide, i) {
-          var isActive = i === index;
-          slide.classList.toggle("is-active", isActive);
-
-          if (isActive) {
-            slide.removeAttribute("hidden");
-          } else {
-            slide.setAttribute("hidden", "hidden");
-          }
-        });
-
-        dots.forEach(function (dot, i) {
-          var isActive = i === index;
-          dot.classList.toggle("is-active", isActive);
-          dot.setAttribute("aria-pressed", isActive ? "true" : "false");
-        });
-
-        current = index;
-        setViewportHeight(slider, current);
+      function closeModal() {
+        modal.classList.remove("is-active");
+        document.body.classList.remove("jmdc-modal-open");
       }
 
-      function nextSlide() {
-        var next = current + 1 >= slides.length ? 0 : current + 1;
-        showSlide(next);
-      }
-
-      function startAutoplay() {
-        if (!autoplay || slides.length < 2) {
-          return;
-        }
-
-        stopAutoplay();
-        timer = window.setInterval(nextSlide, autoplaySpeed);
-      }
-
-      function stopAutoplay() {
-        if (timer) {
-          window.clearInterval(timer);
-          timer = null;
-        }
-      }
-
-      dots.forEach(function (dot) {
-        dot.addEventListener("click", function () {
-          var index = parseInt(dot.getAttribute("data-dot"), 10);
-
-          if (Number.isNaN(index)) {
-            return;
-          }
-
-          showSlide(index);
-          startAutoplay();
-        });
+      trigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        openModal();
       });
 
-      slider.addEventListener("mouseenter", stopAutoplay);
-      slider.addEventListener("mouseleave", startAutoplay);
-      slider.addEventListener("focusin", stopAutoplay);
-      slider.addEventListener("focusout", startAutoplay);
+      if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+          closeModal();
+        });
+      }
 
-      showSlide(0);
-      startAutoplay();
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
 
-      var resizeTimer = null;
-      window.addEventListener("resize", function () {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(function () {
-          showSlide(current);
-        }, 120);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeModal();
+        }
       });
     });
   }
 
   function onReady() {
     initReveal();
-    initSliders();
+    initBioModal();
   }
 
   if (document.readyState === "loading") {

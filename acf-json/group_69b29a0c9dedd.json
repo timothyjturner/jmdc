@@ -68,6 +68,46 @@
             "append": ""
         },
         {
+            "key": "field_jmdc_bio_content",
+            "label": "Bio Content",
+            "name": "jmdc_bio_content",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Displayed in the bio lightbox when the VIEW BIO link is clicked.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_jmdc_bio_link_label",
+            "label": "Bio Link Label",
+            "name": "jmdc_bio_link_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Defaults to VIEW BIO.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "VIEW BIO",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_jmdc_quotes",
             "label": "Quotes",
             "name": "jmdc_quotes",

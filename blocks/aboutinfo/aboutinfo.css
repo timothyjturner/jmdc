@@ -36,7 +36,10 @@ section.jmdc-about-info {
 }
 
 .jmdc-about-info__name,
-.jmdc-about-info__designation {
+.jmdc-about-info__designation,
+.jmdc-about-info__bio-trigger,
+.jmdc-about-info__modal-title,
+.jmdc-about-info__modal-designation {
     text-transform: uppercase;
 }
 
@@ -61,35 +64,7 @@ section.jmdc-about-info {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.jmdc-about-info__slider-viewport {
-    width: 100%;
-    position: relative;
-    transition: height 0.35s ease;
-    overflow: hidden;
-}
-
-.jmdc-about-info__slider-track {
-    position: relative;
-    width: 100%;
-}
-
-.jmdc-about-info__slide {
-    width: 100%;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
-}
-
-.jmdc-about-info__slide.is-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    position: relative;
+    gap: 14px;
 }
 
 .jmdc-about-info__text-wrap {
@@ -136,33 +111,131 @@ section.jmdc-about-info {
     margin-top: 0;
 }
 
-.jmdc-about-info__dots {
-    margin-top: 14px;
+.jmdc-about-info__actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
 }
 
-.jmdc-about-info__dot {
-    width: 10px;
-    height: 10px;
-    padding: 0;
-    border-radius: 50%;
-    border: 1px solid #000;
-    background: transparent;
-    cursor: pointer;
+.jmdc-about-info__bio-trigger {
     appearance: none;
-    transition: background-color 0.25s ease, transform 0.25s ease;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
 }
 
-.jmdc-about-info__dot.is-active {
-    background: #000;
+.jmdc-about-info__bio-trigger:hover,
+.jmdc-about-info__bio-trigger:focus-visible {
+    opacity: 0.65;
 }
 
-.jmdc-about-info__dot:hover,
-.jmdc-about-info__dot:focus-visible {
-    transform: scale(1.1);
+.jmdc-about-info__modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.jmdc-about-info__modal[hidden] {
+    display: none !important;
+}
+
+.jmdc-about-info__modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.jmdc-about-info__modal-dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 760px;
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+    background: #ffffff;
+    padding: 48px 40px 40px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.jmdc-about-info__modal.is-open .jmdc-about-info__modal-backdrop {
+    opacity: 1;
+}
+
+.jmdc-about-info__modal.is-open .jmdc-about-info__modal-dialog {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.jmdc-about-info__modal-close {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.jmdc-about-info__modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.jmdc-about-info__modal-title {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 600;
+}
+
+.jmdc-about-info__modal-designation {
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+}
+
+.jmdc-about-info__modal-body {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 1.6;
+    text-transform: none;
+}
+
+.jmdc-about-info__modal-body > :first-child {
+    margin-top: 0;
+}
+
+.jmdc-about-info__modal-body > :last-child {
+    margin-bottom: 0;
+}
+
+html.jmdc-about-info-modal-open,
+body.jmdc-about-info-modal-open {
+    overflow: hidden;
 }
 
 @media (max-width: 1199.98px) {
@@ -237,8 +310,25 @@ section.jmdc-about-info {
         line-height: 1.18;
     }
 
-    .jmdc-about-info__dots {
-        margin-top: 10px;
+    .jmdc-about-info__bio-trigger {
+        font-size: 13px;
+    }
+
+    .jmdc-about-info__modal {
+        padding: 16px;
+    }
+
+    .jmdc-about-info__modal-dialog {
+        max-height: calc(100vh - 32px);
+        padding: 40px 20px 24px;
+    }
+
+    .jmdc-about-info__modal-title {
+        font-size: 22px;
+    }
+
+    .jmdc-about-info__modal-body {
+        font-size: 16px;
     }
 }
 
@@ -247,9 +337,9 @@ section.jmdc-about-info {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .jmdc-about-info__slider-viewport,
-    .jmdc-about-info__slide,
-    .jmdc-about-info__dot {
+    .jmdc-about-info__bio-trigger,
+    .jmdc-about-info__modal-backdrop,
+    .jmdc-about-info__modal-dialog {
         transition: none;
     }
 }

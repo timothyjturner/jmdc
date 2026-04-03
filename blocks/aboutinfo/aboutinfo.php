@@ -9,29 +9,35 @@ $image = get_field('jmdc_image');
 $name = get_field('jmdc_name');
 $designation = get_field('jmdc_designation');
 $quotes = get_field('jmdc_quotes');
+$bio_content = get_field('jmdc_bio_content');
+$bio_link_label = get_field('jmdc_bio_link_label');
 
 $class_name = '';
 if (! empty($block['className'])) {
     $class_name .= ' ' . $block['className'];
 }
 
-$valid_quotes = [];
+$display_quote = null;
 
 if (! empty($quotes) && is_array($quotes)) {
     foreach ($quotes as $quote) {
         $quote_content = $quote['jmdc_quote_content'] ?? '';
 
         if (! empty(trim(wp_strip_all_tags($quote_content)))) {
-            $valid_quotes[] = array(
+            $display_quote = array(
                 'content'       => $quote_content,
                 'font_desktop'  => ! empty($quote['jmdc_quote_font_size_desktop']) ? (int) $quote['jmdc_quote_font_size_desktop'] : '',
                 'font_mobile'   => ! empty($quote['jmdc_quote_font_size_mobile']) ? (int) $quote['jmdc_quote_font_size_mobile'] : '',
             );
+            break;
         }
     }
 }
 
-$quote_count = count($valid_quotes);
+$has_bio = ! empty(trim(wp_strip_all_tags((string) $bio_content)));
+$bio_link_label = ! empty($bio_link_label) ? $bio_link_label : 'VIEW BIO';
+$modal_id = 'jmdc-about-info-modal-' . (! empty($block['id']) ? sanitize_html_class($block['id']) : wp_unique_id());
+
 ?>
 <section class="jmdc-about-info<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-about-info__container jmdc-reveal">
@@ -67,53 +73,81 @@ $quote_count = count($valid_quotes);
             <?php endif; ?>
         </div>
 
-        <?php if (! empty($valid_quotes)) : ?>
-            <div
-                class="jmdc-about-info__content"
-                data-slider
-                data-autoplay="true"
-                data-autoplay-speed="5000"
-            >
-                <div class="jmdc-about-info__slider-viewport">
-                    <div class="jmdc-about-info__slider-track">
-                        <?php foreach ($valid_quotes as $index => $quote) : ?>
-                            <?php
-                            $style = '';
+        <?php if (! empty($display_quote)) : ?>
+            <?php
+            $style = '';
 
-                            if (! empty($quote['font_desktop'])) {
-                                $style .= '--quote-font-size-desktop:' . (int) $quote['font_desktop'] . 'px;';
-                            }
+            if (! empty($display_quote['font_desktop'])) {
+                $style .= '--quote-font-size-desktop:' . (int) $display_quote['font_desktop'] . 'px;';
+            }
 
-                            if (! empty($quote['font_mobile'])) {
-                                $style .= '--quote-font-size-mobile:' . (int) $quote['font_mobile'] . 'px;';
-                            }
-                            ?>
-                            <div
-                                class="jmdc-about-info__slide<?php echo $index === 0 ? ' is-active' : ''; ?>"
-                                data-slide="<?php echo esc_attr($index); ?>"
-                                <?php echo $index === 0 ? '' : 'hidden'; ?>
-                            >
-                                <div class="jmdc-about-info__text-wrap" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
-                                    <div class="jmdc-about-info__text">
-                                        <?php echo wp_kses_post($quote['content']); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+            if (! empty($display_quote['font_mobile'])) {
+                $style .= '--quote-font-size-mobile:' . (int) $display_quote['font_mobile'] . 'px;';
+            }
+            ?>
+            <div class="jmdc-about-info__content">
+                <div class="jmdc-about-info__text-wrap" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
+                    <div class="jmdc-about-info__text">
+                        <?php echo wp_kses_post($display_quote['content']); ?>
                     </div>
                 </div>
 
-                <?php if ($quote_count > 1) : ?>
-                    <div class="jmdc-about-info__dots" aria-label="Quote navigation">
-                        <?php foreach ($valid_quotes as $index => $quote) : ?>
+                <?php if ($has_bio) : ?>
+                    <div class="jmdc-about-info__actions">
+                        <button
+                            type="button"
+                            class="jmdc-about-info__bio-trigger"
+                            data-about-info-open="<?php echo esc_attr($modal_id); ?>"
+                            aria-controls="<?php echo esc_attr($modal_id); ?>"
+                            aria-haspopup="dialog"
+                        >
+                            <?php echo esc_html($bio_link_label); ?>
+                        </button>
+                    </div>
+
+                    <div
+                        id="<?php echo esc_attr($modal_id); ?>"
+                        class="jmdc-about-info__modal"
+                        data-about-info-modal
+                        hidden
+                    >
+                        <div class="jmdc-about-info__modal-backdrop" data-about-info-close></div>
+
+                        <div
+                            class="jmdc-about-info__modal-dialog"
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="<?php echo esc_attr($modal_id); ?>-title"
+                        >
                             <button
                                 type="button"
-                                class="jmdc-about-info__dot<?php echo $index === 0 ? ' is-active' : ''; ?>"
-                                data-dot="<?php echo esc_attr($index); ?>"
-                                aria-label="<?php echo esc_attr('Go to quote ' . ($index + 1)); ?>"
-                                aria-pressed="<?php echo $index === 0 ? 'true' : 'false'; ?>"
-                            ></button>
-                        <?php endforeach; ?>
+                                class="jmdc-about-info__modal-close"
+                                data-about-info-close
+                                aria-label="<?php echo esc_attr__('Close bio', 'jmdc'); ?>"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <div class="jmdc-about-info__modal-content">
+                                <?php if ($name) : ?>
+                                    <h3 id="<?php echo esc_attr($modal_id); ?>-title" class="jmdc-about-info__modal-title">
+                                        <?php echo esc_html($name); ?>
+                                    </h3>
+                                <?php else : ?>
+                                    <h3 id="<?php echo esc_attr($modal_id); ?>-title" class="screen-reader-text">
+                                        <?php esc_html_e('Bio', 'jmdc'); ?>
+                                    </h3>
+                                <?php endif; ?>
+
+                                <?php if ($designation) : ?>
+                                    <div class="jmdc-about-info__modal-designation"><?php echo esc_html($designation); ?></div>
+                                <?php endif; ?>
+
+                                <div class="jmdc-about-info__modal-body">
+                                    <?php echo wp_kses_post(wpautop($bio_content)); ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
