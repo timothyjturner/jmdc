@@ -1,4 +1,6 @@
 (function () {
+  var scrollY = 0;
+
   function initReveal() {
     var items = document.querySelectorAll(
       ".jmdc-about-info .jmdc-about-info__container.jmdc-reveal"
@@ -64,6 +66,32 @@
     }
   }
 
+  function lockPageScroll() {
+    scrollY = window.scrollY || window.pageYOffset || 0;
+
+    document.documentElement.classList.add("jmdc-about-info-modal-open");
+    document.body.classList.add("jmdc-about-info-modal-open");
+
+    document.body.style.position = "fixed";
+    document.body.style.top = "-" + scrollY + "px";
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+
+  function unlockPageScroll() {
+    document.documentElement.classList.remove("jmdc-about-info-modal-open");
+    document.body.classList.remove("jmdc-about-info-modal-open");
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+
+    window.scrollTo(0, scrollY);
+  }
+
   function moveModalsToBody() {
     var modals = document.querySelectorAll(".jmdc-about-info__modal");
 
@@ -109,10 +137,8 @@
         }
 
         previousActiveElement = document.activeElement;
+        lockPageScroll();
         modal.hidden = false;
-
-        document.documentElement.classList.add("jmdc-about-info-modal-open");
-        document.body.classList.add("jmdc-about-info-modal-open");
 
         window.requestAnimationFrame(function () {
           modal.classList.add("is-open");
@@ -129,19 +155,18 @@
 
       function closeModal() {
         modal.classList.remove("is-open");
-        document.documentElement.classList.remove("jmdc-about-info-modal-open");
-        document.body.classList.remove("jmdc-about-info-modal-open");
 
         window.setTimeout(function () {
           modal.hidden = true;
-        }, 200);
+          unlockPageScroll();
 
-        if (
-          previousActiveElement &&
-          typeof previousActiveElement.focus === "function"
-        ) {
-          previousActiveElement.focus();
-        }
+          if (
+            previousActiveElement &&
+            typeof previousActiveElement.focus === "function"
+          ) {
+            previousActiveElement.focus();
+          }
+        }, 200);
       }
 
       button.addEventListener("click", openModal);

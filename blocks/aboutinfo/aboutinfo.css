@@ -220,7 +220,10 @@ section.jmdc-about-info {
 }
 
 /* prevent scroll behind modal */
-html.jmdc-about-info-modal-open,
+html.jmdc-about-info-modal-open {
+    overflow: hidden;
+}
+
 body.jmdc-about-info-modal-open {
     overflow: hidden;
 }
