@@ -360,8 +360,8 @@ add_action('wp_enqueue_scripts', function () {
 	$data = [
 		'videoUrl' => esc_url($video['url']),
 		'muted' => (bool) get_field('jmd_intro_autoplay_muted'),
-		'topLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-top.svg'),
-		'bottomLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-bottom.svg'),
+		'topLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-top.svg'),
+		'bottomLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-bottom.svg'),
 		'desktop' => [
 			'logoWidth' => 188.5,
 			'logoHeight' => 53,
@@ -385,24 +385,59 @@ add_action('wp_footer', function () {
 		return;
 	}
 
-	$enabled = function_exists('get_field') ? get_field('jmd_intro_enable') : false;
-	$video   = function_exists('get_field') ? get_field('jmd_intro_video') : null;
+	if (!function_exists('get_field')) {
+		return;
+	}
 
-	if (!$enabled || empty($video['url'])) {
+	$enabled = get_field('jmd_intro_enable');
+	$video   = get_field('jmd_intro_video');
+
+	if (!$enabled || empty($video) || empty($video['url'])) {
 		return;
 	}
 	?>
 	<div id="jmd-intro" class="jmd-intro" aria-hidden="true">
-		...
-		<video
-			id="jmd-intro-video"
-			class="jmd-intro__video"
-			playsinline
-			preload="auto"
-			<?php echo get_field('jmd_intro_autoplay_muted') ? 'muted' : ''; ?>
-		>
-			<source src="<?php echo esc_url($video['url']); ?>" type="<?php echo esc_attr($video['mime_type'] ?? 'video/mp4'); ?>">
-		</video>
+		
+		<div class="jmd-intro__bg"></div>
+
+		<button type="button" class="jmd-intro__close" aria-label="Close intro">
+			<span></span>
+			<span></span>
+		</button>
+
+		<div class="jmd-intro__logo-wrap">
+			
+			<div class="jmd-intro__logo jmd-intro__logo--top">
+				<img
+					src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-top.svg'); ?>"
+					alt="JMD Logo Top"
+				/>
+			</div>
+
+			<div class="jmd-intro__logo jmd-intro__logo--bottom">
+				<img
+					src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-bottom.svg'); ?>"
+					alt="JMD Logo Bottom"
+				/>
+			</div>
+
+		</div>
+
+		<div class="jmd-intro__video-wrap">
+			<video
+				id="jmd-intro-video"
+				class="jmd-intro__video"
+				playsinline
+				preload="auto"
+				<?php echo get_field('jmd_intro_autoplay_muted') ? 'muted' : ''; ?>
+			>
+				<source
+					src="<?php echo esc_url($video['url']); ?>"
+					type="<?php echo esc_attr(!empty($video['mime_type']) ? $video['mime_type'] : 'video/mp4'); ?>"
+				>
+			</video>
+		</div>
+
 	</div>
 	<?php
 });
