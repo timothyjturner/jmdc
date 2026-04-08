@@ -324,3 +324,59 @@ function jmdc_preserve_spacer_custom_classes( $block_content, $block ) {
 
 	return $block_content;
 }
+
+//start front page intro
+require_once get_stylesheet_directory() . '/inc/acf-front-page-intro.php';
+
+add_action('wp_enqueue_scripts', function () {
+	if (!is_front_page()) {
+		return;
+	}
+
+	$enabled = function_exists('get_field') ? get_field('jmd_intro_enable') : false;
+	$video   = function_exists('get_field') ? get_field('jmd_intro_video') : null;
+
+	if (!$enabled || empty($video['url'])) {
+		return;
+	}
+
+	$theme_version = wp_get_theme()->get('Version');
+
+	wp_enqueue_style(
+		'jmd-front-intro',
+		get_stylesheet_directory_uri() . '/assets/css/jmd-front-intro.css',
+		[],
+		$theme_version
+	);
+
+	wp_enqueue_script(
+		'jmd-front-intro',
+		get_stylesheet_directory_uri() . '/assets/js/jmd-front-intro.js',
+		[],
+		$theme_version,
+		true
+	);
+
+	$data = [
+		'videoUrl' => esc_url($video['url']),
+		'muted' => (bool) get_field('jmd_intro_autoplay_muted'),
+		'topLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-top.png'),
+		'bottomLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-bottom.png'),
+		'desktop' => [
+			'logoWidth' => 188.5,
+			'logoHeight' => 53,
+			'topOffset' => 34.5,
+		],
+		'mobile' => [
+			'logoWidth' => 113.797,
+			'logoHeight' => 32,
+			'topOffset' => 45,
+		],
+		'mobileBreakpoint' => 576,
+		'closedGap' => 4.36,
+		'endThresholdSeconds' => 0.75,
+	];
+
+	wp_localize_script('jmd-front-intro', 'jmdFrontIntro', $data);
+});
+//end front page intro
