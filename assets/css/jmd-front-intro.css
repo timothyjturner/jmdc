@@ -108,10 +108,11 @@ body.jmd-intro-lock {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	width: var(--logo-bottom-width);
 	z-index: 10;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: stretch;
 	justify-content: center;
 	will-change: transform, opacity;
 }
@@ -119,7 +120,6 @@ body.jmd-intro-lock {
 .jmd-intro__logo {
 	position: relative;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	transition:
 		transform 0.9s cubic-bezier(0.2, 0.9, 0.2, 1),
@@ -135,14 +135,20 @@ body.jmd-intro-lock {
 
 .jmd-intro__logo--top {
 	width: calc(var(--logo-bottom-width) * var(--logo-top-width-ratio));
+	margin-left: auto;
+	margin-right: 0;
 	margin-bottom: calc(var(--intro-gap) / 2);
 	transform: translateY(0);
+	justify-content: flex-end;
 }
 
 .jmd-intro__logo--bottom {
 	width: var(--logo-bottom-width);
+	margin-left: 0;
+	margin-right: 0;
 	margin-top: calc(var(--intro-gap) / 2);
 	transform: translateY(0);
+	justify-content: flex-start;
 }
 
 .jmd-intro.is-open .jmd-intro__logo--top {
