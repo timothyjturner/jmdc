@@ -360,8 +360,8 @@ add_action('wp_enqueue_scripts', function () {
 	$data = [
 		'videoUrl' => esc_url($video['url']),
 		'muted' => (bool) get_field('jmd_intro_autoplay_muted'),
-		'topLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-top.png'),
-		'bottomLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-bottom.png'),
+		'topLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-top.svg'),
+		'bottomLogo' => esc_url(get_stylesheet_directory_uri() . '/assets/img/jmd-bottom.svg'),
 		'desktop' => [
 			'logoWidth' => 188.5,
 			'logoHeight' => 53,
