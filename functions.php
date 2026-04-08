@@ -379,4 +379,31 @@ add_action('wp_enqueue_scripts', function () {
 
 	wp_localize_script('jmd-front-intro', 'jmdFrontIntro', $data);
 });
+
+add_action('wp_footer', function () {
+	if (!is_front_page()) {
+		return;
+	}
+
+	$enabled = function_exists('get_field') ? get_field('jmd_intro_enable') : false;
+	$video   = function_exists('get_field') ? get_field('jmd_intro_video') : null;
+
+	if (!$enabled || empty($video['url'])) {
+		return;
+	}
+	?>
+	<div id="jmd-intro" class="jmd-intro" aria-hidden="true">
+		...
+		<video
+			id="jmd-intro-video"
+			class="jmd-intro__video"
+			playsinline
+			preload="auto"
+			<?php echo get_field('jmd_intro_autoplay_muted') ? 'muted' : ''; ?>
+		>
+			<source src="<?php echo esc_url($video['url']); ?>" type="<?php echo esc_attr($video['mime_type'] ?? 'video/mp4'); ?>">
+		</video>
+	</div>
+	<?php
+});
 //end front page intro
