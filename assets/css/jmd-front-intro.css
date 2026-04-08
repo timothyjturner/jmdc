@@ -96,9 +96,9 @@ body.jmd-intro-lock {
 }
 
 .jmd-intro__logo-wrap {
-	--intro-logo-width: 320px;
-	--intro-logo-height: auto;
-	--intro-gap: 4.36px;
+	--logo-bottom-width: 66vw;
+	--logo-top-width-ratio: 0.86942;
+	--intro-gap: 10px;
 	--target-x: 0px;
 	--target-y: 0px;
 	--target-scale: 1;
@@ -108,19 +108,19 @@ body.jmd-intro-lock {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: var(--intro-logo-width);
 	z-index: 10;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	will-change: transform, opacity;
 }
 
 .jmd-intro__logo {
 	position: relative;
-	width: 100%;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	transition:
 		transform 0.9s cubic-bezier(0.2, 0.9, 0.2, 1),
 		opacity 0.45s ease;
@@ -134,11 +134,13 @@ body.jmd-intro-lock {
 }
 
 .jmd-intro__logo--top {
+	width: calc(var(--logo-bottom-width) * var(--logo-top-width-ratio));
 	margin-bottom: calc(var(--intro-gap) / 2);
 	transform: translateY(0);
 }
 
 .jmd-intro__logo--bottom {
+	width: var(--logo-bottom-width);
 	margin-top: calc(var(--intro-gap) / 2);
 	transform: translateY(0);
 }
@@ -171,5 +173,10 @@ body.jmd-intro-lock {
 	.jmd-intro__close {
 		top: 18px;
 		right: 18px;
+	}
+
+	.jmd-intro__logo-wrap {
+		--logo-bottom-width: 82vw;
+		--intro-gap: 7px;
 	}
 }

@@ -39,20 +39,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const vh = window.innerHeight;
         const mobile = vw < 576;
 
-        let width;
+        let bottomWidth;
 
         if (mobile) {
-            width = Math.min(vw * 0.82, 320);
+            bottomWidth = Math.min(vw * 0.82, 320);
         } else {
-            width = Math.min(vw * 0.66, 980);
+            bottomWidth = Math.min(vw * 0.66, 980);
         }
 
-        logoWrap.style.setProperty('--intro-logo-width', `${width}px`);
+        logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
+        logoWrap.style.setProperty('--logo-top-width-ratio', `0.86942`);
 
         const closedGap = mobile ? 8 : 12;
         logoWrap.style.setProperty('--intro-gap', `${closedGap}px`);
 
-        const openDistance = Math.max((vh * 0.5) - (logoWrap.offsetHeight * 0.12), vh * 0.38);
+        const openDistance = vh * 0.5;
         logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
     }
 
@@ -60,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const navLogo = document.querySelector('.custom-logo-link img');
         const introRect = logoWrap.getBoundingClientRect();
 
-        const introCenterX = introRect.left + introRect.width / 2;
-        const introCenterY = introRect.top + introRect.height / 2;
+        const introCenterX = introRect.left + (introRect.width / 2);
+        const introCenterY = introRect.top + (introRect.height / 2);
 
         let targetCenterX;
         let targetCenterY;
@@ -69,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (navLogo) {
             const navRect = navLogo.getBoundingClientRect();
-            targetCenterX = navRect.left + navRect.width / 2;
-            targetCenterY = navRect.top + navRect.height / 2;
+            targetCenterX = navRect.left + (navRect.width / 2);
+            targetCenterY = navRect.top + (navRect.height / 2);
             scale = navRect.width / introRect.width;
         } else {
             const target = getTargetMetrics();
