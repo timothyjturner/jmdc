@@ -1,5 +1,3 @@
-<?php wp_footer(); ?>
-
 <footer class="jmdc-footer" role="contentinfo">
   <div class="jmdc-footer__inner">
 
