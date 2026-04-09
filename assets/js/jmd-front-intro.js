@@ -371,30 +371,30 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
-	video.addEventListener('timeupdate', function () {
-		console.log('[JMD Intro] event: timeupdate', {
-			currentTime: video.currentTime,
-			duration: video.duration,
-			canClose: state.canClose
-		});
+	// video.addEventListener('timeupdate', function () {
+	// 	console.log('[JMD Intro] event: timeupdate', {
+	// 		currentTime: video.currentTime,
+	// 		duration: video.duration,
+	// 		canClose: state.canClose
+	// 	});
 
-		if (!state.canClose) return;
-		if (!isFinite(video.duration) || video.duration <= 0) return;
+	// 	if (!state.canClose) return;
+	// 	if (!isFinite(video.duration) || video.duration <= 0) return;
 
-		const remaining = video.duration - video.currentTime;
-		if (remaining <= END_THRESHOLD_SECONDS) {
-			closeIntro('video near end');
-		}
-	});
+	// 	const remaining = video.duration - video.currentTime;
+	// 	if (remaining <= END_THRESHOLD_SECONDS) {
+	// 		closeIntro('video near end');
+	// 	}
+	// });
 
-	video.addEventListener('ended', function () {
-		console.log('[JMD Intro] event: ended', {
-			canClose: state.canClose
-		});
+	// video.addEventListener('ended', function () {
+	// 	console.log('[JMD Intro] event: ended', {
+	// 		canClose: state.canClose
+	// 	});
 
-		if (!state.canClose) return;
-		closeIntro('video ended');
-	});
+	// 	if (!state.canClose) return;
+	// 	closeIntro('video ended');
+	// });
 
 	video.addEventListener('error', function () {
 		console.log('[JMD Intro] event: error', video.error);
@@ -408,32 +408,32 @@ document.addEventListener('DOMContentLoaded', function () {
 		setTargetTransformVars();
 	});
 
-	window.addEventListener('wheel', function (e) {
-		console.log('[JMD Intro] window wheel', {
-			deltaY: e.deltaY,
-			canClose: state.canClose,
-			isFinished: state.isFinished,
-			isClosing: state.isClosing
-		});
+	// window.addEventListener('wheel', function (e) {
+	// 	console.log('[JMD Intro] window wheel', {
+	// 		deltaY: e.deltaY,
+	// 		canClose: state.canClose,
+	// 		isFinished: state.isFinished,
+	// 		isClosing: state.isClosing
+	// 	});
 
-		if (!state.canClose || state.isFinished || state.isClosing) return;
-		if (Math.abs(e.deltaY) > 4) {
-			closeIntro('wheel');
-		}
-	}, { passive: true });
+	// 	if (!state.canClose || state.isFinished || state.isClosing) return;
+	// 	if (Math.abs(e.deltaY) > 4) {
+	// 		closeIntro('wheel');
+	// 	}
+	// }, { passive: true });
 
-	window.addEventListener('touchmove', function () {
-		console.log('[JMD Intro] window touchmove', {
-			canClose: state.canClose,
-			isFinished: state.isFinished,
-			isClosing: state.isClosing
-		});
+	// window.addEventListener('touchmove', function () {
+	// 	console.log('[JMD Intro] window touchmove', {
+	// 		canClose: state.canClose,
+	// 		isFinished: state.isFinished,
+	// 		isClosing: state.isClosing
+	// 	});
 
-		if (!state.canClose || state.isFinished || state.isClosing) return;
-		closeIntro('touchmove');
-	}, { passive: true });
+	// 	if (!state.canClose || state.isFinished || state.isClosing) return;
+	// 	closeIntro('touchmove');
+	// }, { passive: true });
 
-	window.addEventListener('scroll', handleScrollClose, { passive: true });
+	// window.addEventListener('scroll', handleScrollClose, { passive: true });
 
 	console.log('[JMD Intro] About to call openIntro');
 	openIntro();
