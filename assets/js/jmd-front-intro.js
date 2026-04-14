@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
 	if (typeof jmdFrontIntro === 'undefined') return;
 
+	const intros = document.querySelectorAll('#jmd-intro');
+	if (intros.length > 1) {
+		intros.forEach((node, index) => {
+			if (index > 0) node.remove();
+		});
+	}
+
 	const intro = document.getElementById('jmd-intro');
 	const video = document.getElementById('jmd-intro-video');
 	const closeBtn = intro ? intro.querySelector('.jmd-intro__close') : null;
@@ -11,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	const state = {
 		isClosing: false,
 		isFinished: false,
-		hasOpened: false
+		hasOpened: false,
+		canClose: false
 	};
 
 	const MOBILE_BREAKPOINT = Number(jmdFrontIntro.mobileBreakpoint || 576);
@@ -30,10 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		};
 	}
 
-	function getCurrentIntroWidth() {
-		return logoWrap.getBoundingClientRect().width;
-	}
-
 	function setInitialLogoSize() {
 		const vw = window.innerWidth;
 		const vh = window.innerHeight;
@@ -44,22 +48,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		const TOP_RATIO = TOP_WIDTH / BOTTOM_WIDTH;
 
 		let bottomWidth;
-		let openDistance;
 		let introTop;
+		let openDistance;
 
 		if (mobile) {
-			bottomWidth = Math.min(vw * 0.88, 520);
-			openDistance = Math.min(vh * 0.23, 135);
-			introTop = vh * 0.29;
+			bottomWidth = Math.min(vw * 0.86, 520);
+			introTop = vh * 0.23;
+			openDistance = Math.min(vh * 0.22, 125);
 		} else {
-			bottomWidth = Math.min(vw * 0.78, 1200);
-			openDistance = Math.min(vh * 0.26, 210);
-			introTop = vh * 0.33;
+			bottomWidth = Math.min(vw * 0.70, 1060);
+			introTop = vh * 0.24;
+			openDistance = Math.min(vh * 0.28, 250);
 		}
 
 		logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
 		logoWrap.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
-		logoWrap.style.setProperty('--intro-gap', `${mobile ? 7 : 10}px`);
+		logoWrap.style.setProperty('--intro-gap', `0px`);
 		logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
 		logoWrap.style.setProperty('--intro-top', `${introTop}px`);
 	}
@@ -105,28 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.classList.remove('jmd-intro-lock');
 	}
 
-	function openIntro() {
-		setInitialLogoSize();
-		setTargetTransformVars();
-		lockScroll();
-
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                video.muted = !!jmdFrontIntro.muted;
-
-                const playPromise = video.play();
-                if (playPromise && typeof playPromise.catch === 'function') {
-                    playPromise.catch(() => {});
-                }
-
-                setTimeout(() => {
-                    intro.classList.add('is-open');
-                    state.hasOpened = true;
-                }, 350);
-            });
-        });
-	}
-
 	function finalizeIntro() {
 		if (state.isFinished) return;
 
@@ -143,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function closeIntro() {
 		if (state.isClosing || state.isFinished) return;
+
 		state.isClosing = true;
 
 		intro.classList.remove('is-open');
@@ -156,15 +139,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			setTargetTransformVars();
 			intro.classList.add('is-fading-out');
 			intro.classList.add('is-transitioning-out');
-		}, 1000);
+		}, 950);
 
 		setTimeout(() => {
 			finalizeIntro();
-		}, 1900);
+		}, 1850);
 	}
 
 	function handleScrollClose() {
-		if (!state.hasOpened || state.isClosing || state.isFinished) return;
+		if (!state.canClose || !state.hasOpened || state.isClosing || state.isFinished) return;
 
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
 		if (scrollTop > 8) {
@@ -172,11 +155,56 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 
+	function openIntro() {
+		setInitialLogoSize();
+		setTargetTransformVars();
+		lockScroll();
+
+		intro.classList.remove('is-open');
+		intro.classList.remove('is-closing');
+		intro.classList.remove('is-fading-out');
+		intro.classList.remove('is-transitioning-out');
+		intro.classList.remove('is-hidden');
+
+		void intro.offsetWidth;
+		void logoWrap.offsetWidth;
+
+		video.muted = !!jmdFrontIntro.muted;
+
+		try {
+			video.pause();
+			video.currentTime = 0;
+		} catch (e) {}
+
+		const startPlayback = () => {
+			const playPromise = video.play();
+			if (playPromise && typeof playPromise.catch === 'function') {
+				playPromise.catch(() => {});
+			}
+		};
+
+		if (video.readyState >= 1) {
+			startPlayback();
+		} else {
+			video.addEventListener('loadedmetadata', startPlayback, { once: true });
+		}
+
+		setTimeout(() => {
+			intro.classList.add('is-open');
+			state.hasOpened = true;
+		}, 500);
+
+		setTimeout(() => {
+			state.canClose = true;
+		}, 1400);
+	}
+
 	closeBtn.addEventListener('click', function () {
 		closeIntro();
 	});
 
 	video.addEventListener('timeupdate', function () {
+		if (!state.canClose) return;
 		if (!isFinite(video.duration) || video.duration <= 0) return;
 
 		const remaining = video.duration - video.currentTime;
@@ -186,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	video.addEventListener('ended', function () {
+		if (!state.canClose) return;
 		closeIntro();
 	});
 
@@ -196,14 +225,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	window.addEventListener('wheel', function (e) {
-		if (state.isFinished || state.isClosing) return;
+		if (!state.canClose || state.isFinished || state.isClosing) return;
 		if (Math.abs(e.deltaY) > 4) {
 			closeIntro();
 		}
 	}, { passive: true });
 
 	window.addEventListener('touchmove', function () {
-		if (state.isFinished || state.isClosing) return;
+		if (!state.canClose || state.isFinished || state.isClosing) return;
 		closeIntro();
 	}, { passive: true });
 
