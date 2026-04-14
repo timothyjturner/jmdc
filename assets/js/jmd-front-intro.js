@@ -34,59 +34,66 @@ document.addEventListener('DOMContentLoaded', function () {
 		return logoWrap.getBoundingClientRect().width;
 	}
 
-    function setInitialLogoSize() {
-        const vw = window.innerWidth;
-        const vh = window.innerHeight;
-        const mobile = vw < 576;
+	function setInitialLogoSize() {
+		const vw = window.innerWidth;
+		const vh = window.innerHeight;
+		const mobile = vw < MOBILE_BREAKPOINT;
 
-        let bottomWidth;
+		const TOP_WIDTH = 163.79;
+		const BOTTOM_WIDTH = 188.39;
+		const TOP_RATIO = TOP_WIDTH / BOTTOM_WIDTH;
 
-        if (mobile) {
-            bottomWidth = Math.min(vw * 0.82, 320);
-        } else {
-            bottomWidth = Math.min(vw * 0.66, 980);
-        }
+		let bottomWidth;
+		let openDistance;
+		let introTop;
 
-        logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
-        logoWrap.style.setProperty('--logo-top-width-ratio', `0.86942`);
+		if (mobile) {
+			bottomWidth = Math.min(vw * 0.88, 520);
+			openDistance = Math.min(vh * 0.23, 135);
+			introTop = vh * 0.29;
+		} else {
+			bottomWidth = Math.min(vw * 0.78, 1200);
+			openDistance = Math.min(vh * 0.26, 210);
+			introTop = vh * 0.33;
+		}
 
-        const closedGap = mobile ? 8 : 12;
-        logoWrap.style.setProperty('--intro-gap', `${closedGap}px`);
+		logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
+		logoWrap.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
+		logoWrap.style.setProperty('--intro-gap', `${mobile ? 7 : 10}px`);
+		logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
+		logoWrap.style.setProperty('--intro-top', `${introTop}px`);
+	}
 
-        const openDistance = vh * 0.5;
-        logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
-    }
+	function setTargetTransformVars() {
+		const navLogo = document.querySelector('.custom-logo-link img');
+		const introRect = logoWrap.getBoundingClientRect();
 
-    function setTargetTransformVars() {
-        const navLogo = document.querySelector('.custom-logo-link img');
-        const introRect = logoWrap.getBoundingClientRect();
+		const introCenterX = introRect.left + (introRect.width / 2);
+		const introCenterY = introRect.top + (introRect.height / 2);
 
-        const introCenterX = introRect.left + (introRect.width / 2);
-        const introCenterY = introRect.top + (introRect.height / 2);
+		let targetCenterX;
+		let targetCenterY;
+		let scale;
 
-        let targetCenterX;
-        let targetCenterY;
-        let scale;
+		if (navLogo) {
+			const navRect = navLogo.getBoundingClientRect();
+			targetCenterX = navRect.left + (navRect.width / 2);
+			targetCenterY = navRect.top + (navRect.height / 2);
+			scale = navRect.width / introRect.width;
+		} else {
+			const target = getTargetMetrics();
+			targetCenterX = window.innerWidth / 2;
+			targetCenterY = target.topOffset + (target.height / 2);
+			scale = target.width / introRect.width;
+		}
 
-        if (navLogo) {
-            const navRect = navLogo.getBoundingClientRect();
-            targetCenterX = navRect.left + (navRect.width / 2);
-            targetCenterY = navRect.top + (navRect.height / 2);
-            scale = navRect.width / introRect.width;
-        } else {
-            const target = getTargetMetrics();
-            targetCenterX = window.innerWidth / 2;
-            targetCenterY = target.topOffset + (target.height / 2);
-            scale = target.width / introRect.width;
-        }
+		const deltaX = targetCenterX - introCenterX;
+		const deltaY = targetCenterY - introCenterY;
 
-        const deltaX = targetCenterX - introCenterX;
-        const deltaY = targetCenterY - introCenterY;
-
-        logoWrap.style.setProperty('--target-x', `${deltaX}px`);
-        logoWrap.style.setProperty('--target-y', `${deltaY}px`);
-        logoWrap.style.setProperty('--target-scale', `${scale}`);
-    }
+		logoWrap.style.setProperty('--target-x', `${deltaX}px`);
+		logoWrap.style.setProperty('--target-y', `${deltaY}px`);
+		logoWrap.style.setProperty('--target-scale', `${scale}`);
+	}
 
 	function lockScroll() {
 		document.documentElement.classList.add('jmd-intro-lock');

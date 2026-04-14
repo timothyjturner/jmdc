@@ -34,11 +34,40 @@ body.jmd-intro-lock {
 	opacity: 0;
 }
 
-.jmd-intro__video-wrap {
+.jmd-intro__stage {
 	position: absolute;
 	inset: 0;
-	z-index: 2;
+	z-index: 5;
+}
+
+.jmd-intro__video-wrap {
+	--video-width: min(62vw, 820px);
+	--video-ratio: 1.58;
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: var(--video-width);
+	aspect-ratio: var(--video-ratio);
+	z-index: 6;
 	overflow: hidden;
+	opacity: 0;
+	transition: opacity 0.45s ease;
+	pointer-events: none;
+	background: #000;
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.jmd-intro.is-open .jmd-intro__video-wrap {
+	opacity: 1;
+	transition-delay: 0.12s;
+	pointer-events: auto;
+}
+
+.jmd-intro.is-closing .jmd-intro__video-wrap {
+	opacity: 0;
+	transition: opacity 0.25s ease;
 }
 
 .jmd-intro__video {
@@ -47,29 +76,25 @@ body.jmd-intro-lock {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	opacity: 0;
-	transition: opacity 0.45s ease;
-}
-
-.jmd-intro.is-open .jmd-intro__video {
-	opacity: 1;
+	display: block;
 }
 
 .jmd-intro__close {
 	position: absolute;
-	top: 24px;
-	right: 24px;
-	width: 42px;
-	height: 42px;
+	top: 12px;
+	right: 12px;
+	width: 40px;
+	height: 40px;
 	border: 0;
-	background: transparent;
+	background: rgba(0, 0, 0, 0.32);
 	padding: 0;
 	margin: 0;
 	cursor: pointer;
 	z-index: 20;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 0.35s ease;
+	transition: opacity 0.25s ease, background 0.25s ease;
+	backdrop-filter: blur(4px);
 }
 
 .jmd-intro.is-open .jmd-intro__close {
@@ -81,7 +106,7 @@ body.jmd-intro-lock {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 24px;
+	width: 20px;
 	height: 2px;
 	background: #fff;
 	transform-origin: center;
@@ -95,34 +120,35 @@ body.jmd-intro-lock {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+/* Logo layout */
 .jmd-intro__logo-wrap {
-	--logo-bottom-width: 66vw;
+	--logo-bottom-width: min(78vw, 1200px);
 	--logo-top-width-ratio: 0.86942;
 	--intro-gap: 10px;
+	--open-distance: 0px;
+	--intro-top: 33vh;
 	--target-x: 0px;
 	--target-y: 0px;
 	--target-scale: 1;
-	--open-distance: 0px;
 
 	position: absolute;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	top: var(--intro-top);
+	transform: translateX(-50%);
 	width: var(--logo-bottom-width);
+	max-width: 100vw;
 	z-index: 10;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	justify-content: center;
+	pointer-events: none;
 	will-change: transform, opacity;
 }
 
 .jmd-intro__logo {
-	position: relative;
+	position: absolute;
+	left: 0;
 	display: flex;
 	align-items: center;
 	transition:
-		transform 0.9s cubic-bezier(0.2, 0.9, 0.2, 1),
+		transform 0.9s cubic-bezier(0.77, 0, 0.175, 1),
 		opacity 0.45s ease;
 	will-change: transform, opacity;
 }
@@ -131,42 +157,48 @@ body.jmd-intro-lock {
 	display: block;
 	width: 100%;
 	height: auto;
+	max-width: 100%;
 }
 
 .jmd-intro__logo--top {
+	top: 0;
 	width: calc(var(--logo-bottom-width) * var(--logo-top-width-ratio));
-	margin-left: auto;
-	margin-right: 0;
-	margin-bottom: calc(var(--intro-gap) / 2);
+	left: auto;
+	right: 0;
 	transform: translateY(0);
 	justify-content: flex-end;
 }
 
 .jmd-intro__logo--bottom {
+	top: calc(100% + var(--intro-gap));
 	width: var(--logo-bottom-width);
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: calc(var(--intro-gap) / 2);
+	left: 0;
 	transform: translateY(0);
 	justify-content: flex-start;
 }
 
+/* Only bottom moves on open */
 .jmd-intro.is-open .jmd-intro__logo--top {
-	transform: translateY(calc(var(--open-distance) * -1));
+	transform: translateY(0);
 }
 
 .jmd-intro.is-open .jmd-intro__logo--bottom {
 	transform: translateY(var(--open-distance));
 }
 
-.jmd-intro.is-closing .jmd-intro__logo--top,
+/* Close: bottom comes back up */
+.jmd-intro.is-closing .jmd-intro__logo--top {
+	transform: translateY(0);
+}
+
 .jmd-intro.is-closing .jmd-intro__logo--bottom {
 	transform: translateY(0);
 }
 
+/* End transition */
 .jmd-intro.is-transitioning-out .jmd-intro__logo-wrap {
 	transform:
-		translate(-50%, -50%)
+		translateX(-50%)
 		translate(var(--target-x), var(--target-y))
 		scale(var(--target-scale));
 	transition:
@@ -176,13 +208,25 @@ body.jmd-intro-lock {
 }
 
 @media (max-width: 575.98px) {
+	.jmd-intro__video-wrap {
+		--video-width: min(84vw, 420px);
+		--video-ratio: 1.08;
+	}
+
 	.jmd-intro__close {
-		top: 18px;
-		right: 18px;
+		top: 8px;
+		right: 8px;
+		width: 34px;
+		height: 34px;
+	}
+
+	.jmd-intro__close span {
+		width: 16px;
 	}
 
 	.jmd-intro__logo-wrap {
-		--logo-bottom-width: 82vw;
+		--logo-bottom-width: min(88vw, 520px);
 		--intro-gap: 7px;
+		--intro-top: 29vh;
 	}
 }

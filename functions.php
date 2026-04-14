@@ -396,49 +396,41 @@ add_action('wp_footer', function () {
 		return;
 	}
 	?>
-	<div id="jmd-intro" class="jmd-intro" aria-hidden="true">
-		
-		<div class="jmd-intro__bg"></div>
+  <div id="jmd-intro" class="jmd-intro" aria-hidden="true">
+    <div class="jmd-intro__bg"></div>
 
-		<button type="button" class="jmd-intro__close" aria-label="Close intro">
-			<span></span>
-			<span></span>
-		</button>
+    <div class="jmd-intro__stage">
+      <div class="jmd-intro__video-wrap">
+        <button type="button" class="jmd-intro__close" aria-label="Close intro">
+          <span></span>
+          <span></span>
+        </button>
 
-		<div class="jmd-intro__logo-wrap">
-			
-			<div class="jmd-intro__logo jmd-intro__logo--top">
-				<img
-					src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-top.svg'); ?>"
-					alt="JMD Logo Top"
-				/>
-			</div>
+        <video
+          id="jmd-intro-video"
+          class="jmd-intro__video"
+          playsinline
+          preload="auto"
+          <?php echo get_field('jmd_intro_autoplay_muted') ? 'muted' : ''; ?>
+        >
+          <source
+            src="<?php echo esc_url($video['url']); ?>"
+            type="<?php echo esc_attr(!empty($video['mime_type']) ? $video['mime_type'] : 'video/mp4'); ?>"
+          >
+        </video>
+      </div>
 
-			<div class="jmd-intro__logo jmd-intro__logo--bottom">
-				<img
-					src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-bottom.svg'); ?>"
-					alt="JMD Logo Bottom"
-				/>
-			</div>
+      <div class="jmd-intro__logo-wrap">
+        <div class="jmd-intro__logo jmd-intro__logo--top">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-top.svg'); ?>" alt="JMD Logo Top" />
+        </div>
 
-		</div>
-
-		<div class="jmd-intro__video-wrap">
-			<video
-				id="jmd-intro-video"
-				class="jmd-intro__video"
-				playsinline
-				preload="auto"
-				<?php echo get_field('jmd_intro_autoplay_muted') ? 'muted' : ''; ?>
-			>
-				<source
-					src="<?php echo esc_url($video['url']); ?>"
-					type="<?php echo esc_attr(!empty($video['mime_type']) ? $video['mime_type'] : 'video/mp4'); ?>"
-				>
-			</video>
-		</div>
-
-	</div>
+        <div class="jmd-intro__logo jmd-intro__logo--bottom">
+          <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/jmd-bottom.svg'); ?>" alt="JMD Logo Bottom" />
+        </div>
+      </div>
+    </div>
+  </div>
 	<?php
 });
 //end front page intro
