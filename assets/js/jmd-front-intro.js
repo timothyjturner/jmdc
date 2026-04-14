@@ -50,22 +50,25 @@ document.addEventListener('DOMContentLoaded', function () {
 		let bottomWidth;
 		let introTop;
 		let openDistance;
+		let seamOverlap;
 
 		if (mobile) {
-			bottomWidth = Math.min(vw * 0.86, 520);
+			bottomWidth = Math.min(vw * 0.88, 540);
 			introTop = vh * 0.23;
-			openDistance = Math.min(vh * 0.22, 125);
+			openDistance = Math.min(vh * 0.18, 110);
+			seamOverlap = 2;
 		} else {
-			bottomWidth = Math.min(vw * 0.70, 1060);
-			introTop = vh * 0.24;
-			openDistance = Math.min(vh * 0.28, 250);
+			bottomWidth = Math.min(vw * 0.72, 1040);
+			introTop = vh * 0.26;
+			openDistance = Math.min(vh * 0.20, 150);
+			seamOverlap = 2;
 		}
 
 		logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
 		logoWrap.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
-		logoWrap.style.setProperty('--intro-gap', `0px`);
-		logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
 		logoWrap.style.setProperty('--intro-top', `${introTop}px`);
+		logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
+		logoWrap.style.setProperty('--seam-overlap', `${seamOverlap}px`);
 	}
 
 	function setTargetTransformVars() {
@@ -127,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (state.isClosing || state.isFinished) return;
 
 		state.isClosing = true;
-
 		intro.classList.remove('is-open');
 		intro.classList.add('is-closing');
 
@@ -139,11 +141,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			setTargetTransformVars();
 			intro.classList.add('is-fading-out');
 			intro.classList.add('is-transitioning-out');
-		}, 950);
+		}, 900);
 
 		setTimeout(() => {
 			finalizeIntro();
-		}, 1850);
+		}, 1800);
 	}
 
 	function handleScrollClose() {
@@ -160,11 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		setTargetTransformVars();
 		lockScroll();
 
-		intro.classList.remove('is-open');
-		intro.classList.remove('is-closing');
-		intro.classList.remove('is-fading-out');
-		intro.classList.remove('is-transitioning-out');
-		intro.classList.remove('is-hidden');
+		intro.classList.remove('is-open', 'is-closing', 'is-fading-out', 'is-transitioning-out', 'is-hidden');
 
 		void intro.offsetWidth;
 		void logoWrap.offsetWidth;
@@ -192,11 +190,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		setTimeout(() => {
 			intro.classList.add('is-open');
 			state.hasOpened = true;
-		}, 500);
+		}, 450);
 
 		setTimeout(() => {
 			state.canClose = true;
-		}, 1400);
+		}, 1300);
 	}
 
 	closeBtn.addEventListener('click', function () {
