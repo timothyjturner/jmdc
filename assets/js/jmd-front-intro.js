@@ -43,60 +43,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function setInitialLogoSize() {
 		const vw = window.innerWidth;
+		const vh = window.innerHeight;
 		const TOP_WIDTH = 163.79;
 		const BOTTOM_WIDTH = 188.39;
 		const TOP_RATIO = TOP_WIDTH / BOTTOM_WIDTH;
 
 		let bottomWidth;
+		let introTop;
+		let closedGap;
+		let openGap;
 
 		if (isMobile()) {
-			bottomWidth = Math.min(vw * 0.78, 460);
+			bottomWidth = Math.min(vw * 0.72, 420);
+			introTop = Math.round(vh * 0.16);
+			closedGap = 0;
+			openGap = 12;
 		} else {
-			bottomWidth = Math.min(vw * 0.64, 930);
+			bottomWidth = Math.min(vw * 0.56, 820);
+			introTop = Math.round(vh * 0.18);
+			closedGap = 0;
+			openGap = 18;
 		}
 
 		logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
 		logoWrap.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
+		logoWrap.style.setProperty('--intro-top', `${introTop}px`);
+
+		return { closedGap, openGap };
 	}
 
 	function setLogoAndVideoPlacement() {
-		setInitialLogoSize();
+		const { closedGap, openGap } = setInitialLogoSize();
 
-		// Force layout so measurements reflect the current responsive widths
 		void logoWrap.offsetWidth;
 		void videoWrap.offsetWidth;
 		void topLogo.offsetWidth;
 		void bottomLogo.offsetWidth;
 
-		const mobile = isMobile();
-		const gap = mobile ? 14 : 20;
-
 		const videoRect = videoWrap.getBoundingClientRect();
-		const logoWrapRect = logoWrap.getBoundingClientRect();
+		const wrapRect = logoWrap.getBoundingClientRect();
 		const topRect = topLogo.getBoundingClientRect();
 		const bottomRect = bottomLogo.getBoundingClientRect();
 
-		// Place top half above the video with a fixed gap.
-		// We store Y values relative to the logoWrap top because the logo halves are absolutely positioned inside it.
-		const topY = (videoRect.top - gap - topRect.height) - logoWrapRect.top;
+		// Closed state should look like the full logo near the top, matching the mockup.
+		const topY = 0;
+		const bottomClosedY = topRect.height + closedGap;
 
-		// Closed state: bottom half tucked directly under the top half, forming the complete logo.
-		const bottomClosedY = topY + topRect.height;
+		// Open state should be strictly:
+		// TOP HALF
+		// VIDEO
+		// BOTTOM HALF
+		// with no overlap
+		const bottomOpenY = (videoRect.bottom - wrapRect.top) + openGap;
 
-		// Open state: bottom half moves fully below the video, with the same gap.
-		const bottomOpenY = (videoRect.bottom + gap) - logoWrapRect.top;
+		// Wrapper height must include the whole open composition so header targeting works.
+		const wrapHeight = bottomOpenY + bottomRect.height;
 
 		logoWrap.style.setProperty('--logo-top-y', `${topY}px`);
 		logoWrap.style.setProperty('--bottom-closed-y', `${bottomClosedY}px`);
 		logoWrap.style.setProperty('--bottom-open-y', `${bottomOpenY}px`);
+		logoWrap.style.setProperty('--logo-wrap-height', `${Math.ceil(wrapHeight)}px`);
 	}
 
 	function setTargetTransformVars() {
 		const navLogo = document.querySelector('.custom-logo-link img');
-		const introRect = logoWrap.getBoundingClientRect();
+		const wrapRect = logoWrap.getBoundingClientRect();
 
-		const introCenterX = introRect.left + (introRect.width / 2);
-		const introCenterY = introRect.top + (introRect.height / 2);
+		const introCenterX = wrapRect.left + (wrapRect.width / 2);
+		const introCenterY = wrapRect.top + (wrapRect.height / 2);
 
 		let targetCenterX;
 		let targetCenterY;
@@ -106,12 +120,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			const navRect = navLogo.getBoundingClientRect();
 			targetCenterX = navRect.left + (navRect.width / 2);
 			targetCenterY = navRect.top + (navRect.height / 2);
-			scale = navRect.width / introRect.width;
+			scale = navRect.width / wrapRect.width;
 		} else {
 			const target = getTargetMetrics();
 			targetCenterX = window.innerWidth / 2;
 			targetCenterY = target.topOffset + (target.height / 2);
-			scale = target.width / introRect.width;
+			scale = target.width / wrapRect.width;
 		}
 
 		const deltaX = targetCenterX - introCenterX;
@@ -157,7 +171,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			video.pause();
 		} catch (e) {}
 
+		// Let bottom half travel back up first, then calculate target on the closed composition
 		setTimeout(() => {
+			setLogoAndVideoPlacement();
 			setTargetTransformVars();
 			intro.classList.add('is-fading-out');
 			intro.classList.add('is-transitioning-out');

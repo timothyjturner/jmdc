@@ -40,7 +40,7 @@ body.jmd-intro-lock {
 	z-index: 5;
 }
 
-/* Centered boxed video */
+/* Video */
 .jmd-intro__video-wrap {
 	--video-width: min(68vw, 980px);
 	--video-ratio: 1.62;
@@ -120,10 +120,12 @@ body.jmd-intro-lock {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* Logo wrapper is centered horizontally. JS computes all vertical placement. */
+/* Logo system */
 .jmd-intro__logo-wrap {
-	--logo-bottom-width: min(64vw, 930px);
+	--logo-bottom-width: min(56vw, 820px);
 	--logo-top-width-ratio: 0.86942;
+	--intro-top: 130px;
+	--logo-wrap-height: 220px;
 	--logo-top-y: 0px;
 	--bottom-closed-y: 0px;
 	--bottom-open-y: 0px;
@@ -133,9 +135,10 @@ body.jmd-intro-lock {
 
 	position: absolute;
 	left: 50%;
-	top: 0;
+	top: var(--intro-top);
 	transform: translateX(-50%);
 	width: var(--logo-bottom-width);
+	height: var(--logo-wrap-height);
 	z-index: 8;
 	pointer-events: none;
 	will-change: transform, opacity;
@@ -174,7 +177,6 @@ body.jmd-intro-lock {
 	transform: translateY(var(--bottom-closed-y));
 }
 
-/* Open state: only bottom moves fully below the video */
 .jmd-intro.is-open .jmd-intro__logo--top {
 	transform: translateY(var(--logo-top-y));
 }
@@ -183,7 +185,6 @@ body.jmd-intro-lock {
 	transform: translateY(var(--bottom-open-y));
 }
 
-/* Close state: bottom comes back to meet the top half */
 .jmd-intro.is-closing .jmd-intro__logo--top {
 	transform: translateY(var(--logo-top-y));
 }
@@ -192,7 +193,7 @@ body.jmd-intro-lock {
 	transform: translateY(var(--bottom-closed-y));
 }
 
-/* Final move to header */
+/* End transition back to header */
 .jmd-intro.is-transitioning-out .jmd-intro__logo-wrap {
 	transform:
 		translateX(-50%)
@@ -222,6 +223,6 @@ body.jmd-intro-lock {
 	}
 
 	.jmd-intro__logo-wrap {
-		--logo-bottom-width: min(78vw, 460px);
+		--logo-bottom-width: min(72vw, 420px);
 	}
 }
