@@ -40,10 +40,10 @@ body.jmd-intro-lock {
 	z-index: 5;
 }
 
-/* centered boxed video */
+/* Centered boxed video */
 .jmd-intro__video-wrap {
-	--video-width: min(52vw, 760px);
-	--video-ratio: 1.56;
+	--video-width: min(68vw, 980px);
+	--video-ratio: 1.62;
 
 	position: absolute;
 	left: 50%;
@@ -51,7 +51,7 @@ body.jmd-intro-lock {
 	transform: translate(-50%, -50%);
 	width: var(--video-width);
 	aspect-ratio: var(--video-ratio);
-	z-index: 6;
+	z-index: 10;
 	overflow: hidden;
 	opacity: 0;
 	transition: opacity 0.45s ease;
@@ -120,32 +120,29 @@ body.jmd-intro-lock {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* one stacked logo split across a seam */
+/* Logo wrapper is centered horizontally. JS computes all vertical placement. */
 .jmd-intro__logo-wrap {
-	--logo-bottom-width: min(72vw, 1040px);
+	--logo-bottom-width: min(64vw, 930px);
 	--logo-top-width-ratio: 0.86942;
-	--intro-top: 26vh;
-	--seam-overlap: 0px;
-	--open-distance: 0px;
+	--logo-top-y: 0px;
+	--bottom-closed-y: 0px;
+	--bottom-open-y: 0px;
 	--target-x: 0px;
 	--target-y: 0px;
 	--target-scale: 1;
 
 	position: absolute;
 	left: 50%;
-	top: var(--intro-top);
+	top: 0;
 	transform: translateX(-50%);
 	width: var(--logo-bottom-width);
-	z-index: 10;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
+	z-index: 8;
 	pointer-events: none;
 	will-change: transform, opacity;
 }
 
 .jmd-intro__logo {
-	position: relative;
+	position: absolute;
 	display: flex;
 	align-items: center;
 	transition:
@@ -163,41 +160,39 @@ body.jmd-intro-lock {
 
 .jmd-intro__logo--top {
 	width: calc(var(--logo-bottom-width) * var(--logo-top-width-ratio));
-	margin-left: auto;
-	margin-right: 0;
+	right: 0;
+	left: auto;
 	justify-content: flex-end;
-	transform: translateY(0);
-	z-index: 2;
+	transform: translateY(var(--logo-top-y));
 }
 
 .jmd-intro__logo--bottom {
 	width: var(--logo-bottom-width);
-	margin-left: 0;
-	margin-right: 0;
+	left: 0;
+	right: auto;
 	justify-content: flex-start;
-	transform: translateY(calc(var(--seam-overlap) * -1));
-	margin-top: calc(var(--seam-overlap) * -1);
-	z-index: 1;
+	transform: translateY(var(--bottom-closed-y));
 }
 
-/* only bottom moves */
+/* Open state: only bottom moves fully below the video */
 .jmd-intro.is-open .jmd-intro__logo--top {
-	transform: translateY(0);
+	transform: translateY(var(--logo-top-y));
 }
 
 .jmd-intro.is-open .jmd-intro__logo--bottom {
-	transform: translateY(var(--open-distance));
+	transform: translateY(var(--bottom-open-y));
 }
 
+/* Close state: bottom comes back to meet the top half */
 .jmd-intro.is-closing .jmd-intro__logo--top {
-	transform: translateY(0);
+	transform: translateY(var(--logo-top-y));
 }
 
 .jmd-intro.is-closing .jmd-intro__logo--bottom {
-	transform: translateY(calc(var(--seam-overlap) * -1));
+	transform: translateY(var(--bottom-closed-y));
 }
 
-/* final move to header */
+/* Final move to header */
 .jmd-intro.is-transitioning-out .jmd-intro__logo-wrap {
 	transform:
 		translateX(-50%)
@@ -211,8 +206,8 @@ body.jmd-intro-lock {
 
 @media (max-width: 575.98px) {
 	.jmd-intro__video-wrap {
-		--video-width: min(84vw, 420px);
-		--video-ratio: 1.12;
+		--video-width: min(88vw, 520px);
+		--video-ratio: 1.18;
 	}
 
 	.jmd-intro__close {
@@ -227,7 +222,6 @@ body.jmd-intro-lock {
 	}
 
 	.jmd-intro__logo-wrap {
-		--logo-bottom-width: min(88vw, 540px);
-		--intro-top: 23vh;
+		--logo-bottom-width: min(78vw, 460px);
 	}
 }

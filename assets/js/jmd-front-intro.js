@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	const video = document.getElementById('jmd-intro-video');
 	const closeBtn = intro ? intro.querySelector('.jmd-intro__close') : null;
 	const logoWrap = intro ? intro.querySelector('.jmd-intro__logo-wrap') : null;
+	const topLogo = intro ? intro.querySelector('.jmd-intro__logo--top') : null;
+	const bottomLogo = intro ? intro.querySelector('.jmd-intro__logo--bottom') : null;
+	const videoWrap = intro ? intro.querySelector('.jmd-intro__video-wrap') : null;
 
-	if (!intro || !video || !closeBtn || !logoWrap) return;
+	if (!intro || !video || !closeBtn || !logoWrap || !topLogo || !bottomLogo || !videoWrap) return;
 
 	const state = {
 		isClosing: false,
@@ -40,35 +43,52 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function setInitialLogoSize() {
 		const vw = window.innerWidth;
-		const vh = window.innerHeight;
-		const mobile = vw < MOBILE_BREAKPOINT;
-
 		const TOP_WIDTH = 163.79;
 		const BOTTOM_WIDTH = 188.39;
 		const TOP_RATIO = TOP_WIDTH / BOTTOM_WIDTH;
 
 		let bottomWidth;
-		let introTop;
-		let openDistance;
-		let seamOverlap;
 
-		if (mobile) {
-			bottomWidth = Math.min(vw * 0.88, 540);
-			introTop = vh * 0.23;
-			openDistance = Math.min(vh * 0.18, 110);
-			seamOverlap = 2;
+		if (isMobile()) {
+			bottomWidth = Math.min(vw * 0.78, 460);
 		} else {
-			bottomWidth = Math.min(vw * 0.72, 1040);
-			introTop = vh * 0.26;
-			openDistance = Math.min(vh * 0.20, 150);
-			seamOverlap = 2;
+			bottomWidth = Math.min(vw * 0.64, 930);
 		}
 
 		logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
 		logoWrap.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
-		logoWrap.style.setProperty('--intro-top', `${introTop}px`);
-		logoWrap.style.setProperty('--open-distance', `${openDistance}px`);
-		logoWrap.style.setProperty('--seam-overlap', `${seamOverlap}px`);
+	}
+
+	function setLogoAndVideoPlacement() {
+		setInitialLogoSize();
+
+		// Force layout so measurements reflect the current responsive widths
+		void logoWrap.offsetWidth;
+		void videoWrap.offsetWidth;
+		void topLogo.offsetWidth;
+		void bottomLogo.offsetWidth;
+
+		const mobile = isMobile();
+		const gap = mobile ? 14 : 20;
+
+		const videoRect = videoWrap.getBoundingClientRect();
+		const logoWrapRect = logoWrap.getBoundingClientRect();
+		const topRect = topLogo.getBoundingClientRect();
+		const bottomRect = bottomLogo.getBoundingClientRect();
+
+		// Place top half above the video with a fixed gap.
+		// We store Y values relative to the logoWrap top because the logo halves are absolutely positioned inside it.
+		const topY = (videoRect.top - gap - topRect.height) - logoWrapRect.top;
+
+		// Closed state: bottom half tucked directly under the top half, forming the complete logo.
+		const bottomClosedY = topY + topRect.height;
+
+		// Open state: bottom half moves fully below the video, with the same gap.
+		const bottomOpenY = (videoRect.bottom + gap) - logoWrapRect.top;
+
+		logoWrap.style.setProperty('--logo-top-y', `${topY}px`);
+		logoWrap.style.setProperty('--bottom-closed-y', `${bottomClosedY}px`);
+		logoWrap.style.setProperty('--bottom-open-y', `${bottomOpenY}px`);
 	}
 
 	function setTargetTransformVars() {
@@ -158,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	function openIntro() {
-		setInitialLogoSize();
+		setLogoAndVideoPlacement();
 		setTargetTransformVars();
 		lockScroll();
 
@@ -218,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	window.addEventListener('resize', function () {
 		if (state.isFinished) return;
-		setInitialLogoSize();
+		setLogoAndVideoPlacement();
 		setTargetTransformVars();
 	});
 
