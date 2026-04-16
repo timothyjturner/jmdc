@@ -93,6 +93,11 @@
     color: #06060C;
     font-weight: 500;
 }
+@media(max-width: 900px ) {
+    .jmdc-herotext__description p {
+        font-size: 16px;
+    }
+}
 
 .jmdc-herotext.agency-text .jmdc-herotext__description {
     margin-inline: auto;
