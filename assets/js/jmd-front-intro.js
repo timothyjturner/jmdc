@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	const intro = document.getElementById('jmd-intro');
 	const video = document.getElementById('jmd-intro-video');
 	const closeBtn = intro ? intro.querySelector('.jmd-intro__close') : null;
-	const logoWrap = intro ? intro.querySelector('.jmd-intro__logo-wrap') : null;
+	const stage = intro ? intro.querySelector('.jmd-intro__stage') : null;
 	const topLogo = intro ? intro.querySelector('.jmd-intro__logo--top') : null;
 	const bottomLogo = intro ? intro.querySelector('.jmd-intro__logo--bottom') : null;
 	const videoWrap = intro ? intro.querySelector('.jmd-intro__video-wrap') : null;
 
-	if (!intro || !video || !closeBtn || !logoWrap || !topLogo || !bottomLogo || !videoWrap) return;
+	if (!intro || !video || !closeBtn || !stage || !topLogo || !bottomLogo || !videoWrap) return;
 
 	const state = {
 		isClosing: false,
@@ -41,97 +41,72 @@ document.addEventListener('DOMContentLoaded', function () {
 		};
 	}
 
-	function setLogoAndVideoPlacement() {
+	function setLayoutVars() {
+		const vw = window.innerWidth;
+		const vh = window.innerHeight;
 		const TOP_WIDTH = 163.79;
 		const BOTTOM_WIDTH = 188.39;
 		const TOP_RATIO = TOP_WIDTH / BOTTOM_WIDTH;
 
-		const vw = window.innerWidth;
-		const vh = window.innerHeight;
-		const mobile = isMobile();
-
 		let bottomWidth;
-		let closedGap;
-		let openGap;
-		let introTop;
+		let videoWidth;
+		let videoHeight;
+		let videoGap;
+		let stageTop;
 
-		if (mobile) {
+		if (isMobile()) {
 			bottomWidth = Math.min(vw * 0.72, 420);
-			closedGap = 0;
-			openGap = 12;
-			introTop = Math.round(vh * 0.18);
+			videoWidth = Math.min(vw * 0.88, 520);
+			videoHeight = Math.round(videoWidth / 1.18);
+			videoGap = 12;
 		} else {
 			bottomWidth = Math.min(vw * 0.56, 820);
-			closedGap = 0;
-			openGap = 18;
-			introTop = Math.round(vh * 0.22);
+			videoWidth = Math.min(vw * 0.72, 1040);
+			videoHeight = Math.round(videoWidth / 1.62);
+			videoGap = 18;
 		}
 
-		logoWrap.style.setProperty('--logo-bottom-width', `${bottomWidth}px`);
-		logoWrap.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
-		logoWrap.style.setProperty('--intro-top', `${introTop}px`);
+		stage.style.setProperty('--logo-bottom-width', `${Math.round(bottomWidth)}px`);
+		stage.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
+		stage.style.setProperty('--video-width', `${Math.round(videoWidth)}px`);
+		stage.style.setProperty('--video-height', `${Math.round(videoHeight)}px`);
+		stage.style.setProperty('--video-gap', `${videoGap}px`);
 
-		void logoWrap.offsetWidth;
-		void videoWrap.offsetWidth;
+		// Let widths apply, then measure closed logo height
+		void stage.offsetWidth;
 		void topLogo.offsetWidth;
 		void bottomLogo.offsetWidth;
 
-		const wrapRect = logoWrap.getBoundingClientRect();
-		const videoRect = videoWrap.getBoundingClientRect();
 		const topRect = topLogo.getBoundingClientRect();
 		const bottomRect = bottomLogo.getBoundingClientRect();
 
-		const topHeight = topRect.height;
-		const bottomHeight = bottomRect.height;
+		const closedHeight = topRect.height + bottomRect.height;
 
 		/*
-			Closed:
-			- top half starts at 0
-			- bottom half starts directly below it
-			- no overlap
-
-			Open:
-			- top half remains stationary
-			- bottom half moves fully below the video
-			- no overlap
+			Place the stage so that when OPEN:
+			- the video is vertically centered
+			- the top logo remains above it
+			- the closed logo starts higher on the page like the reference
 		*/
+		stageTop = Math.round((vh / 2) - (topRect.height + videoGap + (videoHeight / 2)));
 
-		const topY = 0;
-		const bottomClosedY = topHeight + closedGap;
-		const bottomOpenY = (videoRect.bottom - wrapRect.top) + openGap;
+		// Nudge slightly lower for desktop to better match the mockup
+		if (!isMobile()) {
+			stageTop += 12;
+		}
 
-		const wrapHeight = bottomOpenY + bottomHeight;
+		stage.style.setProperty('--stage-top', `${stageTop}px`);
 
-		logoWrap.style.setProperty('--logo-top-y', `${Math.round(topY)}px`);
-		logoWrap.style.setProperty('--bottom-closed-y', `${Math.round(bottomClosedY)}px`);
-		logoWrap.style.setProperty('--bottom-open-y', `${Math.round(bottomOpenY)}px`);
-		logoWrap.style.setProperty('--logo-wrap-height', `${Math.ceil(wrapHeight)}px`);
+		return { closedHeight };
 	}
 
 	function setTargetTransformVars() {
 		const navLogo = document.querySelector('.custom-logo-link img');
-		const topImg = topLogo ? topLogo.querySelector('img') : null;
-		const bottomImg = bottomLogo ? bottomLogo.querySelector('img') : null;
+		const stageRect = stage.getBoundingClientRect();
 
-		if (!topImg || !bottomImg) return;
-
-		logoWrap.classList.add('is-measuring');
-
-		const topRect = topLogo.getBoundingClientRect();
-		const bottomRect = bottomLogo.getBoundingClientRect();
-
-		const closedLeft = Math.min(topRect.left, bottomRect.left);
-		const closedTop = Math.min(topRect.top, bottomRect.top);
-		const closedRight = Math.max(topRect.right, bottomRect.right);
-		const closedBottom = Math.max(topRect.bottom, bottomRect.bottom);
-
-		const closedWidth = closedRight - closedLeft;
-		const closedHeight = closedBottom - closedTop;
-
-		logoWrap.classList.remove('is-measuring');
-
-		const introCenterX = closedLeft + (closedWidth / 2);
-		const introCenterY = closedTop + (closedHeight / 2);
+		// At close time, video row is collapsed, so stage bounds equal the closed logo bounds
+		const introCenterX = stageRect.left + (stageRect.width / 2);
+		const introCenterY = stageRect.top + (stageRect.height / 2);
 
 		let targetCenterX;
 		let targetCenterY;
@@ -141,33 +116,20 @@ document.addEventListener('DOMContentLoaded', function () {
 			const navRect = navLogo.getBoundingClientRect();
 			targetCenterX = navRect.left + (navRect.width / 2);
 			targetCenterY = navRect.top + (navRect.height / 2);
-			scale = navRect.width / closedWidth;
+			scale = navRect.width / stageRect.width;
 		} else {
 			const target = getTargetMetrics();
 			targetCenterX = window.innerWidth / 2;
 			targetCenterY = target.topOffset + (target.height / 2);
-			scale = target.width / closedWidth;
+			scale = target.width / stageRect.width;
 		}
-
-		const logoWrapRect = logoWrap.getBoundingClientRect();
-		const wrapCenterX = logoWrapRect.left + (logoWrapRect.width / 2);
-		const wrapCenterY = logoWrapRect.top + (logoWrapRect.height / 2);
-
-		const closedCenterOffsetX = introCenterX - wrapCenterX;
-		const closedCenterOffsetY = introCenterY - wrapCenterY;
 
 		const deltaX = targetCenterX - introCenterX;
 		const deltaY = targetCenterY - introCenterY;
 
-		logoWrap.style.setProperty(
-			'--target-x',
-			`${Math.round(closedCenterOffsetX + deltaX)}px`
-		);
-		logoWrap.style.setProperty(
-			'--target-y',
-			`${Math.round(closedCenterOffsetY + deltaY)}px`
-		);
-		logoWrap.style.setProperty('--target-scale', `${scale}`);
+		stage.style.setProperty('--target-x', `${Math.round(deltaX)}px`);
+		stage.style.setProperty('--target-y', `${Math.round(deltaY)}px`);
+		stage.style.setProperty('--target-scale', `${scale}`);
 	}
 
 	function lockScroll() {
@@ -205,16 +167,17 @@ document.addEventListener('DOMContentLoaded', function () {
 			video.pause();
 		} catch (e) {}
 
+		// Wait for the video row to collapse so stage bounds equal the closed logo
 		setTimeout(() => {
-			setLogoAndVideoPlacement();
+			setLayoutVars();
 			setTargetTransformVars();
 			intro.classList.add('is-fading-out');
 			intro.classList.add('is-transitioning-out');
-		}, 900);
+		}, 950);
 
 		setTimeout(() => {
 			finalizeIntro();
-		}, 1800);
+		}, 1850);
 	}
 
 	function handleScrollClose() {
@@ -227,14 +190,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	function openIntro() {
-		setLogoAndVideoPlacement();
+		setLayoutVars();
 		setTargetTransformVars();
 		lockScroll();
 
 		intro.classList.remove('is-open', 'is-closing', 'is-fading-out', 'is-transitioning-out', 'is-hidden');
 
 		void intro.offsetWidth;
-		void logoWrap.offsetWidth;
+		void stage.offsetWidth;
 
 		video.muted = !!jmdFrontIntro.muted;
 
@@ -263,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		setTimeout(() => {
 			state.canClose = true;
-		}, 1300);
+		}, 1350);
 	}
 
 	closeBtn.addEventListener('click', function () {
@@ -287,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	window.addEventListener('resize', function () {
 		if (state.isFinished) return;
-		setLogoAndVideoPlacement();
+		setLayoutVars();
 		setTargetTransformVars();
 	});
 
