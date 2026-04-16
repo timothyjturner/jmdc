@@ -145,15 +145,16 @@ BOTTOM
 
 .jmd-intro__close {
 	position: fixed;
-	top: 0;
-	right: 0;
-	transform: translate(-24px, 24px);
+	top: 24px;
+	right: 24px;
 	width: 38px;
 	height: 38px;
 	border: 0;
 	background: rgba(0, 0, 0, 0.28);
+	padding: 0;
+	margin: 0;
 	cursor: pointer;
-	z-index: 100000;
+	z-index: 100001;
 	opacity: 0;
 	pointer-events: none;
 	transition: opacity 0.25s ease, background 0.25s ease;
@@ -183,26 +184,10 @@ BOTTOM
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* End transition back to header */
-.jmd-intro.is-transitioning-out .jmd-intro__stage {
-	transform:
-		translateX(-50%)
-		translate(var(--target-x), var(--target-y))
-		scale(var(--target-scale));
-	transition:
-		transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-		opacity 0.9s ease;
-	opacity: 0;
-}
-
 @media (max-width: 575.98px) {
-	.jmd-intro__stage {
-		--video-gap: 12px;
-	}
-
 	.jmd-intro__close {
-		top: 8px;
-		right: 8px;
+		top: 16px;
+		right: 16px;
 		width: 34px;
 		height: 34px;
 	}

@@ -399,6 +399,11 @@ add_action('wp_footer', function () {
 <div id="jmd-intro" class="jmd-intro" aria-hidden="true">
 	<div class="jmd-intro__bg"></div>
 
+	<button type="button" class="jmd-intro__close" aria-label="Close intro">
+		<span></span>
+		<span></span>
+	</button>
+
 	<div class="jmd-intro__stage">
 		<div class="jmd-intro__top-row">
 			<div class="jmd-intro__logo jmd-intro__logo--top">
@@ -407,11 +412,6 @@ add_action('wp_footer', function () {
 		</div>
 
 		<div class="jmd-intro__video-wrap">
-			<button type="button" class="jmd-intro__close" aria-label="Close intro">
-				<span></span>
-				<span></span>
-			</button>
-
 			<video
 				id="jmd-intro-video"
 				class="jmd-intro__video"
