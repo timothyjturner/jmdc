@@ -49,26 +49,23 @@ document.addEventListener('DOMContentLoaded', function () {
 		const TOP_RATIO = TOP_WIDTH / BOTTOM_WIDTH;
 
 		let bottomWidth;
-		let videoWidth;
 		let videoHeight;
 		let videoGap;
 		let stageTop;
 
 		if (isMobile()) {
 			bottomWidth = Math.min(vw * 0.72, 420);
-			videoWidth = Math.min(vw * 0.88, 520);
-			videoHeight = Math.round(videoWidth / 1.18);
+			videoHeight = Math.round(bottomWidth / 1.18);
 			videoGap = 12;
 		} else {
 			bottomWidth = Math.min(vw * 0.56, 820);
-			videoWidth = Math.min(vw * 0.72, 1040);
-			videoHeight = Math.round(videoWidth / 1.62);
+			videoHeight = Math.round(bottomWidth / 1.62);
 			videoGap = 18;
 		}
 
 		stage.style.setProperty('--logo-bottom-width', `${Math.round(bottomWidth)}px`);
 		stage.style.setProperty('--logo-top-width-ratio', `${TOP_RATIO}`);
-		stage.style.setProperty('--video-width', `${Math.round(videoWidth)}px`);
+		stage.style.setProperty('--video-width', `${Math.round(bottomWidth)}px`);
 		stage.style.setProperty('--video-height', `${Math.round(videoHeight)}px`);
 		stage.style.setProperty('--video-gap', `${videoGap}px`);
 
@@ -78,26 +75,24 @@ document.addEventListener('DOMContentLoaded', function () {
 		void bottomLogo.offsetWidth;
 
 		const topRect = topLogo.getBoundingClientRect();
-		const bottomRect = bottomLogo.getBoundingClientRect();
-
-		const closedHeight = topRect.height + bottomRect.height;
 
 		/*
 			Place the stage so that when OPEN:
 			- the video is vertically centered
 			- the top logo remains above it
-			- the closed logo starts higher on the page like the reference
+			- the closed logo starts lower, closer to just below the header
 		*/
 		stageTop = Math.round((vh / 2) - (topRect.height + videoGap + (videoHeight / 2)));
 
-		// Nudge slightly lower for desktop to better match the mockup
-		if (!isMobile()) {
-			stageTop += 12;
+		if (isMobile()) {
+			stageTop += 6;
+		} else {
+			stageTop += 32;
 		}
 
 		stage.style.setProperty('--stage-top', `${stageTop}px`);
 
-		return { closedHeight };
+		return {};
 	}
 
 	function setTargetTransformVars() {

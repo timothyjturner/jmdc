@@ -38,7 +38,7 @@ body.jmd-intro-lock {
 .jmd-intro__stage {
 	--logo-bottom-width: 820px;
 	--logo-top-width-ratio: 0.86942;
-	--video-width: 980px;
+	--video-width: var(--logo-bottom-width);
 	--video-height: 0px;
 	--video-gap: 18px;
 	--stage-top: 140px;
