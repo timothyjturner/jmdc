@@ -39,7 +39,7 @@ if (! empty($quotes) && is_array($quotes)) {
 
 $first_quote = ! empty($valid_quotes) ? $valid_quotes[0] : null;
 $has_bio = ! empty(trim(wp_strip_all_tags((string) $bio_content)));
-$modal_id = 'jmdc-about-info-modal-' . $block['id'];
+$toggle_id = 'jmdc-about-info-toggle-' . $block['id'];
 ?>
 <section class="jmdc-about-info<?php echo esc_attr($class_name); ?>">
     <div class="jmdc-about-info__container jmdc-reveal">
@@ -75,72 +75,65 @@ $modal_id = 'jmdc-about-info-modal-' . $block['id'];
             <?php endif; ?>
         </div>
 
-        <?php if ($first_quote) : ?>
+        <?php if ($first_quote || $has_bio) : ?>
             <?php
             $style = '';
 
-            if (! empty($first_quote['font_desktop'])) {
+            if ($first_quote && ! empty($first_quote['font_desktop'])) {
                 $style .= '--quote-font-size-desktop:' . (int) $first_quote['font_desktop'] . 'px;';
             }
 
-            if (! empty($first_quote['font_mobile'])) {
+            if ($first_quote && ! empty($first_quote['font_mobile'])) {
                 $style .= '--quote-font-size-mobile:' . (int) $first_quote['font_mobile'] . 'px;';
             }
             ?>
 
-            <div class="jmdc-about-info__content">
-                <div class="jmdc-about-info__text-wrap" <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>>
-                    <div class="jmdc-about-info__text">
-                        <?php echo wp_kses_post($first_quote['content']); ?>
-                    </div>
-                </div>
-
-                <?php if ($has_bio) : ?>
-                    <div class="jmdc-about-info__actions">
-                        <button
-                            type="button"
-                            class="jmdc-about-info__bio-trigger"
-                            data-about-info-open="<?php echo esc_attr($modal_id); ?>"
-                            aria-controls="<?php echo esc_attr($modal_id); ?>"
-                            aria-haspopup="dialog"
-                        >
-                            <?php echo esc_html($bio_link_label); ?>
-                        </button>
-                    </div>
-
-                    <div
-                        id="<?php echo esc_attr($modal_id); ?>"
-                        class="jmdc-about-info__modal"
-                        data-about-info-modal
-                        hidden
-                    >
-                        <div class="jmdc-about-info__modal-backdrop" data-about-info-close></div>
-
-                        <div
-                            class="jmdc-about-info__modal-dialog"
-                            role="dialog"
-                            aria-modal="true"
-                            aria-labelledby="<?php echo esc_attr($modal_id); ?>-title"
-                        >
-                            <button
-                                type="button"
-                                class="jmdc-about-info__modal-close"
-                                data-about-info-close
-                                aria-label="<?php echo esc_attr__('Close bio', 'jmdc'); ?>"
+            <div
+                id="<?php echo esc_attr($toggle_id); ?>"
+                class="jmdc-about-info__content"
+                data-about-info-toggle
+                data-view-bio-label="<?php echo esc_attr($bio_link_label); ?>"
+                data-view-quote-label="<?php echo esc_attr__('VIEW QUOTE', 'jmdc'); ?>"
+            >
+                <div class="jmdc-about-info__viewport">
+                    <div class="jmdc-about-info__panel-wrap">
+                        <?php if ($first_quote) : ?>
+                            <div
+                                class="jmdc-about-info__panel jmdc-about-info__panel--quote is-active"
+                                data-about-info-panel="quote"
+                                <?php echo $style ? 'style="' . esc_attr($style) . '"' : ''; ?>
                             >
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                                <div class="jmdc-about-info__text jmdc-about-info__text--quote">
+                                    <?php echo wp_kses_post($first_quote['content']); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
 
-                            <div class="jmdc-about-info__modal-content">
-                                <h3 id="<?php echo esc_attr($modal_id); ?>-title" class="screen-reader-text">
-                                    <?php esc_html_e('Bio', 'jmdc'); ?>
-                                </h3>
-
-                                <div class="jmdc-about-info__modal-body">
+                        <?php if ($has_bio) : ?>
+                            <div
+                                class="jmdc-about-info__panel jmdc-about-info__panel--bio<?php echo $first_quote ? '' : ' is-active'; ?>"
+                                data-about-info-panel="bio"
+                                <?php echo $first_quote ? 'hidden' : ''; ?>
+                            >
+                                <div class="jmdc-about-info__text jmdc-about-info__text--bio">
                                     <?php echo wp_kses_post(wpautop($bio_content)); ?>
                                 </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <?php if ($first_quote && $has_bio) : ?>
+                    <div class="jmdc-about-info__actions">
+                        <button
+                            type="button"
+                            class="jmdc-about-info__toggle-button"
+                            data-about-info-button
+                            aria-controls="<?php echo esc_attr($toggle_id); ?>"
+                            aria-pressed="false"
+                        >
+                            <?php echo esc_html($bio_link_label); ?>
+                        </button>
                     </div>
                 <?php endif; ?>
             </div>

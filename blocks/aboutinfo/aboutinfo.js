@@ -1,6 +1,4 @@
 (function () {
-  var scrollY = 0;
-
   function initReveal() {
     var items = document.querySelectorAll(
       ".jmdc-about-info .jmdc-about-info__container.jmdc-reveal"
@@ -40,168 +38,96 @@
     });
   }
 
-  function trapFocus(modal, event) {
-    if (event.key !== "Tab") {
+  function setViewportHeight(scope, activePanel) {
+    var viewport = scope.querySelector(".jmdc-about-info__viewport");
+
+    if (!viewport || !activePanel) {
       return;
     }
 
-    var focusable = modal.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-    );
-
-    if (!focusable.length) {
-      event.preventDefault();
-      return;
-    }
-
-    var first = focusable[0];
-    var last = focusable[focusable.length - 1];
-
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
+    activePanel.removeAttribute("hidden");
+    viewport.style.height = activePanel.offsetHeight + "px";
   }
 
-  function lockPageScroll() {
-    scrollY = window.scrollY || window.pageYOffset || 0;
+  function showPanel(scope, panelName) {
+    var panels = scope.querySelectorAll("[data-about-info-panel]");
+    var button = scope.querySelector("[data-about-info-button]");
+    var viewBioLabel =
+      scope.getAttribute("data-view-bio-label") || "VIEW BIO";
+    var viewQuoteLabel =
+      scope.getAttribute("data-view-quote-label") || "VIEW QUOTE";
+    var activePanel = null;
 
-    document.documentElement.classList.add("jmdc-about-info-modal-open");
-    document.body.classList.add("jmdc-about-info-modal-open");
+    panels.forEach(function (panel) {
+      var isActive = panel.getAttribute("data-about-info-panel") === panelName;
 
-    document.body.style.position = "fixed";
-    document.body.style.top = "-" + scrollY + "px";
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-  }
+      panel.classList.toggle("is-active", isActive);
 
-  function unlockPageScroll() {
-    document.documentElement.classList.remove("jmdc-about-info-modal-open");
-    document.body.classList.remove("jmdc-about-info-modal-open");
-
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
-    document.body.style.width = "";
-
-    window.scrollTo(0, scrollY);
-  }
-
-  function moveModalsToBody() {
-    var modals = document.querySelectorAll(".jmdc-about-info__modal");
-
-    modals.forEach(function (modal) {
-      if (modal.dataset.movedToBody === "true") {
-        return;
+      if (isActive) {
+        panel.removeAttribute("hidden");
+        activePanel = panel;
+      } else {
+        panel.setAttribute("hidden", "hidden");
       }
-
-      document.body.appendChild(modal);
-      modal.dataset.movedToBody = "true";
     });
+
+    if (button) {
+      var showingBio = panelName === "bio";
+      button.textContent = showingBio ? viewQuoteLabel : viewBioLabel;
+      button.setAttribute("aria-pressed", showingBio ? "true" : "false");
+    }
+
+    setViewportHeight(scope, activePanel);
   }
 
-  function initBioModals() {
-    moveModalsToBody();
+  function initAboutInfoToggle() {
+    var toggles = document.querySelectorAll("[data-about-info-toggle]");
 
-    var openButtons = document.querySelectorAll("[data-about-info-open]");
-
-    if (!openButtons.length) {
+    if (!toggles.length) {
       return;
     }
 
-    openButtons.forEach(function (button) {
-      if (button.dataset.aboutInfoBound === "true") {
+    toggles.forEach(function (scope) {
+      if (scope.dataset.aboutInfoBound === "true") {
         return;
       }
 
-      button.dataset.aboutInfoBound = "true";
+      scope.dataset.aboutInfoBound = "true";
 
-      var modalId = button.getAttribute("data-about-info-open");
-      var modal = document.getElementById(modalId);
+      var button = scope.querySelector("[data-about-info-button]");
+      var quotePanel = scope.querySelector('[data-about-info-panel="quote"]');
+      var bioPanel = scope.querySelector('[data-about-info-panel="bio"]');
 
-      if (!modal) {
+      if (!quotePanel && !bioPanel) {
         return;
       }
 
-      var closeButtons = modal.querySelectorAll("[data-about-info-close]");
-      var previousActiveElement = null;
+      var startingPanel = quotePanel ? "quote" : "bio";
+      showPanel(scope, startingPanel);
 
-      function openModal(event) {
-        if (event) {
-          event.preventDefault();
-        }
+      if (button && quotePanel && bioPanel) {
+        button.addEventListener("click", function () {
+          var isShowingBio = button.getAttribute("aria-pressed") === "true";
+          showPanel(scope, isShowingBio ? "quote" : "bio");
+        });
+      }
 
-        previousActiveElement = document.activeElement;
-        lockPageScroll();
-        modal.hidden = false;
-
-        window.requestAnimationFrame(function () {
-          modal.classList.add("is-open");
-
-          var firstFocusable = modal.querySelector(
-            '.jmdc-about-info__modal-close, a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      var resizeTimer = null;
+      window.addEventListener("resize", function () {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(function () {
+          var activePanel = scope.querySelector(
+            '[data-about-info-panel].is-active'
           );
-
-          if (firstFocusable) {
-            firstFocusable.focus();
-          }
-        });
-      }
-
-      function closeModal() {
-        modal.classList.remove("is-open");
-
-        window.setTimeout(function () {
-          modal.hidden = true;
-          unlockPageScroll();
-
-          if (
-            previousActiveElement &&
-            typeof previousActiveElement.focus === "function"
-          ) {
-            previousActiveElement.focus();
-          }
-        }, 200);
-      }
-
-      button.addEventListener("click", openModal);
-
-      closeButtons.forEach(function (closeButton) {
-        closeButton.addEventListener("click", function (event) {
-          event.preventDefault();
-          closeModal();
-        });
-      });
-
-      modal.addEventListener("click", function (event) {
-        if (
-          event.target.hasAttribute("data-about-info-close") ||
-          event.target.classList.contains("jmdc-about-info__modal-backdrop")
-        ) {
-          closeModal();
-        }
-      });
-
-      modal.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          event.preventDefault();
-          closeModal();
-          return;
-        }
-
-        trapFocus(modal, event);
+          setViewportHeight(scope, activePanel);
+        }, 120);
       });
     });
   }
 
   function onReady() {
     initReveal();
-    initBioModals();
+    initAboutInfoToggle();
   }
 
   if (document.readyState === "loading") {
