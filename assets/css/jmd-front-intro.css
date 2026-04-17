@@ -230,7 +230,7 @@ BOTTOM
 	pointer-events: auto;
 }
 
-.jmd-intro-lock.jmdc-site-header__nav a {
+.jmd-intro-lock .jmdc-site-header__nav a {
 	color: #fff !important;
 }
 
