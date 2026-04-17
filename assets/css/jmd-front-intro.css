@@ -226,6 +226,11 @@ BOTTOM
 	pointer-events: none;
 }
 
+.jmd-intro-lock.jmd-intro-transitioning .jmdc-site-header__logo {
+	opacity: 1;
+	pointer-events: auto;
+}
+
 .jmd-intro-lock.jmdc-site-header__nav a {
 	color: #fff !important;
 }

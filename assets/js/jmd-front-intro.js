@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		state.isFinished = true;
 		unlockScroll();
 		intro.classList.add('is-hidden');
+		document.body.classList.remove('jmd-intro-transitioning');
 
 		setTimeout(() => {
 			if (intro && intro.parentNode) {
@@ -168,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			setTargetTransformVars();
 			intro.classList.add('is-fading-out');
 			intro.classList.add('is-transitioning-out');
+			document.body.classList.add('jmd-intro-transitioning');
 		}, 950);
 
 		setTimeout(() => {
