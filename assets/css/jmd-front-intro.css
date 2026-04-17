@@ -230,8 +230,10 @@ BOTTOM
 	pointer-events: auto;
 }
 
-.jmd-intro-lock .jmdc-site-header__nav a {
-	color: #fff !important;
+@media(min-width: 1024px) {
+	.jmd-intro-lock .jmdc-site-header__nav a {
+		color: #fff !important;
+	}
 }
 
 .jmd-intro-lock .jmdc-nav-toggle__icon, 
