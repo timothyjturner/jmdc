@@ -218,7 +218,7 @@ BOTTOM
 .jmd-intro-lock .jmdc-site-header {
 	position: relative;
 	z-index: 100000;
-	background: black;
+	background: transparent;
 }
 
 .jmd-intro-lock .jmdc-site-header__logo {
