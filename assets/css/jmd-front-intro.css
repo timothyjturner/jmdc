@@ -213,3 +213,29 @@ BOTTOM
 		width: 16px;
 	}
 }
+
+/* Bring header above intro */
+.jmd-intro-lock header,
+.jmd-intro-lock .jmdc-site-header {
+	position: relative;
+	z-index: 100000;
+}
+
+.jmd-intro-lock .jmdc-site-header__logo {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.jmdc-site-header__nav a {
+	color: #fff !important;
+}
+
+.jmd-intro-lock .jmdc-nav-toggle__icon, 
+.jmd-intro-lock .jmdc-nav-toggle__icon::before, 
+.jmd-intro-lock .jmdc-nav-toggle__icon::after {
+	background: white;
+}
+
+.jmd-intro__bg {
+	pointer-events: none;
+}
