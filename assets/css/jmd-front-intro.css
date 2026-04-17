@@ -216,7 +216,6 @@ BOTTOM
 
 /* Bring header above intro */
 .jmd-intro-lock .jmdc-site-header {
-	position: relative;
 	z-index: 100000;
 	background: transparent;
 }
