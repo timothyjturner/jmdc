@@ -215,7 +215,6 @@ BOTTOM
 }
 
 /* Bring header above intro */
-.jmd-intro-lock header,
 .jmd-intro-lock .jmdc-site-header {
 	position: relative;
 	z-index: 100000;
