@@ -122,7 +122,6 @@ BOTTOM
 
 .jmd-intro.is-open .jmd-intro__video-wrap {
 	height: var(--video-height);
-	margin: var(--video-gap) 0;
 	opacity: 1;
 	pointer-events: auto;
 }
