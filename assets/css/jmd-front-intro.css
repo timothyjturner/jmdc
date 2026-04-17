@@ -226,7 +226,7 @@ BOTTOM
 	pointer-events: none;
 }
 
-.jmdc-site-header__nav a {
+.jmd-intro-lock.jmdc-site-header__nav a {
 	color: #fff !important;
 }
 
