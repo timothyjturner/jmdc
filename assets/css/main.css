@@ -656,8 +656,8 @@ body.jmdc-nav-open {
       margin-bottom: 20px; }
       @media (max-width: 1499px) {
         .jmdc-case-study .intro-v2 h1 {
-          font-size: 750px;
-          line-height: 750px;
+          font-size: 75px;
+          line-height: 75px;
           letter-spacing: 3px; } }
       @media (max-width: 781px) {
         .jmdc-case-study .intro-v2 h1 {
