@@ -617,7 +617,7 @@ body.jmdc-nav-open {
       max-width: calc(100% - 48px);
       margin-left: auto;
       margin-right: auto; }
-  @media (min-width: 782px) {
+  @media (min-width: 1200px) {
     .jmdc-case-study .twocol-big-gap {
       gap: 100px; } }
   .jmdc-case-study .intro-v2 {
