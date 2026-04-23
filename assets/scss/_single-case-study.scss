@@ -230,6 +230,11 @@
       font-size: 16px;
       height: 20px;
       display: inline-block;
+      media (max-width: 781px) { {
+        display: unset;
+        height: unset;
+        line-height: unset;
+      }
     } 
     h1 {
       font-size: 100px;
