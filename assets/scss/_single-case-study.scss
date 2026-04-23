@@ -71,7 +71,7 @@
       flex-wrap: nowrap;
       gap: 24px;
       margin: 0 0 24px;
-      max-width: calc(100vw - 200px);
+      max-width: calc(100vw - 160px);
       margin-left: auto;
       margin-right: auto;
       @media(max-width: 781px) {
@@ -203,8 +203,8 @@
   }
   .intro-v2 {
     .wp-block-columns {
-      gap: 100px;
-      margin: 0 80px 24px;
+      gap: 30px;
+      margin: 0 auto 24px;
       @media (max-width: 781px) {
         margin: 0 30px 24px;
         max-width: calc(100vw - 48px);
