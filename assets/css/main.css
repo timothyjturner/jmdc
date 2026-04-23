@@ -620,6 +620,11 @@ body.jmdc-nav-open {
   @media (min-width: 1200px) {
     .jmdc-case-study .twocol-big-gap {
       gap: 100px; } }
+  .jmdc-case-study .fullrow-images {
+    gap: 24px; }
+    @media (min-width: 1200px) {
+      .jmdc-case-study .fullrow-images {
+        gap: 100px; } }
   .jmdc-case-study .intro-v2 {
     text-align: left; }
     .jmdc-case-study .intro-v2 .wp-block-columns {

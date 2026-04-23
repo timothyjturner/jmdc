@@ -206,6 +206,12 @@
         gap: 100px;
     }
   }
+  .fullrow-images {
+    gap: 24px;
+    @media (min-width: 1200px) {
+      gap: 100px;
+    }
+  }
   .intro-v2 {
     .wp-block-columns {
       gap: 30px;
