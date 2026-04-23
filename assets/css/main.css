@@ -635,6 +635,10 @@ body.jmdc-nav-open {
       max-width: 730px;
       font-size: 22px;
       line-height: 30px; }
+      @media (max-width: 781px) {
+        .jmdc-case-study .intro-v2 p {
+          font-size: 16px;
+          line-height: 24px; } }
     .jmdc-case-study .intro-v2 p strong {
       padding-left: 0;
       padding-right: 0;

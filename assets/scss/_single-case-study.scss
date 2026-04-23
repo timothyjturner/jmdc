@@ -220,6 +220,10 @@
       max-width: 730px;
       font-size: 22px;
       line-height: 30px;
+      @media (max-width: 781px) {
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
     p strong {
       padding-left: 0;
