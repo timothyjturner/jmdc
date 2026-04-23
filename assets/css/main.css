@@ -619,14 +619,31 @@ body.jmdc-nav-open {
       margin-right: auto; }
   .jmdc-case-study .intro-v2 {
     text-align: left; }
+    .jmdc-case-study .intro-v2 .wp-block-columns {
+      gap: 100px;
+      margin: 0 80px 24px; }
+      @media (max-width: 781px) {
+        .jmdc-case-study .intro-v2 .wp-block-columns {
+          margin: 0 30px 24px;
+          max-width: calc(100vw - 48px); } }
     .jmdc-case-study .intro-v2 p {
       text-transform: none;
       padding-left: 0;
-      padding-right: 0; }
+      padding-right: 0;
+      margin: 0;
+      text-align: left;
+      max-width: 730px;
+      font-size: 22px;
+      line-height: 30px; }
     .jmdc-case-study .intro-v2 p strong {
       padding-left: 0;
       padding-right: 0;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      font-size: 24px;
+      line-height: 34px;
+      font-size: 16px;
+      height: 20px;
+      display: inline-block; }
     .jmdc-case-study .intro-v2 h1 {
       font-size: 100px;
       font-style: normal;
@@ -646,7 +663,8 @@ body.jmdc-nav-open {
     .jmdc-case-study .intro-v2 ul li {
       color: #06060C;
       text-transform: uppercase;
-      font-size: 24px;
+      font-size: 18px;
+      line-height: 24px;
       font-style: normal;
       font-weight: 400;
       line-height: 34px; }
