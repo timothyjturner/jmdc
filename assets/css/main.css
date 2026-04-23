@@ -617,6 +617,30 @@ body.jmdc-nav-open {
       max-width: calc(100% - 48px);
       margin-left: auto;
       margin-right: auto; }
+  .jmdc-case-study .intro-v2 {
+    text-align: left; }
+    .jmdc-case-study .intro-v2 p {
+      text-transform: none; }
+    .jmdc-case-study .intro-v2 p, .jmdc-case-study .intro-v2 p strong {
+      text-align: left; }
+    .jmdc-case-study .intro-v2 h1 {
+      font-size: 100px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100px;
+      letter-spacing: 4px;
+      text-align: left; }
+      @media (max-width: 781px) {
+        .jmdc-case-study .intro-v2 h1 {
+          font-size: 42px;
+          font-weight: 400;
+          line-height: 1.1;
+          letter-spacing: 1.5px; } }
+    .jmdc-case-study .intro-v2 ul li {
+      color: #06060C;
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 500; }
 
 @media (min-width: 782px) {
   .mobile-only {
