@@ -203,9 +203,7 @@
   }
   .2col-big-gap {
     @media (min-width: 782px) {
-      &.wp-block-columns {
         gap: 100px;
-      }
     }
   }
   .intro-v2 {
