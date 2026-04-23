@@ -674,13 +674,15 @@ body.jmdc-nav-open {
           font-weight: 400;
           line-height: 1.1;
           letter-spacing: 1.5px; } }
-    .jmdc-case-study .intro-v2 ul li {
-      color: #06060C;
-      text-transform: uppercase;
-      font-size: 18px;
-      line-height: 24px;
-      font-style: normal;
-      font-weight: 400; }
+    .jmdc-case-study .intro-v2 ul {
+      padding-left: 10px; }
+      .jmdc-case-study .intro-v2 ul li {
+        color: #06060C;
+        text-transform: uppercase;
+        font-size: 18px;
+        line-height: 24px;
+        font-style: normal;
+        font-weight: 400; }
 
 @media (min-width: 782px) {
   .mobile-only {
