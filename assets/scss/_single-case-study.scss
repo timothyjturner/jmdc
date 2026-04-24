@@ -208,8 +208,22 @@
   }
   .fullrow-images {
     gap: 24px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
     @media (min-width: 1200px) {
       gap: 100px;
+    }
+    figure {
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    img, video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
   }
   .intro-v2 {

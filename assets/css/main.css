@@ -621,10 +621,22 @@ body.jmdc-nav-open {
     .jmdc-case-study .twocol-big-gap {
       gap: 100px; } }
   .jmdc-case-study .fullrow-images {
-    gap: 24px; }
+    gap: 24px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch; }
     @media (min-width: 1200px) {
       .jmdc-case-study .fullrow-images {
         gap: 100px; } }
+    .jmdc-case-study .fullrow-images figure {
+      margin: 0;
+      width: 100%;
+      overflow: hidden; }
+    .jmdc-case-study .fullrow-images img, .jmdc-case-study .fullrow-images video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover; }
   .jmdc-case-study .intro-v2 {
     text-align: left; }
     .jmdc-case-study .intro-v2 .wp-block-columns {
