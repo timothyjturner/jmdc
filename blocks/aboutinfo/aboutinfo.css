@@ -188,7 +188,7 @@ section.jmdc-about-info {
     }
 }
 
-@media (max-width: 1024.98px) {
+@media (max-width: 1263px) {
     .jmdc-about-info__container {
         gap: 36px;
     }
