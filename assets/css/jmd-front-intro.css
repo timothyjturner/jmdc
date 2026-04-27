@@ -98,8 +98,13 @@ body.jmd-intro-lock {
 	width: var(--logo-bottom-width);
 }
 
+.jmd-intro__bottom-row {
+	transform: translateY(0);
+	transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
 .jmd-intro.is-open .jmd-intro__bottom-row {
-    top: -15px;
+	transform: translateY(-15px);
 }
 
 /*
