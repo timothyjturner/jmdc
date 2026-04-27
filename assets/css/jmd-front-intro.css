@@ -98,6 +98,10 @@ body.jmd-intro-lock {
 	width: var(--logo-bottom-width);
 }
 
+.jmd-intro.is-open .jmd-intro__bottom-row {
+    top: -15px;
+}
+
 /*
 Video row starts collapsed, so the closed state is automatically:
 TOP
