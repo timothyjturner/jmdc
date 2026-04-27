@@ -1,4 +1,95 @@
 (function () {
+  function wrapTextLines(textEl) {
+    if (!textEl || textEl.dataset.linesWrapped === "true") {
+      return;
+    }
+
+    textEl.dataset.linesWrapped = "true";
+
+    var paragraphs = textEl.querySelectorAll("p");
+
+    if (!paragraphs.length) {
+      wrapSingleElementLines(textEl);
+      return;
+    }
+
+    paragraphs.forEach(function (paragraph) {
+      wrapSingleElementLines(paragraph);
+    });
+  }
+
+  function wrapSingleElementLines(el) {
+    var nodes = Array.prototype.slice.call(el.childNodes);
+    var fragment = document.createDocumentFragment();
+    var line = document.createElement("span");
+    var hasContent = false;
+
+    line.className = "jmdc-about-info__line";
+
+    function appendLine() {
+      if (!hasContent) {
+        return;
+      }
+
+      fragment.appendChild(line);
+      line = document.createElement("span");
+      line.className = "jmdc-about-info__line";
+      hasContent = false;
+    }
+
+    nodes.forEach(function (node) {
+      if (node.nodeName === "BR") {
+        appendLine();
+        return;
+      }
+
+      line.appendChild(node.cloneNode(true));
+
+      if (
+        node.nodeType === Node.TEXT_NODE &&
+        node.textContent.trim() === ""
+      ) {
+        return;
+      }
+
+      hasContent = true;
+    });
+
+    appendLine();
+
+    if (!fragment.childNodes.length) {
+      return;
+    }
+
+    el.innerHTML = "";
+    el.appendChild(fragment);
+  }
+
+  function prepareLineAnimations() {
+    var texts = document.querySelectorAll(
+      ".jmdc-about-info__text--quote, .jmdc-about-info__text--bio"
+    );
+
+    texts.forEach(function (textEl) {
+      wrapTextLines(textEl);
+
+      var lines = textEl.querySelectorAll(".jmdc-about-info__line");
+
+      lines.forEach(function (line, index) {
+        line.style.transitionDelay = index * 90 + "ms";
+      });
+    });
+  }
+
+  function playLineAnimation(container) {
+    if (!container || container.dataset.linesAnimated === "true") {
+      return;
+    }
+
+    container.dataset.linesAnimated = "true";
+    container.classList.add("jmdc-about-info--lines-visible");
+  }
+
   function initReveal() {
     var items = document.querySelectorAll(
       ".jmdc-about-info .jmdc-about-info__container.jmdc-reveal"
@@ -11,6 +102,7 @@
     if (!("IntersectionObserver" in window)) {
       items.forEach(function (el) {
         el.classList.add("is-visible");
+        playLineAnimation(el.closest(".jmdc-about-info"));
       });
       return;
     }
@@ -23,6 +115,7 @@
           }
 
           entry.target.classList.add("is-visible");
+          playLineAnimation(entry.target.closest(".jmdc-about-info"));
           io.unobserve(entry.target);
         });
       },
@@ -52,8 +145,7 @@
   function showPanel(scope, panelName) {
     var panels = scope.querySelectorAll("[data-about-info-panel]");
     var button = scope.querySelector("[data-about-info-button]");
-    var viewBioLabel =
-      scope.getAttribute("data-view-bio-label") || "VIEW BIO";
+    var viewBioLabel = scope.getAttribute("data-view-bio-label") || "VIEW BIO";
     var viewQuoteLabel =
       scope.getAttribute("data-view-quote-label") || "VIEW QUOTE";
     var activePanel = null;
@@ -126,6 +218,7 @@
   }
 
   function onReady() {
+    prepareLineAnimations();
     initReveal();
     initAboutInfoToggle();
   }

@@ -276,3 +276,24 @@ section.jmdc-about-info {
 .page-id-11 .jmdc-about-info__container {
     max-width: unset;
 }
+
+.jmdc-about-info__line {
+    display: block;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+    will-change: opacity, transform;
+}
+
+.jmdc-about-info--lines-visible .jmdc-about-info__line {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jmdc-about-info__line {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
