@@ -372,6 +372,14 @@
   }
 }
 
+.video23 video {
+  aspect-ratio: 2 / 3 !important;
+  object-fit: cover;
+  @media (max-width: 781px) {
+    aspect-ratio: 1 / 1 !important;
+  }
+}
+
 .jmdc-case-study__content .fullwidthcols {
     margin-left: 0;
     margin-right: 0;
