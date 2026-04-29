@@ -275,10 +275,12 @@ BOTTOM
 	opacity: 0;
 	pointer-events: none;
 	transition: opacity 0.25s ease, transform 0.25s ease;
+	aspect-ratio: 1 / 1;
+    background-size: 200% 100%;
 }
 
 .jmd-intro.is-open .jmd-intro__sound-toggle {
-	opacity: 1;
+	opacity: 0.6;
 	pointer-events: auto;
 }
 
