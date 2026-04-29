@@ -424,6 +424,14 @@ add_action('wp_footer', function () {
 					type="<?php echo esc_attr(!empty($video['mime_type']) ? $video['mime_type'] : 'video/mp4'); ?>"
 				>
 			</video>
+      <button
+        type="button"
+        class="jmd-intro__sound-toggle is-muted"
+        aria-label="Unmute video"
+        aria-pressed="false"
+      >
+        <span class="screen-reader-text">Unmute video</span>
+      </button>
 		</div>
 
 		<div class="jmd-intro__bottom-row">

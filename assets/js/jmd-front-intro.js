@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	const topLogo = intro ? intro.querySelector('.jmd-intro__logo--top') : null;
 	const bottomLogo = intro ? intro.querySelector('.jmd-intro__logo--bottom') : null;
 	const videoWrap = intro ? intro.querySelector('.jmd-intro__video-wrap') : null;
+	const soundToggle = intro ? intro.querySelector('.jmd-intro__sound-toggle') : null;
 
-	if (!intro || !video || !closeBtn || !stage || !topLogo || !bottomLogo || !videoWrap) return;
+	if (!intro || !video || !closeBtn || !stage || !topLogo || !bottomLogo || !videoWrap || !soundToggle) return;
 
 	const state = {
 		isClosing: false,
@@ -197,6 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		void stage.offsetWidth;
 
 		video.muted = !!jmdFrontIntro.muted;
+		updateSoundButton();
 
 		try {
 			video.pause();
@@ -228,6 +230,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	closeBtn.addEventListener('click', function () {
 		closeIntro();
+	});
+
+	function updateSoundButton() {
+		if (video.muted) {
+			soundToggle.classList.add('is-muted');
+			soundToggle.classList.remove('is-unmuted');
+			soundToggle.setAttribute('aria-label', 'Unmute video');
+			soundToggle.setAttribute('aria-pressed', 'false');
+		} else {
+			soundToggle.classList.remove('is-muted');
+			soundToggle.classList.add('is-unmuted');
+			soundToggle.setAttribute('aria-label', 'Mute video');
+			soundToggle.setAttribute('aria-pressed', 'true');
+		}
+	}
+
+	soundToggle.addEventListener('click', function () {
+		video.muted = !video.muted;
+
+		if (!video.muted && video.paused) {
+			const playPromise = video.play();
+			if (playPromise && typeof playPromise.catch === 'function') {
+				playPromise.catch(() => {});
+			}
+		}
+
+		updateSoundButton();
 	});
 
 	video.addEventListener('timeupdate', function () {
