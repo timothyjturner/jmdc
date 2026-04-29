@@ -380,6 +380,11 @@
   }
 }
 
+.video11 video {
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover;
+}
+
 .jmdc-case-study__content .fullwidthcols {
     margin-left: 0;
     margin-right: 0;
