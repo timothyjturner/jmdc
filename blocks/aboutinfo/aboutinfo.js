@@ -76,7 +76,7 @@
       var lines = textEl.querySelectorAll(".jmdc-about-info__line");
 
       lines.forEach(function (line, index) {
-        line.style.transitionDelay = index * 90 + "ms";
+        line.style.transitionDelay = index * 850 + "ms";
       });
     });
   }
@@ -121,8 +121,8 @@
       },
       {
         root: null,
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.15,
+        rootMargin: "0px 0px -25% 0px",
+        threshold: 0.35,
       }
     );
 
